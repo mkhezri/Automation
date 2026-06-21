@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<base target="_top">
+<style>
+  :root{--navy:#1B3A5C;--accent:#C45911;--bg:#f4f6f9;--line:#dde3ea;--muted:#6b7886;--green:#2E7D32;--red:#c62828}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:#1a2530;line-height:1.7;font-size:15px;padding:0}
+  .topbar{background:var(--navy);color:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+  .topbar h1{font-size:18px}
+  .opp-badge{background:var(--accent);padding:7px 15px;border-radius:8px;font-weight:700;direction:ltr}
+  .container{max-width:900px;margin:0 auto;padding:20px 16px 80px}
+  .tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+  .tab{padding:9px 20px;background:#fff;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-weight:600;font-size:14px;color:var(--muted)}
+  .tab.active{background:var(--navy);color:#fff}
+  .view{display:none}.view.active{display:block}
+  .section{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:16px;overflow:hidden}
+  .section-head{background:var(--navy);color:#fff;padding:11px 16px;font-weight:700;font-size:15px}
+  .section-body{padding:16px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px}
+  .field{display:flex;flex-direction:column;gap:5px}
+  .field label{font-size:13px;font-weight:600;color:var(--navy)}
+  .field label .req{color:var(--red)}
+  input,select,textarea{padding:9px 11px;border:1px solid var(--line);border-radius:7px;font-size:14px;font-family:inherit;width:100%}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--navy)}
+  input.invalid,select.invalid{border-color:var(--red);background:#fdecea}
+  input[readonly]{background:#f4f6f9;color:var(--muted)}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .btn{padding:11px 22px;border:none;border-radius:8px;cursor:pointer;font-weight:700;font-size:14px;font-family:inherit;transition:.2s}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+  .btn-ai{background:#5c35c4;color:#fff}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  table.list{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden}
+  table.list th{background:var(--navy);color:#fff;padding:10px;font-size:13px;text-align:right}
+  table.list td{padding:9px 10px;border-bottom:1px solid var(--line);font-size:13px}
+  .num-cell{font-weight:700;color:var(--accent);direction:ltr;text-align:right}
+  .empty{text-align:center;padding:40px;color:var(--muted)}
+  .loading{text-align:center;padding:40px;color:var(--muted)}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy);color:#fff;padding:13px 24px;border-radius:10px;font-weight:600;z-index:200;transition:.3s;opacity:0}
+  .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+  .toast.success{background:var(--green)}.toast.error{background:var(--red)}
+  .ablock{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:12px;background:#fafbfc}
+  .ablock-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:700;color:var(--navy);font-size:14px}
+  .atable{width:100%;border-collapse:collapse;font-size:12px}
+  .atable th,.atable td{border:1px solid var(--line);padding:4px;text-align:center}
+  .atable th{background:var(--navy);color:#fff;font-size:11px}
+  .atable .pc{background:#eef3f8;font-weight:700;color:var(--navy)}
+  .atable input{padding:4px;font-size:12px;text-align:center;border-radius:4px}
+  .rm-btn{background:#fdecea;color:var(--red);border:1px solid #f5c6c0;border-radius:5px;cursor:pointer;padding:3px 8px}
+  .stage-row{display:grid;grid-template-columns:100px 1fr 40px;gap:8px;margin-bottom:8px;align-items:center}
+  .stage-row .stp{text-align:center}
+  .tracker{display:flex;gap:0;margin-bottom:16px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .tstep{flex:1;padding:10px 6px;text-align:center;font-size:12px;font-weight:600;color:var(--muted);border-left:1px solid var(--line)}
+  .tstep:last-child{border-left:none}
+  .tstep.done{background:#e8f5e9;color:var(--green)}
+  .tstep.current{background:var(--navy);color:#fff}
+  .ai-panel{background:#f0ebff;border:1px solid #c8b8f5;border-radius:12px;padding:16px;margin-top:12px}
+  .ai-panel h3{color:#5c35c4;margin-bottom:10px;font-size:14px}
+  .ai-result{white-space:pre-wrap;font-size:13px;line-height:1.8;color:#2a1a5c;background:#fff;border-radius:8px;padding:12px;max-height:300px;overflow-y:auto}
+  .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700}
+  .badge-green{background:#e8f5e9;color:var(--green)}
+  .badge-red{background:#fdecea;color:var(--red)}
+  .badge-yellow{background:#fff8e1;color:#e65100}
+  .action-cell{display:flex;gap:6px}
+  .icon-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:4px}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <h1>🏭 سامانه هوشمند فرصت خرید</h1>
+  <div style="display:flex;gap:10px;align-items:center">
+    <span style="font-size:12px;background:rgba(255,255,255,.15);padding:4px 10px;border-radius:6px">AI Agent فعال</span>
+    <div class="opp-badge" id="oppBadge">...</div>
+  </div>
+</div>
+<div class="container">
+  <div class="tabs">
+    <div class="tab active" id="tabForm" onclick="showView('form')">➕ فرصت جدید</div>
+    <div class="tab" id="tabList" onclick="showView('list')">📋 لیست فرصت‌ها</div>
+  </div>
+
+  <!-- ===== FORM VIEW ===== -->
+  <div class="view active" id="view-form">
+    <div class="section">
+      <div class="section-head">اطلاعات تأمین‌کننده</div>
+      <div class="section-body"><div class="grid">
+        <div class="field"><label>نام شرکت <span class="req">*</span></label>
+          <select id="supplier_select" onchange="onSupplierPick()"><option value="">— در حال بارگذاری —</option></select></div>
+        <input type="hidden" id="registry_no">
+        <input type="hidden" id="national_id">
+        <input type="hidden" id="supplier_type">
+        <input type="hidden" id="supplier_email">
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">کالا و تحویل</div>
+      <div class="section-body"><div class="grid">
+        <div class="field"><label>نوع کالا <span class="req">*</span></label>
+          <select id="product_type" onchange="onProductChange()"><option value="">— انتخاب —</option>
+            <option value="Iron Ore Concentrate">کنسانتره سنگ آهن</option>
+            <option value="Iron Ore Hematite">سنگ آهن هماتیت</option>
+            <option value="Iron Ore Pellet">گندله سنگ آهن</option>
+            <option value="Pellet Fines">نرمه گندله</option></select></div>
+        <div class="field"><label>وزن (تن) <span class="req">*</span></label>
+          <select id="weight_sel" onchange="comboOther('weight')">
+            <option value="">— انتخاب —</option>
+            <option value="50000">۵۰,۰۰۰</option><option value="70000">۷۰,۰۰۰</option>
+            <option value="100000">۱۰۰,۰۰۰</option><option value="140000">۱۴۰,۰۰۰</option>
+            <option value="__other">سایر (دستی)</option>
+          </select>
+          <input id="weight_other" type="number" dir="ltr" placeholder="وزن دستی" style="margin-top:6px;display:none">
+        </div>
+        <div class="field"><label>تولیدکننده / معدن</label><input id="producer_mine"></div>
+        <div class="field"><label>ترم تحویل <span class="req">*</span></label>
+          <select id="delivery_term"><option value="">— انتخاب —</option><option value="FOB">FOB</option><option value="CFR">CFR</option><option value="CIF">CIF</option></select></div>
+        <div class="field"><label>بندر تحویل</label>
+          <select id="port_sel" onchange="comboOther('port')">
+            <option value="">— انتخاب —</option>
+            <option value="CHABAHAR">CHABAHAR</option><option value="RAJAEE">RAJAEE</option>
+            <option value="BARCO">BARCO</option><option value="BIK">BIK</option>
+            <option value="__other">سایر (دستی)</option>
+          </select>
+          <input id="port_other" placeholder="بندر دستی" style="margin-top:6px;display:none">
+        </div>
+        <div class="field"><label>کشور مقصد</label>
+          <select id="dest_sel" onchange="comboOther('dest')">
+            <option value="">— انتخاب —</option>
+            <option value="Oman">عمان</option><option value="China">چین</option>
+            <option value="Singapore">سنگاپور</option><option value="__other">سایر (دستی)</option>
+          </select>
+          <input id="dest_other" placeholder="کشور دستی" style="margin-top:6px;display:none">
+        </div>
+        <div class="field"><label>لِیکن</label><input id="laycan" type="date" dir="ltr"></div>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">آنالیز سه‌گانه</div>
+      <div class="section-body">
+        <div id="analysisBlocks"></div>
+        <button type="button" class="btn btn-ghost" id="addAnalysisBtn" onclick="addAnalysis()">+ افزودن آزمایش</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">آنالیز و قیمت</div>
+      <div class="section-body"><div class="grid">
+        <div class="field"><label>عیار پایه</label>
+          <select id="base_grade_sel" onchange="comboOther('base_grade')">
+            <option value="">— انتخاب —</option>
+            <option value="45">45</option><option value="50">50</option><option value="55">55</option>
+            <option value="58">58</option><option value="60">60</option><option value="61">61</option>
+            <option value="62">62</option><option value="65">65</option><option value="67">67</option>
+            <option value="70">70</option><option value="__other">سایر (دستی)</option>
+          </select>
+          <input id="base_grade_other" type="number" dir="ltr" placeholder="عیار دستی" style="margin-top:6px;display:none">
+        </div>
+        <div class="field"><label>نوع قیمت <span class="req">*</span></label>
+          <select id="price_type"><option value="">— انتخاب —</option><option value="Formula">فرمولی</option><option value="Fixed">ثابت</option></select></div>
+        <div class="field"><label>شاخص مرجع</label>
+          <select id="platts_index">
+            <option value="Platts CFR 65% Fe">Platts CFR 65% Fe</option>
+            <option value="Platts CFR 61% Fe">Platts CFR 61% Fe</option>
+            <option value="Platts CFR 58% Fe">Platts CFR 58% Fe</option>
+          </select></div>
+        <div class="field"><label>Premium/Discount ($)</label><input id="premium_discount" type="number" step="0.01" dir="ltr" placeholder="$ مقدار به دلار"></div>
+        <div class="field"><label>قیمت ثابت ($)</label><input id="fixed_price" type="number" step="0.01" dir="ltr" placeholder="$ مقدار به دلار"></div>
+      </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">جایزه، جریمه و شرط ریجکت</div>
+      <div class="section-body">
+        <div class="field" style="margin-bottom:12px"><label>جایزه (Bonus)</label>
+          <select id="bonus_clause" onchange="toggleOther('bonus')">
+            <option value="">— انتخاب جایزه —</option>
+            <option value="For each 1.0 % of Fe content above 65%, the base price will be increased by average of Platts VIU for 60-63.5% Fe range (IOMGD00) based on QP FOB/DMT fraction pro-rata.">VIU — افزایش بر اساس میانگین Platts VIU برای هر ۱٪ Fe بالای ۶۵٪</option>
+            <option value="For each 1% Fe content above 65%, the base price shall be increased by USD 1.75 DMT, fraction pro rata.">ثابت — افزایش ۱.۷۵ دلار/DMT برای هر ۱٪ Fe بالای ۶۵٪</option>
+            <option value="__other">سایر (دستی)</option>
+          </select>
+          <input id="bonus_other" style="margin-top:6px;display:none" placeholder="متن جایزه دستی">
+        </div>
+        <div class="field" style="margin-bottom:12px"><label>جریمه (Penalty)</label>
+          <select id="penalty_clause" onchange="toggleOther('penalty')">
+            <option value="">— انتخاب جریمه —</option>
+            <option value="For each 1.0 % of Fe content below 65%, the base price will be decreased by average of Platts VIU for the 60-63.5% Fe range (IOMGD00) based on QP FOB/DMT fraction pro-rata.">VIU — کاهش بر اساس میانگین Platts VIU برای هر ۱٪ Fe زیر ۶۵٪</option>
+            <option value="For each 1% Fe content below 65%, the base price shall be decreased by USD 1.75 DMT, fraction pro rata.">ثابت — کاهش ۱.۷۵ دلار/DMT برای هر ۱٪ Fe زیر ۶۵٪</option>
+            <option value="__other">سایر (دستی)</option>
+          </select>
+          <input id="penalty_other" style="margin-top:6px;display:none" placeholder="متن جریمه دستی">
+        </div>
+        <div class="field"><label>شرط ریجکت (Rejection Clause)</label>
+          <select id="reject_clause" onchange="toggleOther('reject')">
+            <option value="">— انتخاب شرط ریجکت —</option>
+            <option value="For Fe content below 64.00% the Buyer has the right to reject the cargo or re-negotiate the price">Fe زیر ۶۴.۰۰٪ — حق رد یا مذاکره مجدد خریدار</option>
+            <option value="For Fe content below 64.50% the Buyer has the right to reject the cargo or re-negotiate the price">Fe زیر ۶۴.۵۰٪ — حق رد یا مذاکره مجدد خریدار</option>
+            <option value="__other">سایر (دستی)</option>
+          </select>
+          <input id="reject_other" style="margin-top:6px;display:none" placeholder="متن شرط ریجکت دستی">
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">پرداخت و مبانی محاسبه</div>
+      <div class="section-body">
+        <label style="font-size:13px;font-weight:600;color:var(--navy);display:block;margin-bottom:8px">مراحل پرداخت (توافقی)</label>
+        <div id="stagesContainer"></div>
+        <button type="button" class="btn btn-ghost" onclick="addStage()">+ افزودن مرحله پرداخت</button>
+        <div class="grid" style="margin-top:16px">
+          <div class="field"><label>معیار محاسبه آنالیز در فاکتور</label>
+            <select id="analysis_basis">
+              <option value="">— انتخاب —</option>
+              <option value="SGS">مبنای SGS</option>
+              <option value="CIQ/CCIC">مبنای CIQ / CCIC</option>
+              <option value="Conditional">فرمول شرطی اختلاف‌محور</option>
+            </select></div>
+          <div class="field"><label>معیار محاسبه وزن در فاکتور</label>
+            <select id="weight_basis">
+              <option value="">— انتخاب —</option>
+              <option value="SGS">مبنای SGS</option>
+              <option value="CIQ/CCIC">مبنای CIQ / CCIC</option>
+              <option value="Compare">مقایسه SGS و CIQ</option>
+            </select></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">گردش کار و یادداشت</div>
+      <div class="section-body">
+        <div id="tracker" class="tracker"></div>
+        <div class="grid">
+          <div class="field"><label>وضعیت فعلی</label>
+            <select id="status" onchange="updateTracker()">
+              <option value="0">ثبت اولیه</option>
+              <option value="1">انتظار تأیید سرپرست</option>
+              <option value="2">انتظار تأیید مدیر بازرگانی</option>
+              <option value="3">تأیید نهایی</option>
+            </select></div>
+        </div>
+        <div class="field" style="margin-top:12px"><label>کامنت‌های مدیریتی</label>
+          <textarea id="mgmt_comments" rows="2"></textarea></div>
+        <div class="field" style="margin-top:12px"><label>یادداشت داخلی (بدون چاپ در PDF)</label>
+          <textarea id="internal_notes" rows="2"></textarea></div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="saveBtn" onclick="save()">💾 ذخیره در پایگاه داده</button>
+      <button class="btn btn-ai" id="aiBtn" onclick="runAiAnalysis()">🤖 تحلیل AI</button>
+      <button class="btn btn-ghost" id="emailBtn" onclick="sendEmailToSupplier()">📧 ارسال ایمیل به تأمین‌کننده</button>
+    </div>
+
+    <div class="ai-panel" id="aiPanel" style="display:none">
+      <h3>🤖 نتیجه تحلیل هوش مصنوعی</h3>
+      <div class="ai-result" id="aiResult"></div>
+    </div>
+  </div>
+
+  <!-- ===== LIST VIEW ===== -->
+  <div class="view" id="view-list">
+    <div id="listContainer"><div class="loading">در حال بارگذاری...</div></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+  var AGENT_URL = PropertiesService ? '' : 'http://localhost:8000'; // will be set via GAS property
+  var suppliers = [];
+
+  var PARAM_SETS = {
+    'Iron Ore Concentrate': [
+      {key:'fe',label:'Fe'},{key:'feo',label:'FeO'},{key:'sio2',label:'SiO2'},
+      {key:'al2o3',label:'Al2O3'},{key:'p',label:'P'},{key:'s',label:'S'},
+      {key:'cao',label:'CaO'},{key:'mgo',label:'MgO'},{key:'moisture',label:'رطوبت'},{key:'size',label:'دانه‌بندی'}
+    ],
+    'Iron Ore Hematite': [
+      {key:'fe',label:'Fe'},{key:'feo',label:'FeO'},{key:'p',label:'P'},{key:'s',label:'S'},
+      {key:'sio2',label:'SiO2'},{key:'al2o3',label:'Al2O3'},{key:'moisture',label:'رطوبت'},{key:'size',label:'دانه‌بندی'}
+    ],
+    'Iron Ore Pellet': [
+      {key:'fe',label:'Fe'},{key:'feo',label:'FeO'},{key:'p',label:'P'},{key:'s',label:'S'},
+      {key:'sio2',label:'SiO2'},{key:'al2o3',label:'Al2O3'},{key:'cao',label:'CaO'},{key:'mgo',label:'MgO'},
+      {key:'ccs',label:'CCS (kg/p)'},{key:'size',label:'دانه‌بندی'},{key:'ai',label:'A.I %'},
+      {key:'ti',label:'T.I %'},{key:'porosity',label:'Porosity %'},{key:'reduc',label:'Reducibility %'}
+    ],
+    'Pellet Fines': [
+      {key:'fe',label:'Fe'},{key:'feo',label:'FeO'},{key:'p',label:'P'},{key:'s',label:'S'},
+      {key:'sio2',label:'SiO2'},{key:'al2o3',label:'Al2O3'},{key:'cao',label:'CaO'},
+      {key:'mgo',label:'MgO'},{key:'size',label:'دانه‌بندی'}
+    ]
+  };
+  var DEFAULT_PARAMS = [
+    {key:'fe',label:'Fe'},{key:'feo',label:'FeO'},{key:'p',label:'P'},{key:'s',label:'S'},
+    {key:'sio2',label:'SiO2'},{key:'al2o3',label:'Al2O3'},{key:'moisture',label:'رطوبت'},{key:'size',label:'دانه‌بندی'}
+  ];
+  var PARAMS = DEFAULT_PARAMS;
+  var analysisCount = 0;
+
+  function onProductChange(){
+    var pt = document.getElementById('product_type').value;
+    PARAMS = PARAM_SETS[pt] || DEFAULT_PARAMS;
+    document.getElementById('analysisBlocks').innerHTML = '';
+    analysisCount = 0;
+    addAnalysis();
+  }
+
+  function addAnalysis(data){
+    if(analysisCount >= 3){ toast('حداکثر ۳ آزمایش','error'); return; }
+    analysisCount++;
+    var idx = analysisCount;
+    var rows = PARAMS.map(function(p){
+      var inType = (p.key==='size') ? 'text' : 'number';
+      return '<tr><td class="pc">'+p.label+'</td>'+
+        '<td><input type="'+inType+'" id="con_'+idx+'_'+p.key+'"></td>'+
+        '<td><input type="'+inType+'" id="lab_'+idx+'_'+p.key+'"></td>'+
+        '<td><input type="'+inType+'" id="sgs_'+idx+'_'+p.key+'"></td></tr>';
+    }).join('');
+    var div = document.createElement('div');
+    div.className = 'ablock'; div.id = 'ab_'+idx;
+    div.innerHTML =
+      '<div class="ablock-head"><span>آزمایش '+idx+'</span>'+
+      '<button type="button" class="rm-btn" onclick="removeAnalysis('+idx+')">حذف</button></div>'+
+      '<div class="field" style="margin-bottom:8px"><label>تناژ در زمان نمونه‌برداری (تن)</label>'+
+      '<input type="number" id="tonnage_'+idx+'" dir="ltr"></div>'+
+      '<div style="overflow-x:auto"><table class="atable"><thead><tr>'+
+      '<th>پارامتر</th><th>تعهد قراردادی</th><th>آزمایشگاه ما</th><th>SGS سوابق</th>'+
+      '</tr></thead><tbody>'+rows+'</tbody></table></div>';
+    document.getElementById('analysisBlocks').appendChild(div);
+    document.getElementById('addAnalysisBtn').style.display = analysisCount>=3 ? 'none' : 'inline-block';
+  }
+
+  function removeAnalysis(idx){
+    var el = document.getElementById('ab_'+idx);
+    if(el) el.remove();
+    analysisCount = document.querySelectorAll('#analysisBlocks .ablock').length;
+    document.getElementById('addAnalysisBtn').style.display = analysisCount>=3 ? 'none' : 'inline-block';
+  }
+
+  function getAnalyses(){
+    var out = [];
+    document.querySelectorAll('#analysisBlocks .ablock').forEach(function(blk){
+      var idx = blk.id.split('_')[1];
+      var an = {};
+      PARAMS.forEach(function(p){
+        an[p.key] = {
+          sgs: (document.getElementById('sgs_'+idx+'_'+p.key)||{}).value || '',
+          lab: (document.getElementById('lab_'+idx+'_'+p.key)||{}).value || '',
+          contract: (document.getElementById('con_'+idx+'_'+p.key)||{}).value || ''
+        };
+      });
+      out.push({ tonnage: (document.getElementById('tonnage_'+idx)||{}).value || '', analysis: an });
+    });
+    return out;
+  }
+
+  function toggleOther(name){
+    var sel = document.getElementById(name+'_clause');
+    document.getElementById(name+'_other').style.display = (sel.value==='__other') ? 'block' : 'none';
+  }
+  function clauseValue(name){
+    var sel = document.getElementById(name+'_clause');
+    if(sel.value==='__other') return document.getElementById(name+'_other').value;
+    return sel.value;
+  }
+
+  function addStage(pct, trig){
+    pct = pct||''; trig = trig||'';
+    var c = document.getElementById('stagesContainer');
+    var row = document.createElement('div'); row.className = 'stage-row';
+    var opts = '<option value="">٪</option>';
+    var found = false;
+    for(var v=5; v<=100; v+=5){
+      var seld = (String(pct)===String(v)) ? ' selected' : '';
+      if(seld) found = true;
+      opts += '<option value="'+v+'"'+seld+'>'+v+'%</option>';
+    }
+    if(pct!==''&&!found) opts += '<option value="'+pct+'" selected>'+pct+'%</option>';
+    opts += '<option value="__other">سایر...</option>';
+    row.innerHTML =
+      '<select class="stp" onchange="stageOther(this)">'+opts+'</select>'+
+      '<input type="text" placeholder="زمان / شرط پرداخت" value="'+String(trig).replace(/"/g,'&quot;')+'">'+
+      '<button type="button" class="rm-btn" onclick="this.parentElement.remove()">✕</button>';
+    c.appendChild(row);
+  }
+  function stageOther(sel){
+    if(sel.value!=='__other') return;
+    var num = prompt('درصد دلخواه را وارد کنید:');
+    if(!num||!num.trim()){ sel.value=''; return; }
+    num = num.trim();
+    var exists = false;
+    for(var i=0;i<sel.options.length;i++) if(sel.options[i].value===num){ exists=true; break; }
+    if(!exists){ var opt=document.createElement('option'); opt.value=num; opt.textContent=num+'%'; sel.insertBefore(opt,sel.options[sel.options.length-1]); }
+    sel.value = num;
+  }
+  function getStages(){
+    var out = [];
+    document.querySelectorAll('#stagesContainer .stage-row').forEach(function(r){
+      var pctEl = r.querySelector('select.stp');
+      var trigEl = r.querySelector('input[type="text"]');
+      if((pctEl&&pctEl.value!=='')||(trigEl&&trigEl.value!==''))
+        out.push({percent:pctEl?pctEl.value:'', trigger:trigEl?trigEl.value:''});
+    });
+    return out;
+  }
+
+  var STATUS_LABELS = ['ثبت اولیه','انتظار تأیید سرپرست','انتظار تأیید مدیر بازرگانی','تأیید نهایی'];
+  function updateTracker(){
+    var st = parseInt(document.getElementById('status').value)||0;
+    var html = '';
+    for(var i=0;i<STATUS_LABELS.length;i++){
+      var cls = 'tstep' + (i<st?' done':i===st?' current':'');
+      html += '<div class="'+cls+'">'+STATUS_LABELS[i]+'</div>';
+    }
+    document.getElementById('tracker').innerHTML = html;
+  }
+
+  function comboOther(name){
+    var sel = document.getElementById(name+'_sel');
+    document.getElementById(name+'_other').style.display = (sel.value==='__other') ? 'block' : 'none';
+  }
+  function comboValue(name){
+    var sel = document.getElementById(name+'_sel');
+    if(sel.value==='__other') return document.getElementById(name+'_other').value;
+    return sel.value;
+  }
+
+  function buildPayload(){
+    var sel = document.getElementById('supplier_select');
+    return {
+      opp_number: document.getElementById('oppBadge').textContent,
+      date: new Date().toISOString().slice(0,10),
+      supplier_id: sel.value,
+      supplier_name: sel.options[sel.selectedIndex]?sel.options[sel.selectedIndex].text:'',
+      registry_no: val('registry_no'), national_id: val('national_id'),
+      supplier_type: val('supplier_type'), supplier_email: val('supplier_email'),
+      product_type: val('product_type'), quantity_mt: comboValue('weight'),
+      producer_mine: val('producer_mine'), delivery_term: val('delivery_term'),
+      delivery_port: comboValue('port'), dest_country: comboValue('dest'),
+      laycan: val('laycan'), base_grade: comboValue('base_grade'),
+      price_type: val('price_type'), platts_index: val('platts_index'),
+      premium_discount: val('premium_discount'), fixed_price: val('fixed_price'),
+      analyses: getAnalyses(),
+      bonus_clause: clauseValue('bonus'), penalty_clause: clauseValue('penalty'),
+      reject_clause: clauseValue('reject'),
+      payment_stages: getStages(),
+      analysis_basis: val('analysis_basis'), weight_basis: val('weight_basis'),
+      status: val('status'), mgmt_comments: val('mgmt_comments'), internal_notes: val('internal_notes')
+    };
+  }
+
+  // ===== AI Analysis =====
+  function runAiAnalysis(){
+    var btn = document.getElementById('aiBtn');
+    btn.textContent='⏳ در حال تحلیل...'; btn.disabled=true;
+    var payload = buildPayload();
+    google.script.run
+      .withSuccessHandler(function(res){
+        document.getElementById('aiPanel').style.display='block';
+        document.getElementById('aiResult').textContent = res.result || res.error || JSON.stringify(res);
+        btn.textContent='🤖 تحلیل AI'; btn.disabled=false;
+      })
+      .withFailureHandler(function(err){
+        toast('خطا در تحلیل AI: '+err.message,'error');
+        btn.textContent='🤖 تحلیل AI'; btn.disabled=false;
+      })
+      .callAgentAnalyze(payload);
+  }
+
+  // ===== Email to Supplier =====
+  function sendEmailToSupplier(){
+    var emailAddr = val('supplier_email');
+    if(!emailAddr){ toast('ایمیل تأمین‌کننده در سیستم ثبت نشده','error'); return; }
+    if(!confirm('ایمیل RFQ به «'+emailAddr+'» ارسال شود؟')) return;
+    var btn = document.getElementById('emailBtn');
+    btn.textContent='⏳ در حال ارسال...'; btn.disabled=true;
+    var payload = buildPayload();
+    google.script.run
+      .withSuccessHandler(function(res){
+        toast(res.message || 'ایمیل ارسال شد','success');
+        btn.textContent='📧 ارسال ایمیل به تأمین‌کننده'; btn.disabled=false;
+      })
+      .withFailureHandler(function(err){
+        toast('خطا در ارسال ایمیل: '+err.message,'error');
+        btn.textContent='📧 ارسال ایمیل به تأمین‌کننده'; btn.disabled=false;
+      })
+      .sendRfqEmail(payload);
+  }
+
+  // ===== Save =====
+  function val(id){ return (document.getElementById(id)||{}).value||''; }
+
+  function save(){
+    var req = ['supplier_select','product_type','weight_sel','delivery_term','price_type'];
+    var ok = true;
+    req.forEach(function(id){
+      var el = document.getElementById(id);
+      if(!el||!el.value.trim()){ if(el)el.classList.add('invalid'); ok=false; }
+      else if(el) el.classList.remove('invalid');
+    });
+    if(!ok){ toast('فیلدهای اجباری را تکمیل کنید','error'); return; }
+    var btn = document.getElementById('saveBtn');
+    btn.textContent='⏳ در حال ذخیره...'; btn.disabled=true;
+    google.script.run
+      .withSuccessHandler(function(res){
+        toast('ذخیره شد: '+res.opp_number,'success');
+        btn.textContent='💾 ذخیره در پایگاه داده'; btn.disabled=false;
+        google.script.run.withSuccessHandler(function(num){ document.getElementById('oppBadge').textContent=num; }).getNextOppNumber();
+        clearForm();
+      })
+      .withFailureHandler(function(err){
+        toast('خطا در ذخیره: '+err.message,'error');
+        btn.textContent='💾 ذخیره در پایگاه داده'; btn.disabled=false;
+      })
+      .saveOpportunity(buildPayload());
+  }
+
+  function clearForm(){
+    ['producer_mine','laycan','premium_discount','fixed_price','mgmt_comments','internal_notes'].forEach(function(id){ var el=document.getElementById(id); if(el)el.value=''; });
+    ['supplier_select','product_type','delivery_term','price_type','platts_index','analysis_basis','weight_basis'].forEach(function(id){ var el=document.getElementById(id); if(el)el.value=''; });
+    onSupplierPick();
+    document.getElementById('analysisBlocks').innerHTML=''; analysisCount=0; PARAMS=DEFAULT_PARAMS; addAnalysis();
+    ['bonus','penalty','reject'].forEach(function(n){
+      var s=document.getElementById(n+'_clause'); if(s)s.value='';
+      var o=document.getElementById(n+'_other'); if(o){o.style.display='none';o.value='';}
+    });
+    document.getElementById('stagesContainer').innerHTML=''; addStage();
+    ['weight','port','dest','base_grade'].forEach(function(n){
+      var s=document.getElementById(n+'_sel'); if(s)s.value='';
+      var o=document.getElementById(n+'_other'); if(o){o.style.display='none';o.value='';}
+    });
+    document.getElementById('status').value='0';
+    document.getElementById('aiPanel').style.display='none';
+    updateTracker();
+  }
+
+  function loadList(){
+    document.getElementById('listContainer').innerHTML='<div class="loading">در حال بارگذاری...</div>';
+    google.script.run.withSuccessHandler(function(list){
+      if(!list||list.length===0){ document.getElementById('listContainer').innerHTML='<div class="empty">هنوز فرصتی ثبت نشده است.</div>'; return; }
+      var rows = list.slice().reverse().map(function(o){
+        var statusLabels=['ثبت اولیه','انتظار سرپرست','انتظار مدیر','تأیید نهایی'];
+        var st=parseInt(o.status)||0;
+        var badgeCls=['badge-yellow','badge-yellow','badge-yellow','badge-green'][st]||'badge-yellow';
+        return '<tr>'+
+          '<td class="num-cell">'+(o.opp_number||'')+'</td>'+
+          '<td>'+(o.supplier_name||'')+'</td>'+
+          '<td>'+(o.product_type||'')+'</td>'+
+          '<td dir="ltr" style="text-align:right">'+(o.quantity_mt||'')+'</td>'+
+          '<td dir="ltr" style="text-align:right">'+(o.date||'')+'</td>'+
+          '<td><span class="badge '+badgeCls+'">'+(statusLabels[st]||'')+'</span></td>'+
+          '</tr>';
+      }).join('');
+      document.getElementById('listContainer').innerHTML =
+        '<table class="list"><thead><tr><th>شماره</th><th>تأمین‌کننده</th><th>کالا</th><th>وزن</th><th>تاریخ</th><th>وضعیت</th></tr></thead><tbody>'+rows+'</tbody></table>';
+    }).getOpportunities();
+  }
+
+  function showView(v){
+    document.getElementById('view-form').classList.toggle('active',v==='form');
+    document.getElementById('view-list').classList.toggle('active',v==='list');
+    document.getElementById('tabForm').classList.toggle('active',v==='form');
+    document.getElementById('tabList').classList.toggle('active',v==='list');
+    if(v==='list') loadList();
+  }
+
+  function toast(msg,type){
+    var t=document.getElementById('toast');
+    t.textContent=msg; t.className='toast show '+(type||'');
+    setTimeout(function(){t.className='toast';},3500);
+  }
+
+  function onSupplierPick(){
+    var id=document.getElementById('supplier_select').value;
+    var s=suppliers.find(function(x){return x.id===id;})||{};
+    document.getElementById('registry_no').value=s.registry_no||'';
+    document.getElementById('national_id').value=s.national_id||'';
+    document.getElementById('supplier_type').value=s.supplier_type||'';
+    document.getElementById('supplier_email').value=s.email||'';
+  }
+
+  // Init
+  google.script.run.withSuccessHandler(function(num){ document.getElementById('oppBadge').textContent=num; }).getNextOppNumber();
+  addAnalysis(); addStage(); updateTracker();
+  google.script.run.withSuccessHandler(function(list){
+    suppliers=list;
+    var sel=document.getElementById('supplier_select');
+    sel.innerHTML='<option value="">— انتخاب از لیست —</option>'+
+      list.map(function(s){return '<option value="'+s.id+'">'+s.name+'</option>';}).join('');
+  }).getSuppliers();
+</script>
+</body>
+</html>
