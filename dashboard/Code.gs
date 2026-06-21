@@ -344,16 +344,29 @@ function getAuditLog(limit) {
 // === DRIVE ===
 // ============================================================
 
-function getPurchaseConditionFolderId() {
-  return "1rpgwIZbJGqSBWHa27aBVf1Mdx540IZf-";
+function getPurchaseConditionFolderId(status) {
+  // status: "draft" → Draft folder, otherwise → Final folder
+  if (status === "draft") return "1cOmhnMp8IaeIVK16MBnMdFKA7mlm79hz";
+  return "1a_oFoPqsCwvTp6meN7MIuwEwKeMzyoYb";
 }
 
-function getVesselNominationFolderId() {
-  return "1WAefL-4pUS8sKXWBZoSSQQMGDzvgu9ND";
+function getVesselNominationFolderId(status) {
+  if (status === "draft") return "1X8ru5_bYtijU3Y4wzIZcPXZvOtkHtcUv";
+  return "1YYOxOoX-hsMy4r3XtPGqA7Ehinezl1tL";
+}
+
+function getContractsFolderId(archived) {
+  if (archived) return "1kN_QvOU0Eb9_DMbaPmUv1PvCs3YoFems";
+  return "1ePIRi5IUd3KhE5Chepi-MoU2yaaNAXGw";
+}
+
+function getRfqFolderId(received) {
+  if (received) return "1ZjxSnH6W1xqDcnfXS27fksq9_Mg0SkX3";
+  return "17Cx0vZYUeW7b--fa1pqwOQY2qelhI3H6";
 }
 
 function createPurchaseConditionDoc(data, docNumber) {
-  const folder = DriveApp.getFolderById(getPurchaseConditionFolderId());
+  const folder = DriveApp.getFolderById(getPurchaseConditionFolderId(data.status));
   const doc    = DocumentApp.create(docNumber + " — شرایط خرید");
   const body   = doc.getBody();
 
@@ -395,7 +408,7 @@ function createPurchaseConditionDoc(data, docNumber) {
 }
 
 function createVesselNominationDoc(data, docNumber) {
-  const folder = DriveApp.getFolderById(getVesselNominationFolderId());
+  const folder = DriveApp.getFolderById(getVesselNominationFolderId(data.status));
   const doc    = DocumentApp.create(docNumber + " — معرفی کشتی");
   const body   = doc.getBody();
 
