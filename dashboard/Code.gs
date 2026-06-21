@@ -31,15 +31,17 @@ function doGet(e) {
   const page = (e && e.parameter && e.parameter.page) ? e.parameter.page : "dashboard";
 
   const pageMap = {
-    dashboard        : "dashboard.html",
-    purchase_condition: "purchase_condition.html",
-    vessel_nomination : "vessel_nomination.html",
-    projects         : "projects.html",
-    users            : "users.html",
-    settings         : "settings.html"
+    dashboard            : "dashboard",
+    purchase_condition   : "form-purchase-condition",
+    purchase_conditions  : "form-purchase-condition",
+    vessel_nomination    : "form-vessel-nomination",
+    vessel_nominations   : "form-vessel-nomination",
+    projects             : "dashboard",
+    users                : "dashboard",
+    settings             : "dashboard"
   };
 
-  const file = pageMap[page] || "dashboard.html";
+  const file = pageMap[page] || "dashboard";
 
   return HtmlService.createTemplateFromFile(file)
     .evaluate()
