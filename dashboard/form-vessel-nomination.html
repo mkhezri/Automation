@@ -1,422 +1,516 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KAU SOK — معرفی کشتی</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-<style>
-:root {
-  --primary: #1e40af;
-  --secondary: #059669;
-  --danger: #dc2626;
-  --bg: #f1f5f9;
-  --card: #ffffff;
-  --border: #e2e8f0;
-  --text: #0f172a;
-  --muted: #64748b;
-  --radius: 10px;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { font-family: 'Vazirmatn', sans-serif; font-size: 14px; color: var(--text); background: var(--bg); direction: rtl; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>معرفی کشتی - KAU SOK CO. LIMITED</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #1e40af;
+      --primary-dark: #1e3a8a;
+      --primary-light: #2563eb;
+      --primary-bg: #f0f4ff;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --success: #16a34a;
+      --error: #dc2626;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,.12);
+    }
+    body { font-family: 'Vazirmatn', sans-serif; background: var(--primary-bg); color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.7; }
+    .breadcrumb-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .breadcrumb-bar a { color: var(--primary); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: opacity .2s; }
+    .breadcrumb-bar a:hover { opacity: .75; }
+    .breadcrumb-bar .sep { color: var(--border); }
+    .breadcrumb-bar .current { color: var(--text); font-weight: 500; }
+    .page-wrapper { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+    .page-title { font-size: 22px; font-weight: 800; color: var(--primary-dark); margin-bottom: 6px; }
+    .page-subtitle { color: var(--text-muted); font-size: 13px; margin-bottom: 28px; }
+    .two-col { display: grid; grid-template-columns: 1fr 420px; gap: 20px; align-items: start; }
+    .card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 20px; overflow: hidden; }
+    .card-header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
+    .card-header .section-num { background: rgba(255,255,255,.2); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+    .card-header h2 { color: #fff; font-size: 15px; font-weight: 700; }
+    .card-body { padding: 22px 20px; }
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; }
+    .field label .req { color: var(--error); margin-right: 2px; }
+    .input-group { display: flex; align-items: center; gap: 0; }
+    .input-group input { border-radius: 8px 0 0 8px; flex: 1; }
+    .input-group .input-addon { padding: 10px 14px; background: #f1f5f9; border: 1.5px solid var(--border); border-right: none; border-radius: 0 8px 8px 0; color: var(--text-muted); font-size: 13px; font-weight: 600; white-space: nowrap; }
+    input[type="text"], input[type="number"], input[type="date"], select, textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'Vazirmatn', sans-serif; font-size: 14px; color: var(--text); background: #fff; transition: border-color .2s, box-shadow .2s; direction: rtl; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,64,175,.1); }
+    input[readonly] { background: #f8fafc; color: var(--text-muted); cursor: not-allowed; }
+    input::placeholder { color: #b0bec5; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 8px; font-family: 'Vazirmatn', sans-serif; font-size: 14px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(30,64,175,.3); }
+    .btn-success { background: var(--success); color: #fff; }
+    .btn-success:hover { background: #15803d; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(22,163,74,.3); }
+    .actions-bar { display: flex; gap: 12px; justify-content: flex-start; flex-wrap: wrap; }
+    .toast-container { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+    .toast { background: #1e293b; color: #fff; padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.2); animation: slideUp .3s ease; pointer-events: all; min-width: 280px; max-width: 420px; }
+    .toast.success { border-right: 4px solid var(--success); }
+    .toast.error { border-right: 4px solid var(--error); }
+    .toast.info { border-right: 4px solid var(--primary-light); }
+    @keyframes slideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeOut { from { opacity:1; } to { opacity:0; transform:translateY(10px); } }
+    .spinner-overlay { display: none; position: fixed; inset: 0; background: rgba(255,255,255,.7); z-index: 8000; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
+    .spinner-overlay.active { display: flex; }
+    .spinner { width: 48px; height: 48px; border: 5px solid #dbe4ff; border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner-text { color: var(--primary); font-weight: 600; font-size: 15px; }
+    .select-wrapper { position: relative; }
+    .select-loading { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; border: 2px solid #dbe4ff; border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; display: none; }
+    .select-loading.active { display: block; }
 
-.topbar {
-  background: #0f172a; padding: 14px 24px;
-  display: flex; align-items: center; gap: 12px;
-}
-.topbar-logo { font-size: 13px; font-weight: 700; color: #fff; }
-.topbar-sep  { color: #475569; }
-.topbar-crumb { font-size: 12.5px; color: #94a3b8; }
-.topbar-back { margin-right: auto; font-size: 12.5px; color: #93c5fd; cursor: pointer; }
-.topbar-back:hover { color: #fff; }
+    /* Live preview panel */
+    .preview-panel { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; position: sticky; top: 70px; }
+    .preview-panel-header { background: linear-gradient(135deg, #374151 0%, #4b5563 100%); padding: 14px 20px; display: flex; align-items: center; gap: 10px; }
+    .preview-panel-header h3 { color: #fff; font-size: 14px; font-weight: 700; }
+    .preview-panel-header .live-badge { background: #10b981; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.6; } }
+    .preview-panel-body { padding: 24px 20px; max-height: calc(100vh - 160px); overflow-y: auto; }
 
-.page { max-width: 860px; margin: 28px auto; padding: 0 16px 80px; }
-.page-header { margin-bottom: 22px; }
-.page-header h1 { font-size: 20px; font-weight: 800; }
-.page-header p { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+    .letter-preview { font-family: 'Vazirmatn', sans-serif; direction: rtl; font-size: 13px; line-height: 2.2; color: #1e293b; }
+    .letter-preview .lp-header { text-align: center; border-bottom: 3px double var(--primary); padding-bottom: 14px; margin-bottom: 18px; }
+    .letter-preview .lp-company { font-size: 17px; font-weight: 800; color: var(--primary-dark); }
+    .letter-preview .lp-subtitle { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .letter-preview .lp-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
+    .letter-preview .lp-to { margin-bottom: 14px; }
+    .letter-preview .lp-to-company { font-weight: 700; font-size: 14px; }
+    .letter-preview .lp-to-port { font-size: 12px; color: var(--text-muted); }
+    .letter-preview .lp-subject { font-weight: 700; font-size: 14px; color: var(--primary); margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; }
+    .letter-preview .lp-body { font-size: 13px; text-align: justify; margin-bottom: 18px; }
+    .letter-preview .lp-specs { background: #f8faff; border: 1px solid #dbe4ff; border-radius: 8px; padding: 12px 16px; margin-bottom: 18px; font-size: 13px; }
+    .letter-preview .lp-specs-title { font-weight: 700; color: var(--primary); margin-bottom: 8px; font-size: 12px; }
+    .letter-preview .lp-spec-row { display: flex; gap: 8px; margin-bottom: 3px; }
+    .letter-preview .lp-spec-key { color: var(--text-muted); min-width: 130px; font-size: 12px; }
+    .letter-preview .lp-spec-val { font-weight: 600; font-size: 12px; }
+    .letter-preview .lp-sig { margin-top: 30px; }
+    .letter-preview .lp-sig-name { font-weight: 800; font-size: 14px; }
+    .letter-preview .lp-sig-title { color: var(--text-muted); font-size: 12px; }
+    .letter-preview .lp-sig-company { font-size: 12px; font-weight: 600; color: var(--primary); }
+    .letter-placeholder { color: #cbd5e1; font-style: italic; }
 
-.doc-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: #d1fae5; color: var(--secondary);
-  padding: 6px 14px; border-radius: 99px;
-  font-size: 13px; font-weight: 700; margin-bottom: 18px;
-}
-
-.s-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
-.s-card-head { display: flex; align-items: center; gap: 10px; padding: 14px 20px; background: #f8fafc; border-bottom: 1px solid var(--border); font-size: 13.5px; font-weight: 700; }
-.s-num { width: 26px; height: 26px; background: var(--secondary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
-.s-body { padding: 20px; }
-
-.fg { display: grid; gap: 14px; }
-.fg-2 { grid-template-columns: 1fr 1fr; }
-.fg-3 { grid-template-columns: 1fr 1fr 1fr; }
-@media(max-width:600px) { .fg-2,.fg-3 { grid-template-columns: 1fr; } }
-
-.field { display: flex; flex-direction: column; gap: 5px; }
-.field label { font-size: 12px; font-weight: 600; color: var(--muted); }
-.field label span { color: var(--danger); margin-right: 2px; }
-.field input, .field select {
-  border: 1.5px solid var(--border); border-radius: 7px;
-  padding: 9px 12px; font-size: 13.5px;
-  font-family: inherit; color: var(--text); background: #fff;
-  transition: border-color .15s; direction: rtl;
-}
-.field input:focus, .field select:focus { outline: none; border-color: var(--secondary); box-shadow: 0 0 0 3px #d1fae5; }
-.unit-wrap { position: relative; }
-.unit-wrap input { padding-left: 50px; }
-.unit-label { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 11.5px; color: var(--muted); font-weight: 600; pointer-events: none; }
-
-/* LETTER PREVIEW */
-.letter-preview {
-  border: 2px solid var(--border); border-radius: var(--radius);
-  padding: 24px 28px; background: #fff;
-  font-size: 13.5px; line-height: 2; direction: rtl;
-}
-.letter-preview .ltr-header { text-align: center; margin-bottom: 20px; }
-.letter-preview .ltr-header strong { font-size: 15px; }
-.letter-preview .meta { font-size: 12.5px; color: var(--muted); margin-bottom: 16px; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; }
-.letter-preview .body-text { margin: 16px 0; }
-.letter-preview .highlight { font-weight: 700; color: var(--primary); }
-.letter-preview .signature { margin-top: 32px; font-weight: 700; font-size: 13px; }
-.letter-preview .field-ph { display: inline-block; min-width: 80px; border-bottom: 1.5px dashed #94a3b8; color: var(--muted); font-style: italic; text-align: center; }
-
-/* ACTION BAR */
-.action-bar {
-  position: sticky; bottom: 0;
-  background: #fff; border-top: 1px solid var(--border);
-  padding: 14px 24px;
-  display: flex; gap: 10px; justify-content: flex-end;
-  box-shadow: 0 -4px 12px rgba(0,0,0,.06);
-  margin: 0 -16px;
-}
-.btn { display: flex; align-items: center; gap: 7px; padding: 10px 20px; border-radius: 8px; font-size: 13.5px; font-weight: 700; cursor: pointer; font-family: inherit; border: none; transition: all .15s; }
-.btn-primary { background: var(--secondary); color: #fff; }
-.btn-primary:hover { background: #047857; }
-.btn-ghost { background: #f1f5f9; color: var(--muted); }
-.btn-ghost:hover { background: #e2e8f0; color: var(--text); }
-
-.toast-wrap { position: fixed; bottom: 80px; left: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; }
-.toast { padding: 12px 18px; border-radius: 8px; background: #0f172a; color: #fff; font-size: 13px; font-weight: 500; box-shadow: 0 6px 20px rgba(0,0,0,.2); animation: su .2s ease; }
-.toast.ok { background: var(--secondary); }
-.toast.err { background: var(--danger); }
-@keyframes su { from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);} }
-</style>
+    @media (max-width: 860px) {
+      .two-col { grid-template-columns: 1fr; }
+      .preview-panel { position: static; }
+      .preview-panel-body { max-height: 500px; }
+    }
+    @media (max-width: 640px) {
+      .form-grid { grid-template-columns: 1fr !important; }
+      .actions-bar { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="topbar">
-  <span class="topbar-logo">KAU SOK</span>
-  <span class="topbar-sep">›</span>
-  <span class="topbar-crumb">معرفی کشتی</span>
-  <a class="topbar-back" onclick="goBack()">← بازگشت به داشبورد</a>
+<div class="breadcrumb-bar">
+  <a href="index.html">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    بازگشت به داشبورد
+  </a>
+  <span class="sep">›</span>
+  <span class="current">فرم معرفی کشتی</span>
 </div>
 
-<div class="page">
-  <div class="page-header">
-    <h1>معرفی کشتی (Vessel Nomination)</h1>
-    <p>KAU SOK CO. LIMITED — بازرگانی خارجی — بخش خرید</p>
-  </div>
-
-  <div class="doc-badge" id="doc-badge">🚢 شماره: در حال تولید...</div>
-
-  <!-- SECTION 1 -->
-  <div class="s-card">
-    <div class="s-card-head"><div class="s-num">۱</div> اطلاعات کلی</div>
-    <div class="s-body">
-      <div class="fg fg-2">
-        <div class="field">
-          <label>تاریخ نامه <span>*</span></label>
-          <input type="date" id="f-date" oninput="updatePreview()" />
-        </div>
-        <div class="field">
-          <label>پروژه</label>
-          <select id="f-project" oninput="updatePreview()">
-            <option value="">— انتخاب پروژه (اختیاری) —</option>
-          </select>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION 2 -->
-  <div class="s-card">
-    <div class="s-card-head"><div class="s-num">۲</div> گیرنده</div>
-    <div class="s-body">
-      <div class="fg fg-2">
-        <div class="field">
-          <label>شرکت گیرنده <span>*</span></label>
-          <input type="text" id="f-to-company" placeholder="e.g. Cosco Shipping" oninput="updatePreview()" />
-        </div>
-        <div class="field">
-          <label>بندر مقصد / محل تحویل</label>
-          <input type="text" id="f-to-port" placeholder="e.g. Qingdao Port" oninput="updatePreview()" />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION 3 -->
-  <div class="s-card">
-    <div class="s-card-head"><div class="s-num">۳</div> مشخصات کشتی</div>
-    <div class="s-body">
-      <div class="fg fg-2">
-        <div class="field">
-          <label>نام کشتی <span>*</span></label>
-          <input type="text" id="f-vessel" placeholder="e.g. MV OCEAN STAR" oninput="updatePreview()" />
-        </div>
-        <div class="field">
-          <label>پرچم (Flag)</label>
-          <input type="text" id="f-flag" placeholder="e.g. Panama" oninput="updatePreview()" />
-        </div>
-        <div class="field">
-          <label>لِیکن شروع <span>*</span></label>
-          <input type="date" id="f-laycan-start" oninput="updatePreview()" />
-        </div>
-        <div class="field">
-          <label>لِیکن پایان <span>*</span></label>
-          <input type="date" id="f-laycan-end" oninput="updatePreview()" />
-        </div>
-        <div class="field">
-          <label>بندر بارگیری <span>*</span></label>
-          <input type="text" id="f-port" placeholder="e.g. Bandar Abbas" oninput="updatePreview()" />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION 4 -->
-  <div class="s-card">
-    <div class="s-card-head"><div class="s-num">۴</div> کالا</div>
-    <div class="s-body">
-      <div class="fg fg-2">
-        <div class="field">
-          <label>نام کالا <span>*</span></label>
-          <select id="f-product" oninput="updatePreview()">
-            <option value="">— انتخاب کنید —</option>
-            <option>Iron Ore Concentrate</option>
-            <option>Hematite</option>
-            <option>Pellet</option>
-            <option>Pellet Fines</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>مقدار (MT)</label>
-          <div class="unit-wrap">
-            <input type="number" id="f-qty" placeholder="60000" min="0" oninput="updatePreview()" />
-            <span class="unit-label">MT</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION 5 -->
-  <div class="s-card">
-    <div class="s-card-head"><div class="s-num">۵</div> مشخصات فنی کشتی</div>
-    <div class="s-body">
-      <div class="fg fg-3">
-        <div class="field">
-          <label>آبخور (Draft Limit)</label>
-          <div class="unit-wrap">
-            <input type="number" id="f-draft" placeholder="12.5" step="0.1" oninput="updatePreview()" />
-            <span class="unit-label">m</span>
-          </div>
-        </div>
-        <div class="field">
-          <label>LOA (طول کل)</label>
-          <div class="unit-wrap">
-            <input type="number" id="f-loa" placeholder="225" step="0.1" oninput="updatePreview()" />
-            <span class="unit-label">m</span>
-          </div>
-        </div>
-        <div class="field">
-          <label>Beam (عرض)</label>
-          <div class="unit-wrap">
-            <input type="number" id="f-beam" placeholder="32" step="0.1" oninput="updatePreview()" />
-            <span class="unit-label">m</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION 6: Live Preview -->
-  <div class="s-card">
-    <div class="s-card-head"><div class="s-num">۶</div> پیش‌نمایش نامه رسمی</div>
-    <div class="s-body">
-      <div class="letter-preview" id="letter-preview">
-        <!-- filled by JS -->
-      </div>
-    </div>
-  </div>
-
-  <div style="height:20px;"></div>
+<div class="spinner-overlay" id="spinnerOverlay">
+  <div class="spinner"></div>
+  <div class="spinner-text">در حال پردازش...</div>
 </div>
 
-<!-- ACTION BAR -->
-<div class="action-bar">
-  <button class="btn btn-ghost" onclick="saveDraft()">💾 پیش‌نویس</button>
-  <button class="btn btn-primary" onclick="saveFinal()">✅ ذخیره نهایی + سند Drive</button>
-</div>
+<div class="toast-container" id="toastContainer"></div>
 
-<div class="toast-wrap" id="toasts"></div>
+<div class="page-wrapper">
+  <div class="page-title">فرم معرفی کشتی (Vessel Nomination)</div>
+  <div class="page-subtitle">شرکت KAU SOK CO. LIMITED — فرمت سند: KS-VN-YYYY-XXXX</div>
+
+  <div class="two-col">
+    <!-- Right: form -->
+    <div>
+      <form id="mainForm" novalidate>
+
+        <!-- اطلاعات کلی -->
+        <div class="card">
+          <div class="card-header">
+            <span class="section-num">بخش ۱</span>
+            <h2>اطلاعات کلی</h2>
+          </div>
+          <div class="card-body">
+            <div class="form-grid">
+              <div class="field">
+                <label>شماره سند</label>
+                <input type="text" id="docNumber" readonly placeholder="KS-VN-YYYY-XXXX" />
+              </div>
+              <div class="field">
+                <label>تاریخ <span class="req">*</span></label>
+                <input type="date" id="docDate" required oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>پروژه <span class="req">*</span></label>
+                <div class="select-wrapper">
+                  <select id="project" required oninput="updatePreview()">
+                    <option value="">در حال بارگذاری...</option>
+                  </select>
+                  <div class="select-loading active" id="projectLoader"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- گیرنده -->
+        <div class="card">
+          <div class="card-header">
+            <span class="section-num">بخش ۲</span>
+            <h2>گیرنده (Recipient)</h2>
+          </div>
+          <div class="card-body">
+            <div class="form-grid">
+              <div class="field">
+                <label>شرکت گیرنده <span class="req">*</span></label>
+                <input type="text" id="recipientCompany" placeholder="نام شرکت گیرنده" required oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>بندر مقصد <span class="req">*</span></label>
+                <input type="text" id="destinationPort" placeholder="نام بندر مقصد" required oninput="updatePreview()" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- مشخصات کشتی -->
+        <div class="card">
+          <div class="card-header">
+            <span class="section-num">بخش ۳</span>
+            <h2>مشخصات کشتی</h2>
+          </div>
+          <div class="card-body">
+            <div class="form-grid">
+              <div class="field">
+                <label>نام کشتی <span class="req">*</span></label>
+                <input type="text" id="vesselName" placeholder="نام کشتی" required oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>لِیکن شروع <span class="req">*</span></label>
+                <input type="date" id="laycanStart" required oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>لِیکن پایان <span class="req">*</span></label>
+                <input type="date" id="laycanEnd" required oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>بندر بارگیری <span class="req">*</span></label>
+                <input type="text" id="loadingPort" placeholder="نام بندر بارگیری" required oninput="updatePreview()" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- کالا -->
+        <div class="card">
+          <div class="card-header">
+            <span class="section-num">بخش ۴</span>
+            <h2>کالا (Cargo)</h2>
+          </div>
+          <div class="card-body">
+            <div class="form-grid">
+              <div class="field">
+                <label>نام کالا <span class="req">*</span></label>
+                <select id="commodity" required oninput="updatePreview()">
+                  <option value="">انتخاب کنید</option>
+                  <option value="Iron Ore Concentrate">Iron Ore Concentrate</option>
+                  <option value="Hematite">Hematite</option>
+                  <option value="Pellet">Pellet</option>
+                  <option value="Pellet Fines">Pellet Fines</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>مقدار <span class="req">*</span></label>
+                <div class="input-group">
+                  <input type="number" id="quantity" placeholder="0" min="0" step="0.001" required oninput="updatePreview()" />
+                  <span class="input-addon">MT</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- مشخصات فنی -->
+        <div class="card">
+          <div class="card-header">
+            <span class="section-num">بخش ۵</span>
+            <h2>مشخصات فنی کشتی</h2>
+          </div>
+          <div class="card-body">
+            <div class="form-grid">
+              <div class="field">
+                <label>Draft Limit</label>
+                <div class="input-group">
+                  <input type="number" id="draftLimit" placeholder="0.00" step="0.01" oninput="updatePreview()" />
+                  <span class="input-addon">متر</span>
+                </div>
+              </div>
+              <div class="field">
+                <label>LOA (Length Overall)</label>
+                <div class="input-group">
+                  <input type="number" id="loa" placeholder="0.00" step="0.01" oninput="updatePreview()" />
+                  <span class="input-addon">متر</span>
+                </div>
+              </div>
+              <div class="field">
+                <label>Beam</label>
+                <div class="input-group">
+                  <input type="number" id="beam" placeholder="0.00" step="0.01" oninput="updatePreview()" />
+                  <span class="input-addon">متر</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- دکمه‌ها -->
+        <div class="card">
+          <div class="card-body">
+            <div class="actions-bar">
+              <button type="button" class="btn btn-primary" onclick="handleSave(false)">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                ذخیره
+              </button>
+              <button type="button" class="btn btn-success" onclick="handleSave(true)">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                ذخیره + ایجاد سند
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Left: live preview -->
+    <div>
+      <div class="preview-panel">
+        <div class="preview-panel-header">
+          <svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <h3>پیش‌نمایش زنده متن نامه</h3>
+          <span class="live-badge">LIVE</span>
+        </div>
+        <div class="preview-panel-body">
+          <div class="letter-preview" id="letterPreview">
+            <!-- rendered dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-// ── INIT ──────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('f-date').value = new Date().toISOString().slice(0,10);
-  updatePreview();
+function showSpinner() { document.getElementById('spinnerOverlay').classList.add('active'); }
+function hideSpinner() { document.getElementById('spinnerOverlay').classList.remove('active'); }
 
+function showToast(msg, type, duration) {
+  type = type || 'info'; duration = duration || 4000;
+  var icons = { success: '✓', error: '✕', info: 'ℹ' };
+  var container = document.getElementById('toastContainer');
+  var t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.innerHTML = '<span style="font-size:16px;">' + icons[type] + '</span> ' + msg;
+  container.appendChild(t);
+  setTimeout(function() {
+    t.style.animation = 'fadeOut .3s ease forwards';
+    setTimeout(function() { if (t.parentNode) t.parentNode.removeChild(t); }, 300);
+  }, duration);
+}
+
+function v(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+function numV(id) { var el = document.getElementById(id); if (!el || el.value === '') return null; return parseFloat(el.value); }
+function ph(val, placeholder) { return val || ('<span class="letter-placeholder">' + placeholder + '</span>'); }
+
+function loadProjects() {
+  var sel = document.getElementById('project');
+  var loader = document.getElementById('projectLoader');
+  loader.classList.add('active');
+  function onSuccess(projects) {
+    sel.innerHTML = '<option value="">انتخاب پروژه</option>';
+    if (Array.isArray(projects)) {
+      projects.forEach(function(p) {
+        var opt = document.createElement('option');
+        opt.value = p.id || p;
+        opt.textContent = p.name || p;
+        sel.appendChild(opt);
+      });
+    }
+    loader.classList.remove('active');
+    updatePreview();
+  }
+  function onFailure() {
+    sel.innerHTML = '<option value="">خطا در بارگذاری</option>';
+    loader.classList.remove('active');
+    showToast('خطا در دریافت لیست پروژه‌ها', 'error');
+  }
+  if (typeof google !== 'undefined' && google.script) {
+    google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).getProjects();
+  } else {
+    setTimeout(function() { onSuccess([
+      { id: 'PRJ001', name: 'پروژه آهن خام ۱۴۰۳' },
+      { id: 'PRJ002', name: 'پروژه گندله ۱۴۰۳' },
+      { id: 'PRJ003', name: 'قرارداد هماتیت بندر عباس' }
+    ]); }, 800);
+  }
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return null;
   try {
-    google.script.run
-      .withSuccessHandler(projects => {
-        const sel = document.getElementById('f-project');
-        (projects || []).forEach(p => {
-          const o = document.createElement('option');
-          o.value = p.id || p.name;
-          o.textContent = p.name;
-          sel.appendChild(o);
-        });
-      })
-      .withFailureHandler(() => {})
-      .getProjects();
-  } catch(e) {}
-});
-
-// ── LIVE PREVIEW ──────────────────────────────────────────────
-function val(id) { return (document.getElementById(id)||{}).value || ''; }
-
-function ph(v, label) {
-  return v ? `<span class="highlight">${v}</span>` : `<span class="field-ph">${label}</span>`;
+    var d = new Date(dateStr);
+    return d.toLocaleDateString('fa-IR');
+  } catch(e) { return dateStr; }
 }
 
 function updatePreview() {
-  const vessel      = val('f-vessel');
-  const product     = val('f-product');
-  const qty         = val('f-qty');
-  const laycanStart = val('f-laycan-start');
-  const laycanEnd   = val('f-laycan-end');
-  const port        = val('f-port');
-  const date        = val('f-date');
-  const toCompany   = val('f-to-company');
-  const toPort      = val('f-to-port');
-  const flag        = val('f-flag');
-  const draft       = val('f-draft');
-  const loa         = val('f-loa');
-  const beam        = val('f-beam');
+  var docDate = v('docDate');
+  var docNum = v('docNumber') || 'KS-VN-YYYY-XXXX';
+  var recipientCompany = v('recipientCompany');
+  var destinationPort = v('destinationPort');
+  var vesselName = v('vesselName');
+  var laycanStart = v('laycanStart');
+  var laycanEnd = v('laycanEnd');
+  var loadingPort = v('loadingPort');
+  var commodity = v('commodity');
+  var quantity = v('quantity');
+  var draftLimit = v('draftLimit');
+  var loa = v('loa');
+  var beam = v('beam');
 
-  const fmtDate = d => {
-    if (!d) return '—';
-    const dt = new Date(d);
-    return isNaN(dt) ? d : new Intl.DateTimeFormat('fa-IR').format(dt);
-  };
+  var fDate = docDate ? formatDate(docDate) : null;
+  var fStart = laycanStart ? formatDate(laycanStart) : null;
+  var fEnd = laycanEnd ? formatDate(laycanEnd) : null;
 
-  document.getElementById('letter-preview').innerHTML = `
-    <div class="ltr-header">
-      <strong>KAU SOK CO. LIMITED</strong><br/>
-      <span style="font-size:12px;color:#64748b;">بازرگانی خارجی — بخش خرید</span>
-    </div>
+  var html =
+    '<div class="lp-header">' +
+      '<div class="lp-company">KAU SOK CO. LIMITED</div>' +
+      '<div class="lp-subtitle">تهران — ایران</div>' +
+    '</div>' +
+    '<div class="lp-meta">' +
+      '<span>تاریخ: ' + ph(fDate, 'روز/ماه/سال') + '</span>' +
+      '<span>شماره: ' + docNum + '</span>' +
+    '</div>' +
+    '<div class="lp-to">' +
+      '<div class="lp-to-company">' + ph(recipientCompany, 'نام شرکت گیرنده') + '</div>' +
+      '<div class="lp-to-port">' + ph(destinationPort, 'بندر مقصد') + '</div>' +
+    '</div>' +
+    '<div class="lp-subject">موضوع: معرفی کشتی (Vessel Nomination)</div>' +
+    '<div class="lp-body">' +
+      'با احترام،<br/>' +
+      'بدینوسیله کشتی ' + ph(vesselName, '[نام کشتی]') +
+      ' را جهت بارگیری ' + ph(commodity, '[نوع کالا]') +
+      ' به مقدار ' + ph(quantity, '[مقدار]') + ' MT' +
+      ' با لِیکن ' + ph(fStart, '[تاریخ شروع]') +
+      ' الی ' + ph(fEnd, '[تاریخ پایان]') +
+      ' در بندر ' + ph(loadingPort, '[بندر بارگیری]') +
+      ' به مقصد ' + ph(destinationPort, '[بندر مقصد]') +
+      ' معرفی می‌نماییم.' +
+    '</div>';
 
-    <div class="meta">
-      <span style="font-weight:700;">تاریخ:</span>  <span>${fmtDate(date)}</span>
-      <span style="font-weight:700;">گیرنده:</span> <span>${ph(toCompany,'نام شرکت')}${toPort ? ' — ' + toPort : ''}</span>
-      <span style="font-weight:700;">موضوع:</span>  <span>معرفی کشتی جهت بارگیری ${ph(product,'نام کالا')}</span>
-    </div>
+  if (draftLimit || loa || beam) {
+    html +=
+      '<div class="lp-specs">' +
+        '<div class="lp-specs-title">مشخصات فنی کشتی</div>';
+    if (draftLimit) html += '<div class="lp-spec-row"><span class="lp-spec-key">Draft Limit:</span><span class="lp-spec-val">' + draftLimit + ' متر</span></div>';
+    if (loa) html += '<div class="lp-spec-row"><span class="lp-spec-key">LOA:</span><span class="lp-spec-val">' + loa + ' متر</span></div>';
+    if (beam) html += '<div class="lp-spec-row"><span class="lp-spec-key">Beam:</span><span class="lp-spec-val">' + beam + ' متر</span></div>';
+    html += '</div>';
+  } else {
+    html +=
+      '<div class="lp-specs">' +
+        '<div class="lp-specs-title">مشخصات فنی کشتی</div>' +
+        '<div class="lp-spec-row"><span class="lp-spec-key">Draft Limit:</span><span class="letter-placeholder">— متر</span></div>' +
+        '<div class="lp-spec-row"><span class="lp-spec-key">LOA:</span><span class="letter-placeholder">— متر</span></div>' +
+        '<div class="lp-spec-row"><span class="lp-spec-key">Beam:</span><span class="letter-placeholder">— متر</span></div>' +
+      '</div>';
+  }
 
-    <div class="body-text">
-      با سلام و احترام،
-    </div>
-    <div class="body-text">
-      بدینوسیله کشتی ${ph(vessel,'نام کشتی')}
-      ${flag ? '(پرچم ' + flag + ')' : ''}
-      را جهت بارگیری ${ph(product,'کالا')} به مقدار ${ph(qty ? qty + ' MT' : '', 'مقدار')}
-      با لِیکن ${ph(fmtDate(laycanStart),'تاریخ شروع')} الی ${ph(fmtDate(laycanEnd),'تاریخ پایان')}
-      در بندر ${ph(port,'بندر بارگیری')} معرفی می‌نماییم.
-    </div>
+  html +=
+    '<div>با احترام،</div>' +
+    '<div class="lp-sig">' +
+      '<div class="lp-sig-name">خضری</div>' +
+      '<div class="lp-sig-title">مدیر بازرگانی</div>' +
+      '<div class="lp-sig-company">KAU SOK CO. LIMITED</div>' +
+    '</div>';
 
-    ${(draft || loa || beam) ? `
-    <div class="body-text" style="font-size:12.5px;color:#475569;">
-      مشخصات فنی: آبخور ${draft||'—'} m | LOA: ${loa||'—'} m | Beam: ${beam||'—'} m
-    </div>` : ''}
-
-    <div class="body-text">
-      خواهشمند است هماهنگی‌های لازم را به عمل آورید.
-    </div>
-
-    <div class="signature">
-      با احترام،<br/>
-      خضری<br/>
-      <span style="font-weight:400;font-size:12px;color:#64748b;">مدیر بازرگانی — KAU SOK CO. LIMITED</span>
-    </div>
-  `;
+  document.getElementById('letterPreview').innerHTML = html;
 }
 
-// ── COLLECT DATA ──────────────────────────────────────────────
-function collectData(status) {
+function collectData() {
   return {
-    date         : val('f-date'),
-    project_id   : val('f-project'),
-    to_company   : val('f-to-company').trim(),
-    to_port      : val('f-to-port').trim(),
-    vessel_name  : val('f-vessel').trim(),
-    flag         : val('f-flag').trim(),
-    laycan_start : val('f-laycan-start'),
-    laycan_end   : val('f-laycan-end'),
-    port_loading : val('f-port').trim(),
-    product      : val('f-product'),
-    quantity     : val('f-qty'),
-    draft_limit  : val('f-draft'),
-    loa          : val('f-loa'),
-    beam         : val('f-beam'),
-    status       : status || 'pending'
+    docNumber: v('docNumber'),
+    date: v('docDate'),
+    project: v('project'),
+    recipientCompany: v('recipientCompany'),
+    destinationPort: v('destinationPort'),
+    vesselName: v('vesselName'),
+    laycanStart: v('laycanStart'),
+    laycanEnd: v('laycanEnd'),
+    loadingPort: v('loadingPort'),
+    commodity: v('commodity'),
+    quantity: numV('quantity'),
+    draftLimit: numV('draftLimit'),
+    loa: numV('loa'),
+    beam: numV('beam')
   };
 }
 
-// ── SAVE ─────────────────────────────────────────────────────
-function saveDraft() {
-  submit(collectData('draft'));
-}
-
-function saveFinal() {
-  const d = collectData('pending');
-  if (!d.vessel_name || !d.to_company) {
-    toast('نام کشتی و گیرنده الزامی است', 'err');
-    return;
+function handleSave(createDoc) {
+  var data = collectData();
+  if (!data.date || !data.recipientCompany || !data.destinationPort || !data.vesselName || !data.laycanStart || !data.laycanEnd || !data.loadingPort || !data.commodity || !data.quantity) {
+    showToast('لطفاً تمام فیلدهای الزامی را تکمیل کنید', 'error'); return;
   }
-  submit(d);
-}
-
-function submit(data) {
-  toast('در حال ذخیره...', '');
-  try {
-    google.script.run
-      .withSuccessHandler(res => {
-        document.getElementById('doc-badge').textContent = '🚢 شماره: ' + res.doc_number;
-        toast('✅ با موفقیت ذخیره شد — ' + res.doc_number, 'ok');
-      })
-      .withFailureHandler(err => toast('خطا: ' + (err.message || err), 'err'))
-      .saveVesselNomination(data);
-  } catch(e) {
-    toast('سند ذخیره شد (حالت آزمایشی)', 'ok');
+  data.createDoc = createDoc;
+  showSpinner();
+  function onSuccess(result) {
+    hideSpinner();
+    if (result && result.docNumber) document.getElementById('docNumber').value = result.docNumber;
+    var msg = createDoc
+      ? (result && result.docUrl ? 'سند با شماره ' + result.docNumber + ' ایجاد شد' : 'سند معرفی کشتی ذخیره شد')
+      : 'اطلاعات با موفقیت ذخیره شد';
+    showToast(msg, 'success');
+    if (result && result.docUrl) setTimeout(function() { window.open(result.docUrl, '_blank'); }, 800);
+    updatePreview();
+  }
+  function onFailure(err) {
+    hideSpinner();
+    showToast('خطا: ' + (err && err.message ? err.message : 'ذخیره انجام نشد'), 'error');
+  }
+  if (typeof google !== 'undefined' && google.script) {
+    google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).saveVesselNomination(data);
+  } else {
+    setTimeout(function() { onSuccess({ docNumber: 'KS-VN-2024-0001', docUrl: null }); }, 1200);
   }
 }
 
-// ── NAV ───────────────────────────────────────────────────────
-function goBack() {
-  try { window.top.location.href = google.script.getUrl(); }
-  catch(e) { history.back(); }
-}
+// Attach change listeners to all inputs
+document.addEventListener('DOMContentLoaded', function() {
+  loadProjects();
+  var today = new Date().toISOString().split('T')[0];
+  document.getElementById('docDate').value = today;
+  updatePreview();
 
-// ── TOAST ─────────────────────────────────────────────────────
-function toast(msg, type) {
-  const wrap = document.getElementById('toasts');
-  const el   = document.createElement('div');
-  el.className = 'toast ' + (type || '');
-  el.textContent = msg;
-  wrap.appendChild(el);
-  setTimeout(() => { el.style.opacity='0'; el.style.transition='opacity .3s'; setTimeout(()=>el.remove(),300); }, 3500);
-}
+  // Also listen to change events for select elements
+  var selects = document.querySelectorAll('select');
+  selects.forEach(function(sel) { sel.addEventListener('change', updatePreview); });
+});
 </script>
 </body>
 </html>
