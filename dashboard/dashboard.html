@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KAU SOK — داشبورد مدیریتی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   CSS VARIABLES & RESET
+   ============================================================ */
+:root {
+  --primary        : #1e40af;
+  --primary-light  : #2563eb;
+  --primary-dark   : #1e3a8a;
+  --secondary      : #059669;
+  --secondary-light: #10b981;
+  --danger         : #dc2626;
+  --danger-light   : #ef4444;
+  --warning        : #d97706;
+  --warning-light  : #f59e0b;
+
+  --sidebar-bg     : #0f172a;
+  --sidebar-hover  : #1e293b;
+  --sidebar-active : #1e40af;
+  --sidebar-text   : #94a3b8;
+  --sidebar-text-active: #ffffff;
+  --sidebar-width  : 260px;
+
+  --topbar-bg      : #ffffff;
+  --topbar-border  : #e2e8f0;
+  --topbar-height  : 64px;
+
+  --content-bg     : #f1f5f9;
+  --card-bg        : #ffffff;
+  --card-border    : #e2e8f0;
+  --card-shadow    : 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+  --card-shadow-hover: 0 4px 16px rgba(0,0,0,.12);
+
+  --text-primary   : #0f172a;
+  --text-secondary : #475569;
+  --text-muted     : #94a3b8;
+
+  --radius-sm      : 6px;
+  --radius-md      : 10px;
+  --radius-lg      : 16px;
+
+  --transition     : all .2s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--content-bg);
+  direction: rtl;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 100;
+  transition: var(--transition);
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.sidebar-logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+  letter-spacing: -1px;
+}
+
+.sidebar-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-logo-text .name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.sidebar-logo-text .sub {
+  font-size: 10px;
+  color: var(--sidebar-text);
+  line-height: 1.4;
+}
+
+/* Nav sections */
+.sidebar-nav {
+  flex: 1;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--sidebar-text);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 12px 10px 6px;
+  opacity: .6;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  color: var(--sidebar-text);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  user-select: none;
+}
+
+.nav-item:hover {
+  background: var(--sidebar-hover);
+  color: #fff;
+}
+
+.nav-item.active {
+  background: var(--sidebar-active);
+  color: var(--sidebar-text-active);
+  font-weight: 600;
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: #93c5fd;
+  border-radius: 2px 0 0 2px;
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.nav-badge {
+  margin-right: auto;
+  background: var(--danger);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 99px;
+  min-width: 20px;
+  text-align: center;
+  display: none;
+}
+
+.nav-badge.show { display: block; }
+
+/* Sidebar bottom */
+.sidebar-footer {
+  padding: 14px 12px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.sidebar-user:hover { background: var(--sidebar-hover); cursor: pointer; }
+
+.sidebar-avatar {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.sidebar-user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-user-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user-role {
+  font-size: 10.5px;
+  color: var(--sidebar-text);
+}
+
+.sidebar-logout-btn {
+  color: var(--sidebar-text);
+  font-size: 15px;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.sidebar-logout-btn:hover { color: var(--danger-light); }
+
+/* ============================================================
+   MAIN CONTENT AREA
+   ============================================================ */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+.topbar {
+  height: var(--topbar-height);
+  background: var(--topbar-bg);
+  border-bottom: 1px solid var(--topbar-border);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+  flex-shrink: 0;
+  z-index: 50;
+}
+
+.topbar-title {
+  flex: 1;
+}
+
+.topbar-title h1 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.topbar-title p {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--primary-dark); }
+
+.btn-secondary {
+  background: var(--secondary);
+  color: #fff;
+}
+.btn-secondary:hover { background: #047857; }
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--card-border);
+  color: var(--text-secondary);
+}
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+
+.role-badge {
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+.role-super_admin { background: #fef3c7; color: #92400e; }
+.role-admin       { background: #dbeafe; color: #1e40af; }
+.role-manager     { background: #d1fae5; color: #065f46; }
+.role-member      { background: #f3f4f6; color: #374151; }
+.role-viewer      { background: #f1f5f9; color: #64748b; }
+
+/* ============================================================
+   PAGE CONTENT
+   ============================================================ */
+.page-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+/* ============================================================
+   STAT CARDS
+   ============================================================ */
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 22px 20px;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.stat-card.blue::after   { background: var(--primary); }
+.stat-card.green::after  { background: var(--secondary); }
+.stat-card.orange::after { background: var(--warning); }
+.stat-card.red::after    { background: var(--danger); }
+
+.stat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stat-card-label {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.stat-card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.stat-card.blue  .stat-card-icon { background: #dbeafe; }
+.stat-card.green .stat-card-icon { background: #d1fae5; }
+.stat-card.orange .stat-card-icon { background: #fef3c7; }
+.stat-card.red   .stat-card-icon { background: #fee2e2; }
+
+.stat-card-value {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.stat-card-footer {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat-trend-up   { color: var(--secondary); }
+.stat-trend-down { color: var(--danger); }
+
+/* ============================================================
+   SECTION CARD (table wrapper, quick actions)
+   ============================================================ */
+.section-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.section-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.section-card-header h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.section-card-header .sub {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ============================================================
+   TABLE
+   ============================================================ */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  background: #f8fafc;
+  padding: 11px 18px;
+  text-align: right;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--card-border);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.data-table td {
+  padding: 13px 18px;
+  font-size: 13px;
+  color: var(--text-primary);
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.data-table tr:last-child td { border-bottom: none; }
+
+.data-table tbody tr {
+  transition: var(--transition);
+}
+
+.data-table tbody tr:hover { background: #f8fafc; }
+
+/* Status badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.status-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-pending  { background: #fef3c7; color: #92400e; }
+.status-pending::before  { background: #d97706; }
+.status-approved { background: #d1fae5; color: #065f46; }
+.status-approved::before { background: #059669; }
+.status-rejected { background: #fee2e2; color: #991b1b; }
+.status-rejected::before { background: #dc2626; }
+.status-active   { background: #dbeafe; color: #1e40af; }
+.status-active::before   { background: #2563eb; }
+
+/* Action text */
+.action-create   { color: var(--secondary); font-weight: 600; }
+.action-update   { color: var(--primary);   font-weight: 600; }
+.action-delete   { color: var(--danger);    font-weight: 600; }
+
+/* ============================================================
+   QUICK ACTIONS
+   ============================================================ */
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  padding: 18px 20px;
+}
+
+.quick-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  border: 1.5px dashed var(--card-border);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  text-align: right;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.quick-action-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: #eff6ff;
+}
+
+.quick-action-btn.green:hover {
+  border-color: var(--secondary);
+  color: var(--secondary);
+  background: #ecfdf5;
+}
+
+.quick-action-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background: #f1f5f9;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.quick-action-btn:hover .quick-action-icon { background: #dbeafe; }
+.quick-action-btn.green:hover .quick-action-icon { background: #d1fae5; }
+
+/* ============================================================
+   LOADING / EMPTY STATES
+   ============================================================ */
+.loading-row td {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-muted);
+}
+
+.spinner {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 3px solid #e2e8f0;
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-muted);
+}
+
+.empty-state-icon { font-size: 40px; margin-bottom: 12px; }
+.empty-state-text { font-size: 14px; font-weight: 500; }
+
+/* ============================================================
+   TOAST NOTIFICATIONS
+   ============================================================ */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border-radius: var(--radius-md);
+  background: var(--text-primary);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  animation: slideUp .25s ease;
+  max-width: 360px;
+}
+
+.toast.success { background: var(--secondary); }
+.toast.error   { background: var(--danger); }
+.toast.warning { background: var(--warning); }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   MODAL (generic)
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  width: 90%;
+  max-width: 520px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  transform: scale(.95);
+  transition: transform .2s ease;
+}
+
+.modal-overlay.open .modal { transform: scale(1); }
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.modal-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.modal-close {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 18px;
+  transition: var(--transition);
+}
+
+.modal-close:hover { background: #f1f5f9; color: var(--text-primary); }
+
+/* ============================================================
+   ROLE-BASED VISIBILITY HELPERS
+   ============================================================ */
+.admin-only   { display: none !important; }
+.manager-only { display: none !important; }
+
+body.role-super_admin .admin-only   { display: revert !important; }
+body.role-admin       .admin-only   { display: revert !important; }
+body.role-super_admin .manager-only { display: revert !important; }
+body.role-admin       .manager-only { display: revert !important; }
+body.role-manager     .manager-only { display: revert !important; }
+
+.write-only { display: none !important; }
+body.role-super_admin .write-only { display: revert !important; }
+body.role-admin       .write-only { display: revert !important; }
+body.role-manager     .write-only { display: revert !important; }
+body.role-member      .write-only { display: revert !important; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .sidebar { width: 220px; }
+  .stat-cards { grid-template-columns: repeat(2, 1fr); }
+  .page-content { padding: 16px; }
+}
+
+@media (max-width: 560px) {
+  .layout { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; }
+  .stat-cards { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     LAYOUT
+     ============================================================ -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <!-- Logo -->
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">KS</div>
+      <div class="sidebar-logo-text">
+        <span class="name">کاو سوک</span>
+        <span class="sub">سامانه تدارکات</span>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">منو اصلی</div>
+
+      <div class="nav-item active" onclick="navigate('dashboard')" id="nav-dashboard">
+        <span class="nav-icon">📊</span>
+        <span>داشبورد</span>
+      </div>
+
+      <div class="nav-item write-only" onclick="navigate('purchase_conditions')" id="nav-purchase_conditions">
+        <span class="nav-icon">📋</span>
+        <span>شرایط خرید</span>
+        <span class="nav-badge" id="badge-pc">0</span>
+      </div>
+
+      <div class="nav-item write-only" onclick="navigate('vessel_nominations')" id="nav-vessel_nominations">
+        <span class="nav-icon">🚢</span>
+        <span>معرفی کشتی</span>
+      </div>
+
+      <div class="nav-item" onclick="navigate('projects')" id="nav-projects">
+        <span class="nav-icon">📁</span>
+        <span>پروژه‌ها</span>
+      </div>
+
+      <div class="nav-section-label admin-only">مدیریت</div>
+
+      <div class="nav-item admin-only" onclick="navigate('users')" id="nav-users">
+        <span class="nav-icon">👥</span>
+        <span>کاربران</span>
+      </div>
+
+      <div class="nav-item admin-only" onclick="navigate('settings')" id="nav-settings">
+        <span class="nav-icon">⚙️</span>
+        <span>تنظیمات</span>
+      </div>
+    </nav>
+
+    <!-- Footer user -->
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" id="sidebar-avatar">--</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebar-user-name">در حال بارگذاری...</div>
+          <div class="sidebar-user-role" id="sidebar-user-role">—</div>
+        </div>
+        <button class="sidebar-logout-btn" title="خروج" onclick="handleLogout()">↩</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-title">
+        <h1 id="page-title">داشبورد</h1>
+        <p id="page-subtitle">خلاصه وضعیت سامانه تدارکات</p>
+      </div>
+      <div class="topbar-actions">
+        <span class="role-badge" id="topbar-role-badge"></span>
+        <span style="font-size:13px;color:var(--text-secondary);" id="topbar-user-name"></span>
+        <button class="topbar-btn btn-outline" onclick="handleLogout()">خروج ↩</button>
+      </div>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <div class="page-content" id="page-content">
+
+      <!-- ======================================================
+           DASHBOARD PAGE
+           ====================================================== -->
+      <div id="view-dashboard">
+
+        <!-- Stat cards -->
+        <div class="stat-cards">
+          <div class="stat-card blue">
+            <div class="stat-card-header">
+              <span class="stat-card-label">پروژه‌های فعال</span>
+              <div class="stat-card-icon">📁</div>
+            </div>
+            <div class="stat-card-value" id="stat-projects">—</div>
+            <div class="stat-card-footer">
+              <span class="stat-trend-up">↑</span> در حال اجرا
+            </div>
+          </div>
+
+          <div class="stat-card green">
+            <div class="stat-card-header">
+              <span class="stat-card-label">شرایط خرید</span>
+              <div class="stat-card-icon">📋</div>
+            </div>
+            <div class="stat-card-value" id="stat-pcs">—</div>
+            <div class="stat-card-footer">مجموع اسناد ثبت‌شده</div>
+          </div>
+
+          <div class="stat-card orange">
+            <div class="stat-card-header">
+              <span class="stat-card-label">معرفی کشتی</span>
+              <div class="stat-card-icon">🚢</div>
+            </div>
+            <div class="stat-card-value" id="stat-vns">—</div>
+            <div class="stat-card-footer">مجموع معرفی‌ها</div>
+          </div>
+
+          <div class="stat-card red">
+            <div class="stat-card-header">
+              <span class="stat-card-label">در انتظار تأیید</span>
+              <div class="stat-card-icon">⏳</div>
+            </div>
+            <div class="stat-card-value" id="stat-pending">—</div>
+            <div class="stat-card-footer">
+              <span class="stat-trend-down">!</span> نیاز به بررسی
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions + Recent Activity grid -->
+        <div style="display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:start;">
+
+          <!-- Recent Activity -->
+          <div class="section-card">
+            <div class="section-card-header">
+              <div>
+                <h2>آخرین فعالیت‌ها</h2>
+                <div class="sub">۱۰ رویداد اخیر سیستم</div>
+              </div>
+              <button class="topbar-btn btn-outline" onclick="loadDashboard()" style="font-size:12px;padding:6px 12px;">
+                🔄 به‌روزرسانی
+              </button>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>زمان</th>
+                  <th>کاربر</th>
+                  <th>عملیات</th>
+                  <th>موجودیت</th>
+                  <th>جزئیات</th>
+                </tr>
+              </thead>
+              <tbody id="audit-table-body">
+                <tr class="loading-row">
+                  <td colspan="5">
+                    <span class="spinner"></span> در حال بارگذاری...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="section-card write-only">
+            <div class="section-card-header">
+              <div>
+                <h2>دسترسی سریع</h2>
+                <div class="sub">عملیات پرکاربرد</div>
+              </div>
+            </div>
+            <div class="quick-actions" style="grid-template-columns:1fr;padding:14px 16px;gap:10px;">
+              <button class="quick-action-btn" onclick="navigate('purchase_conditions')">
+                <div class="quick-action-icon">📋</div>
+                <div>
+                  <div>+ شرایط خرید جدید</div>
+                  <div style="font-size:11px;font-weight:400;margin-top:2px;color:var(--text-muted);">ثبت Purchase Condition</div>
+                </div>
+              </button>
+
+              <button class="quick-action-btn green" onclick="navigate('vessel_nominations')">
+                <div class="quick-action-icon">🚢</div>
+                <div>
+                  <div>+ معرفی کشتی جدید</div>
+                  <div style="font-size:11px;font-weight:400;margin-top:2px;color:var(--text-muted);">ثبت Vessel Nomination</div>
+                </div>
+              </button>
+
+              <button class="quick-action-btn manager-only" onclick="navigate('projects')">
+                <div class="quick-action-icon">📁</div>
+                <div>
+                  <div>+ پروژه جدید</div>
+                  <div style="font-size:11px;font-weight:400;margin-top:2px;color:var(--text-muted);">ایجاد پروژه تدارکاتی</div>
+                </div>
+              </button>
+
+              <button class="quick-action-btn admin-only" onclick="navigate('users')">
+                <div class="quick-action-icon">👤</div>
+                <div>
+                  <div>+ کاربر جدید</div>
+                  <div style="font-size:11px;font-weight:400;margin-top:2px;color:var(--text-muted);">مدیریت کاربران سیستم</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Projects table (manager+) -->
+        <div class="section-card manager-only" id="projects-section">
+          <div class="section-card-header">
+            <div>
+              <h2>پروژه‌ها</h2>
+              <div class="sub">لیست پروژه‌های فعال</div>
+            </div>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>نام پروژه</th>
+                <th>دپارتمان</th>
+                <th>وضعیت</th>
+                <th>ایجادکننده</th>
+                <th>تاریخ</th>
+              </tr>
+            </thead>
+            <tbody id="projects-table-body">
+              <tr class="loading-row">
+                <td colspan="5">
+                  <span class="spinner"></span> در حال بارگذاری...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <!-- /view-dashboard -->
+
+      <!-- ======================================================
+           PLACEHOLDER VIEWS (other pages load separately via doGet)
+           ====================================================== -->
+      <div id="view-other" style="display:none;">
+        <div class="empty-state">
+          <div class="empty-state-icon">🔗</div>
+          <div class="empty-state-text">در حال انتقال به صفحه درخواستی...</div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /page-content -->
+
+  </div>
+  <!-- /main -->
+
+</div>
+<!-- /layout -->
+
+<!-- Toast container -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+
+// ============================================================
+// STATE
+// ============================================================
+const State = {
+  user   : null,
+  stats  : null,
+  projects: []
+};
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  loadDashboard();
+});
+
+function loadDashboard() {
+  google.script.run
+    .withSuccessHandler(onDashboardStats)
+    .withFailureHandler(onError)
+    .getDashboardStats();
+
+  google.script.run
+    .withSuccessHandler(onProjects)
+    .withFailureHandler(onError)
+    .getProjects();
+}
+
+// ============================================================
+// HANDLERS
+// ============================================================
+function onDashboardStats(data) {
+  if (!data) { showToast('خطا در دریافت اطلاعات داشبورد', 'error'); return; }
+  State.stats = data;
+
+  // Set role on body for CSS visibility
+  document.body.classList.remove(
+    'role-super_admin','role-admin','role-manager','role-member','role-viewer'
+  );
+  document.body.classList.add('role-' + (data.user_role || 'viewer'));
+
+  // Sidebar user info
+  const name   = data.user_name || 'کاربر';
+  const role   = data.user_role || 'viewer';
+  const initials = name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+
+  document.getElementById('sidebar-avatar').textContent     = initials || 'ک';
+  document.getElementById('sidebar-user-name').textContent  = name;
+  document.getElementById('sidebar-user-role').textContent  = roleLabel(role);
+  document.getElementById('topbar-user-name').textContent   = name;
+
+  const badge = document.getElementById('topbar-role-badge');
+  badge.textContent = roleLabel(role);
+  badge.className   = 'role-badge role-' + role;
+
+  // Stat cards
+  setCounter('stat-projects', data.total_projects);
+  setCounter('stat-pcs',      data.total_pcs);
+  setCounter('stat-vns',      data.total_vns);
+  setCounter('stat-pending',  data.pending_pcs);
+
+  // Pending badge in nav
+  const badgePc = document.getElementById('badge-pc');
+  if (data.pending_pcs > 0) {
+    badgePc.textContent = data.pending_pcs;
+    badgePc.classList.add('show');
+  } else {
+    badgePc.classList.remove('show');
+  }
+
+  // Audit log table
+  renderAuditTable(data.recent_activity || []);
+}
+
+function onProjects(projects) {
+  State.projects = projects || [];
+  renderProjectsTable(projects || []);
+}
+
+function onError(err) {
+  console.error(err);
+  showToast((err && err.message) ? err.message : 'خطا در ارتباط با سرور', 'error');
+}
+
+// ============================================================
+// RENDER — AUDIT TABLE
+// ============================================================
+function renderAuditTable(rows) {
+  const tbody = document.getElementById('audit-table-body');
+  if (!rows || rows.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="5">
+          <div class="empty-state">
+            <div class="empty-state-icon">📭</div>
+            <div class="empty-state-text">هیچ فعالیتی ثبت نشده است</div>
+          </div>
+        </td>
+      </tr>`;
+    return;
+  }
+
+  tbody.innerHTML = rows.map(row => {
+    const ts     = row.timestamp ? formatDate(row.timestamp) : '—';
+    const user   = row.user_email ? shortEmail(row.user_email) : '—';
+    const action = row.action || '—';
+    const entity = entityLabel(row.entity || '');
+    const detail = row.detail || '—';
+
+    return `
+      <tr>
+        <td style="font-size:12px;color:var(--text-muted);white-space:nowrap;">${ts}</td>
+        <td style="font-size:12px;">${escHtml(user)}</td>
+        <td><span class="action-${(action||'').toLowerCase()}">${actionLabel(action)}</span></td>
+        <td style="font-size:12px;">${escHtml(entity)}</td>
+        <td style="font-size:12px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${escHtml(detail)}">${escHtml(detail)}</td>
+      </tr>`;
+  }).join('');
+}
+
+// ============================================================
+// RENDER — PROJECTS TABLE
+// ============================================================
+function renderProjectsTable(projects) {
+  const tbody = document.getElementById('projects-table-body');
+  if (!tbody) return;
+
+  if (!projects || projects.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="5">
+          <div class="empty-state">
+            <div class="empty-state-icon">📁</div>
+            <div class="empty-state-text">هیچ پروژه‌ای یافت نشد</div>
+          </div>
+        </td>
+      </tr>`;
+    return;
+  }
+
+  tbody.innerHTML = projects.map(p => {
+    const statusClass = p.status === 'active' ? 'status-active' :
+                        p.status === 'pending' ? 'status-pending' : 'status-rejected';
+    const statusText  = p.status === 'active' ? 'فعال' :
+                        p.status === 'pending' ? 'در انتظار' : 'بسته';
+    return `
+      <tr>
+        <td><strong>${escHtml(p.name || '—')}</strong></td>
+        <td>${escHtml(p.department || '—')}</td>
+        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+        <td style="font-size:12px;">${escHtml(shortEmail(p.created_by || '—'))}</td>
+        <td style="font-size:12px;color:var(--text-muted);">${p.created_at ? formatDate(p.created_at) : '—'}</td>
+      </tr>`;
+  }).join('');
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function navigate(page) {
+  if (page === 'dashboard') {
+    // Stay on same page, refresh data
+    loadDashboard();
+    setActivePage('dashboard', 'داشبورد', 'خلاصه وضعیت سامانه تدارکات');
+    document.getElementById('view-dashboard').style.display = '';
+    document.getElementById('view-other').style.display = 'none';
+    return;
+  }
+
+  const labels = {
+    purchase_conditions: ['شرایط خرید', 'ثبت و مدیریت Purchase Condition'],
+    vessel_nominations : ['معرفی کشتی', 'ثبت و مدیریت Vessel Nomination'],
+    projects           : ['پروژه‌ها', 'مدیریت پروژه‌های تدارکاتی'],
+    users              : ['کاربران', 'مدیریت کاربران و دسترسی‌ها'],
+    settings           : ['تنظیمات', 'تنظیمات سیستم']
+  };
+
+  const [title, subtitle] = labels[page] || ['صفحه', ''];
+  setActivePage(page, title, subtitle);
+
+  // Show placeholder and redirect
+  document.getElementById('view-dashboard').style.display = 'none';
+  document.getElementById('view-other').style.display = '';
+  showToast('در حال انتقال به ' + title + '...', 'info');
+
+  // Navigate via GAS URL param
+  setTimeout(() => {
+    const url = google.script.getUrl ? google.script.getUrl() : window.location.href;
+    window.top.location.href = url + '?page=' + page;
+  }, 400);
+}
+
+function setActivePage(page, title, subtitle) {
+  // Update active nav item
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + page);
+  if (navEl) navEl.classList.add('active');
+
+  // Update topbar
+  document.getElementById('page-title').textContent    = title;
+  document.getElementById('page-subtitle').textContent = subtitle;
+}
+
+function handleLogout() {
+  if (!confirm('آیا از خروج اطمینان دارید؟')) return;
+  showToast('در حال خروج...', 'info');
+  setTimeout(() => {
+    google.script.run.withSuccessHandler(() => {}).doGet({ parameter: {} });
+  }, 600);
+}
+
+// ============================================================
+// UTILITIES
+// ============================================================
+function setCounter(id, value) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const target = parseInt(value) || 0;
+  let current  = 0;
+  const step   = Math.ceil(target / 20);
+  const timer  = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = current.toLocaleString('fa-IR');
+    if (current >= target) clearInterval(timer);
+  }, 30);
+}
+
+function formatDate(val) {
+  if (!val) return '—';
+  const d = new Date(val);
+  if (isNaN(d)) return String(val);
+  const opts = { year: 'numeric', month: '2-digit', day: '2-digit',
+                 hour: '2-digit', minute: '2-digit' };
+  try {
+    return new Intl.DateTimeFormat('fa-IR', opts).format(d);
+  } catch (e) {
+    return d.toLocaleString();
+  }
+}
+
+function shortEmail(email) {
+  if (!email) return '—';
+  const at = email.indexOf('@');
+  return at > 0 ? email.slice(0, at) : email;
+}
+
+function escHtml(str) {
+  return String(str || '')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+function roleLabel(role) {
+  const map = {
+    super_admin: 'مدیر ارشد',
+    admin      : 'مدیر',
+    manager    : 'سرپرست',
+    member     : 'عضو',
+    viewer     : 'مشاهده‌گر'
+  };
+  return map[role] || role;
+}
+
+function actionLabel(action) {
+  const map = {
+    CREATE: 'ایجاد',
+    UPDATE: 'ویرایش',
+    DELETE: 'حذف',
+    LOGIN : 'ورود',
+    LOGOUT: 'خروج',
+    APPROVE:'تأیید',
+    REJECT : 'رد'
+  };
+  return map[(action||'').toUpperCase()] || action;
+}
+
+function entityLabel(entity) {
+  const map = {
+    PurchaseCondition: 'شرایط خرید',
+    VesselNomination : 'معرفی کشتی',
+    Project          : 'پروژه',
+    User             : 'کاربر'
+  };
+  return map[entity] || entity;
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(message, type) {
+  const container = document.getElementById('toast-container');
+  const toast     = document.createElement('div');
+  toast.className = 'toast ' + (type || '');
+  toast.innerHTML = `<span>${type === 'success' ? '✅' : type === 'error' ? '❌' : type === 'warning' ? '⚠️' : 'ℹ️'}</span> ${escHtml(message)}`;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transition = 'opacity .3s';
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
+}
+
+</script>
+</body>
+</html>
