@@ -1249,8 +1249,8 @@ function navigate(page) {
 
   // Navigate via GAS URL param
   setTimeout(() => {
-    const url = google.script.getUrl ? google.script.getUrl() : window.location.href;
-    window.top.location.href = url + '?page=' + page;
+    const base = window.top.location.href.split('?')[0];
+    window.top.location.href = base + '?page=' + page;
   }, 400);
 }
 
