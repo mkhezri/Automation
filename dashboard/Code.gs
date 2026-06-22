@@ -525,6 +525,10 @@ function updateUser(email, updates) {
 // === INTERNAL HELPERS ===
 // ============================================================
 
+function getWebAppUrl() {
+  return ScriptApp.getService().getUrl();
+}
+
 function _ensureHeader(sheet, headers) {
   if (sheet.getLastRow() === 0) {
     sheet.appendRow(headers);

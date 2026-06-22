@@ -1248,10 +1248,9 @@ function navigate(page) {
   showToast('در حال انتقال به ' + title + '...', 'info');
 
   // Navigate via GAS URL param
-  setTimeout(() => {
-    const base = window.top.location.href.split('?')[0];
-    window.top.location.href = base + '?page=' + page;
-  }, 400);
+  google.script.run.withSuccessHandler(function(url) {
+    window.location.href = url + '?page=' + page;
+  }).getWebAppUrl();
 }
 
 function setActivePage(page, title, subtitle) {
