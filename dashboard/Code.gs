@@ -346,8 +346,51 @@ function getAuditLog(limit) {
 // === DRIVE ===
 // ============================================================
 
+function getCommercialDepFolderId() {
+  return PropertiesService.getScriptProperties().getProperty("COMMERCIAL_DEP_FOLDER_ID") || "1Z0u5YgT2iPJ0szmZs2g0WIUILMzC0FNc";
+}
+
+/**
+ * Gets or creates the deal parent folder inside "commercial dep".
+ * Name format: YYYY-MM-DD_supplier_quantity_commodity
+ */
+function getOrCreateDealFolder(date, supplier, quantity, commodity) {
+  const parentId = getCommercialDepFolderId();
+  if (!parentId) throw new Error("COMMERCIAL_DEP_FOLDER_ID not set in Script Properties");
+
+  const d          = date ? new Date(date) : new Date();
+  const dateStr    = Utilities.formatDate(d, Session.getScriptTimeZone(), "yyyy-MM-dd");
+  const safeSup    = String(supplier  || "unknown").replace(/[\/\\:*?"<>|]/g, "-").trim();
+  const safeQty    = String(quantity  || "0").replace(/,/g, "").trim();
+  const safeCom    = String(commodity || "cargo").replace(/[\/\\:*?"<>|]/g, "-").trim();
+  const folderName = dateStr + "_" + safeSup + "_" + safeQty + "_" + safeCom;
+
+  const parent = DriveApp.getFolderById(parentId);
+  const existing = parent.getFoldersByName(folderName);
+  if (existing.hasNext()) return existing.next();
+  return parent.createFolder(folderName);
+}
+
+/**
+ * Gets or creates a named subfolder inside a given parent folder.
+ */
+function getOrCreateSubfolder(parentFolder, name) {
+  const existing = parentFolder.getFoldersByName(name);
+  if (existing.hasNext()) return existing.next();
+  return parentFolder.createFolder(name);
+}
+
+/**
+ * Moves a Drive file into the given folder (removes from root).
+ */
+function moveFileTo(fileId, targetFolder) {
+  const file = DriveApp.getFileById(fileId);
+  targetFolder.addFile(file);
+  try { DriveApp.getRootFolder().removeFile(file); } catch(e) {}
+  return file;
+}
+
 function getPurchaseConditionFolderId(status) {
-  // status: "draft" → Draft folder, otherwise → Final folder
   if (status === "draft") return "1cOmhnMp8IaeIVK16MBnMdFKA7mlm79hz";
   return "1a_oFoPqsCwvTp6meN7MIuwEwKeMzyoYb";
 }
@@ -368,7 +411,17 @@ function getRfqFolderId(received) {
 }
 
 function createPurchaseConditionDoc(data, docNumber) {
-  const folder = DriveApp.getFolderById(getPurchaseConditionFolderId(data.status));
+  // Build folder structure: commercial dep / DATE_supplier_qty_commodity / opportunity /
+  let targetFolder;
+  try {
+    const dealFolder = getOrCreateDealFolder(data.date, data.supplier, data.quantity, data.product);
+    targetFolder = getOrCreateSubfolder(dealFolder, "opportunity");
+    // Store the deal folder ID so vessel nominations can reuse it
+    data._dealFolderId = dealFolder.getId();
+  } catch(e) {
+    Logger.log("Deal folder creation failed: " + e.message);
+    targetFolder = DriveApp.getFolderById(getPurchaseConditionFolderId(data.status));
+  }
   const doc    = DocumentApp.create(docNumber + " — شرایط خرید");
   const body   = doc.getBody();
 
@@ -400,43 +453,65 @@ function createPurchaseConditionDoc(data, docNumber) {
   body.appendParagraph("بانک: " + (data.payment_bank || ""));
 
   doc.saveAndClose();
-
-  // Move to target folder
-  const file = DriveApp.getFileById(doc.getId());
-  folder.addFile(file);
-  DriveApp.getRootFolder().removeFile(file);
-
+  moveFileTo(doc.getId(), targetFolder);
   return doc;
 }
 
 function createVesselNominationDoc(data, docNumber) {
-  const folder = DriveApp.getFolderById(getVesselNominationFolderId(data.status));
-  const doc    = DocumentApp.create(docNumber + " — معرفی کشتی");
-  const body   = doc.getBody();
+  // Build folder: commercial dep / deal folder (from linked PC) / MV. VESSEL NAME /
+  let targetFolder;
+  try {
+    let dealFolder;
+    // If a deal folder ID was passed (from linked PC), use it; otherwise create new
+    if (data._dealFolderId) {
+      dealFolder = DriveApp.getFolderById(data._dealFolderId);
+    } else {
+      dealFolder = getOrCreateDealFolder(data.date, data.recipientCompany, data.quantity, data.commodity);
+    }
+    const vesselFolderName = data.vesselName ? "MV. " + String(data.vesselName).toUpperCase() : "Vessel";
+    targetFolder = getOrCreateSubfolder(dealFolder, vesselFolderName);
+  } catch(e) {
+    Logger.log("VN deal folder creation failed: " + e.message);
+    targetFolder = DriveApp.getFolderById(getVesselNominationFolderId(data.status));
+  }
+
+  const doc  = DocumentApp.create(docNumber + " — Vessel Nomination");
+  const body = doc.getBody();
 
   body.appendParagraph("KAU SOK CO. LIMITED").setHeading(DocumentApp.ParagraphHeading.HEADING1);
-  body.appendParagraph("معرفی کشتی — " + docNumber).setHeading(DocumentApp.ParagraphHeading.HEADING2);
-  body.appendParagraph("تاریخ: " + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyy/MM/dd"));
-  body.appendParagraph("گیرنده: " + (data.to_company || ""));
-  body.appendParagraph("بندر مقصد: " + (data.to_port || ""));
+  body.appendParagraph("Vessel Nomination — " + docNumber).setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  body.appendParagraph("Date: " + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyy/MM/dd"));
+  body.appendParagraph("To: " + (data.recipientCompany || ""));
+  body.appendParagraph("Contract No.: " + (data.contractNo || ""));
   body.appendParagraph("");
-  body.appendParagraph("مشخصات کشتی").setHeading(DocumentApp.ParagraphHeading.HEADING3);
-  body.appendParagraph("نام کشتی: " + (data.vessel_name || ""));
-  body.appendParagraph("لیکن شروع: " + (data.laycan_start || ""));
-  body.appendParagraph("لیکن پایان: " + (data.laycan_end || ""));
-  body.appendParagraph("بندر بارگیری: " + (data.port_loading || ""));
-  body.appendParagraph("محصول: " + (data.product || ""));
-  body.appendParagraph("مقدار: " + (data.quantity || "") + " MT");
-  body.appendParagraph("محدودیت آبخور (Draft): " + (data.draft_limit || "") + " m");
-  body.appendParagraph("LOA: " + (data.loa || "") + " m");
-  body.appendParagraph("Beam: " + (data.beam || "") + " m");
+  body.appendParagraph("Sub: Nomination MV. " + (data.vesselName || "")).setHeading(DocumentApp.ParagraphHeading.HEADING3);
+  body.appendParagraph("Cargo: " + (data.commodity || "") + " — Min " + (data.quantity || "") + " MT");
+  body.appendParagraph("Load Port: " + (data.loadPort || ""));
+  body.appendParagraph("ETA: " + (data.etaDate || ""));
+  body.appendParagraph("Laycan: " + (data.laycanStart || "") + " – " + (data.laycanEnd || ""));
+  body.appendParagraph("Freight Rate: USD " + (data.freightRate || "") + " / WMT");
+  body.appendParagraph("Demurrage: USD " + (data.demurrageRate || "") + " / day");
+  body.appendParagraph("");
+  body.appendParagraph("VSL PARTICULARS:").setHeading(DocumentApp.ParagraphHeading.HEADING3);
+  body.appendParagraph("M/V " + (data.vesselName || ""));
+  body.appendParagraph((data.builtYear || "") + " BLT, " + (data.shipyard || "") + " - " + (data.shipyardLoc || ""));
+  body.appendParagraph((data.flag || "") + " FLAG, CLASS " + (data.classNK || ""));
+  body.appendParagraph("SUMMER DWT " + (data.summerDwt || "") + " MT / " + (data.draft || "") + " MTRS DRAFT / TPC " + (data.tpc || ""));
+  body.appendParagraph("LOA " + (data.loa || "") + " M / BEAM " + (data.beam || "") + " M / DEPTH MOLDED " + (data.depth || "") + " M");
+  body.appendParagraph("GRT/NRT: " + (data.grt || "") + " / " + (data.nrt || "") + " MT");
+  body.appendParagraph("CAPACITY - GRAIN/BALE: " + (data.grainM3 || "") + " M3 / " + (data.baleM3 || "") + " M3");
+  body.appendParagraph((data.hoha || "") + "   " + (data.cranes || ""));
+  body.appendParagraph("");
+  body.appendParagraph("LOAD PORT AGENT DETAILS:").setHeading(DocumentApp.ParagraphHeading.HEADING3);
+  body.appendParagraph((data.agentCompany || ""));
+  body.appendParagraph("WhatsApp: " + (data.agentWhatsapp || ""));
+  body.appendParagraph("WeChat: " + (data.agentWechat || ""));
+  body.appendParagraph("Email: " + (data.agentEmail || ""));
+  body.appendParagraph("");
+  body.appendParagraph("KAU SOK CO. LIMITED");
 
   doc.saveAndClose();
-
-  const file = DriveApp.getFileById(doc.getId());
-  folder.addFile(file);
-  DriveApp.getRootFolder().removeFile(file);
-
+  moveFileTo(doc.getId(), targetFolder);
   return doc;
 }
 
