@@ -1,166 +1,170 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>معرفی کشتی - KAU SOK CO. LIMITED</title>
+  <title>Vessel Nomination - KAU SOK CO. LIMITED</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --primary: #1e40af;
-      --primary-dark: #1e3a8a;
-      --primary-light: #2563eb;
-      --primary-bg: #f0f4ff;
-      --surface: #ffffff;
-      --border: #e2e8f0;
-      --text: #1e293b;
-      --text-muted: #64748b;
-      --success: #16a34a;
-      --error: #dc2626;
-      --radius: 12px;
-      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
-      --shadow-lg: 0 8px 32px rgba(0,0,0,.12);
-    }
-    body { font-family: 'Vazirmatn', sans-serif; background: var(--primary-bg); color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.7; }
-    .breadcrumb-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
-    .breadcrumb-bar a { color: var(--primary); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: opacity .2s; }
-    .breadcrumb-bar a:hover { opacity: .75; }
-    .breadcrumb-bar .sep { color: var(--border); }
-    .breadcrumb-bar .current { color: var(--text); font-weight: 500; }
-    .page-wrapper { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
-    .page-title { font-size: 22px; font-weight: 800; color: var(--primary-dark); margin-bottom: 6px; }
-    .page-subtitle { color: var(--text-muted); font-size: 13px; margin-bottom: 28px; }
+    :root { --primary: #1e40af; --primary-dark: #1e3a8a; --primary-light: #2563eb; --surface: #ffffff; --border: #dbe4ff; --bg: #f0f4ff; --text: #1e293b; --text-muted: #64748b; --success: #16a34a; --error: #dc2626; --radius: 10px; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 13px; line-height: 1.6; }
+
+    /* Breadcrumb */
+    .breadcrumb-bar { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 10px 20px; display: flex; align-items: center; gap: 8px; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .breadcrumb-bar a { color: var(--primary); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 6px; font-size: 13px; }
+    .breadcrumb-bar .sep { color: #cbd5e1; }
+    .breadcrumb-bar .current { color: var(--text); font-weight: 500; font-size: 13px; }
+
+    /* Layout */
+    .page-wrapper { max-width: 1280px; margin: 0 auto; padding: 24px 16px 60px; }
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+    .page-title { font-size: 20px; font-weight: 800; color: var(--primary-dark); }
+    .doc-number-box { background: var(--primary); color: #fff; padding: 6px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; letter-spacing: 1px; }
     .two-col { display: grid; grid-template-columns: 1fr 420px; gap: 20px; align-items: start; }
-    .card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 20px; overflow: hidden; }
-    .card-header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
-    .card-header .section-num { background: rgba(255,255,255,.2); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
-    .card-header h2 { color: #fff; font-size: 15px; font-weight: 700; }
-    .card-body { padding: 22px 20px; }
-    .form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
-    .field { display: flex; flex-direction: column; gap: 5px; }
-    .field label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; }
-    .field label .req { color: var(--error); margin-right: 2px; }
-    .input-group { display: flex; align-items: center; gap: 0; }
-    .input-group input { border-radius: 8px 0 0 8px; flex: 1; }
-    .input-group .input-addon { padding: 10px 14px; background: #f1f5f9; border: 1.5px solid var(--border); border-right: none; border-radius: 0 8px 8px 0; color: var(--text-muted); font-size: 13px; font-weight: 600; white-space: nowrap; }
-    input[type="text"], input[type="number"], input[type="date"], select, textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'Vazirmatn', sans-serif; font-size: 14px; color: var(--text); background: #fff; transition: border-color .2s, box-shadow .2s; direction: rtl; }
-    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,64,175,.1); }
+
+    /* Cards */
+    .card { background: #fff; border-radius: var(--radius); box-shadow: 0 1px 4px rgba(0,0,0,.07); margin-bottom: 16px; overflow: hidden; }
+    .card-header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); padding: 12px 18px; display: flex; align-items: center; gap: 10px; }
+    .card-header .sec-label { background: rgba(255,255,255,.2); color: #fff; font-size: 10px; font-weight: 700; padding: 2px 9px; border-radius: 20px; letter-spacing: .5px; }
+    .card-header h2 { color: #fff; font-size: 14px; font-weight: 700; }
+    .card-body { padding: 18px 16px; }
+
+    /* Form */
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .form-grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+    .field { display: flex; flex-direction: column; gap: 4px; }
+    .field label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .4px; }
+    .field-full { grid-column: 1 / -1; }
+    input[type="text"], input[type="number"], input[type="date"], select, textarea {
+      width: 100%; padding: 8px 11px; border: 1.5px solid var(--border); border-radius: 7px;
+      font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text); background: #fff;
+      transition: border-color .2s;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,64,175,.08); }
     input[readonly] { background: #f8fafc; color: var(--text-muted); cursor: not-allowed; }
-    input::placeholder { color: #b0bec5; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 8px; font-family: 'Vazirmatn', sans-serif; font-size: 14px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
+    textarea { resize: vertical; min-height: 56px; }
+    .input-group { display: flex; align-items: center; }
+    .input-group input { border-radius: 7px 0 0 7px; flex: 1; }
+    .input-addon { padding: 8px 11px; background: #f1f5f9; border: 1.5px solid var(--border); border-left: none; border-radius: 0 7px 7px 0; color: var(--text-muted); font-size: 12px; font-weight: 600; white-space: nowrap; }
+
+    /* Holds table */
+    .holds-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; }
+    .holds-table th { background: var(--primary-dark); color: #fff; padding: 7px 8px; text-align: center; border: 1px solid rgba(255,255,255,.15); font-size: 11px; }
+    .holds-table td { padding: 5px 6px; border: 1px solid var(--border); }
+    .holds-table td:first-child { background: #f1f5ff; color: var(--primary-dark); font-weight: 700; text-align: center; width: 60px; }
+    .holds-table input { padding: 4px 6px; font-size: 12px; border: 1px solid #dbe4ff; border-radius: 4px; }
+
+    /* Buttons */
+    .actions-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 20px; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
     .btn-primary { background: var(--primary); color: #fff; }
-    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(30,64,175,.3); }
+    .btn-primary:hover { background: var(--primary-dark); }
     .btn-success { background: var(--success); color: #fff; }
-    .btn-success:hover { background: #15803d; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(22,163,74,.3); }
-    .actions-bar { display: flex; gap: 12px; justify-content: flex-start; flex-wrap: wrap; }
-    .toast-container { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
-    .toast { background: #1e293b; color: #fff; padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.2); animation: slideUp .3s ease; pointer-events: all; min-width: 280px; max-width: 420px; }
-    .toast.success { border-right: 4px solid var(--success); }
-    .toast.error { border-right: 4px solid var(--error); }
-    .toast.info { border-right: 4px solid var(--primary-light); }
-    @keyframes slideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes fadeOut { from { opacity:1; } to { opacity:0; transform:translateY(10px); } }
-    .spinner-overlay { display: none; position: fixed; inset: 0; background: rgba(255,255,255,.7); z-index: 8000; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
+    .btn-success:hover { background: #15803d; }
+
+    /* Preview panel */
+    .preview-panel { background: #fff; border-radius: var(--radius); box-shadow: 0 1px 4px rgba(0,0,0,.07); overflow: hidden; position: sticky; top: 60px; }
+    .preview-panel-header { background: linear-gradient(135deg, #374151 0%, #4b5563 100%); padding: 12px 18px; display: flex; align-items: center; gap: 8px; }
+    .preview-panel-header h3 { color: #fff; font-size: 13px; font-weight: 700; }
+    .live-badge { background: #10b981; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 20px; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;}50%{opacity:.6;} }
+    .preview-panel-body { padding: 20px 18px; max-height: calc(100vh - 150px); overflow-y: auto; }
+
+    /* Letter styles */
+    .letter { font-family: 'Inter', sans-serif; direction: ltr; font-size: 12px; line-height: 1.9; color: #1e293b; }
+    .letter .ltr-meta { display: flex; justify-content: flex-end; flex-direction: column; text-align: right; margin-bottom: 18px; font-size: 12px; font-weight: 600; color: #374151; }
+    .letter .ltr-meta div { margin-bottom: 1px; }
+    .letter .ltr-to { margin-bottom: 10px; }
+    .letter .ltr-to strong { font-size: 13px; }
+    .letter .ltr-sub { margin-bottom: 14px; font-weight: 700; font-size: 13px; }
+    .letter .ltr-body { margin-bottom: 14px; text-align: justify; }
+    .letter .ltr-body p { margin-bottom: 8px; }
+    .letter .ltr-section-title { font-weight: 800; font-size: 12px; margin: 14px 0 6px; text-decoration: underline; letter-spacing: .5px; }
+    .letter .ltr-specs { font-size: 11.5px; line-height: 1.8; }
+    .letter .ltr-specs div { border-bottom: 1px dashed #e2e8f0; padding: 2px 0; }
+    .letter .ltr-agent { font-size: 11.5px; line-height: 1.9; margin-top: 6px; }
+    .letter .ltr-sig { margin-top: 24px; font-weight: 800; font-size: 13px; }
+    .ph { color: #b0bec5; font-style: italic; }
+
+    /* Toast */
+    .toast-container { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+    .toast { background: #1e293b; color: #fff; padding: 11px 20px; border-radius: 9px; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 10px; box-shadow: 0 6px 20px rgba(0,0,0,.2); animation: slideUp .3s ease; pointer-events: all; min-width: 260px; }
+    .toast.success { border-left: 4px solid var(--success); }
+    .toast.error { border-left: 4px solid var(--error); }
+    .toast.info { border-left: 4px solid var(--primary-light); }
+    @keyframes slideUp { from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);} }
+    @keyframes fadeOut { from{opacity:1;}to{opacity:0;transform:translateY(8px);} }
+
+    /* Spinner */
+    .spinner-overlay { display: none; position: fixed; inset: 0; background: rgba(255,255,255,.75); z-index: 8000; align-items: center; justify-content: center; flex-direction: column; gap: 14px; }
     .spinner-overlay.active { display: flex; }
-    .spinner { width: 48px; height: 48px; border: 5px solid #dbe4ff; border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .spinner-text { color: var(--primary); font-weight: 600; font-size: 15px; }
+    .spinner { width: 44px; height: 44px; border: 4px solid #dbe4ff; border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; }
+    @keyframes spin { to{transform:rotate(360deg);} }
+    .spinner-text { color: var(--primary); font-weight: 600; font-size: 14px; }
+
+    /* Select wrapper */
     .select-wrapper { position: relative; }
-    .select-loading { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; border: 2px solid #dbe4ff; border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; display: none; }
+    .select-loading { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border: 2px solid #dbe4ff; border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; display: none; }
     .select-loading.active { display: block; }
 
-    /* Live preview panel */
-    .preview-panel { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; position: sticky; top: 70px; }
-    .preview-panel-header { background: linear-gradient(135deg, #374151 0%, #4b5563 100%); padding: 14px 20px; display: flex; align-items: center; gap: 10px; }
-    .preview-panel-header h3 { color: #fff; font-size: 14px; font-weight: 700; }
-    .preview-panel-header .live-badge { background: #10b981; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.6; } }
-    .preview-panel-body { padding: 24px 20px; max-height: calc(100vh - 160px); overflow-y: auto; }
-
-    .letter-preview { font-family: 'Vazirmatn', sans-serif; direction: rtl; font-size: 13px; line-height: 2.2; color: #1e293b; }
-    .letter-preview .lp-header { text-align: center; border-bottom: 3px double var(--primary); padding-bottom: 14px; margin-bottom: 18px; }
-    .letter-preview .lp-company { font-size: 17px; font-weight: 800; color: var(--primary-dark); }
-    .letter-preview .lp-subtitle { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-    .letter-preview .lp-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
-    .letter-preview .lp-to { margin-bottom: 14px; }
-    .letter-preview .lp-to-company { font-weight: 700; font-size: 14px; }
-    .letter-preview .lp-to-port { font-size: 12px; color: var(--text-muted); }
-    .letter-preview .lp-subject { font-weight: 700; font-size: 14px; color: var(--primary); margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; }
-    .letter-preview .lp-body { font-size: 13px; text-align: justify; margin-bottom: 18px; }
-    .letter-preview .lp-specs { background: #f8faff; border: 1px solid #dbe4ff; border-radius: 8px; padding: 12px 16px; margin-bottom: 18px; font-size: 13px; }
-    .letter-preview .lp-specs-title { font-weight: 700; color: var(--primary); margin-bottom: 8px; font-size: 12px; }
-    .letter-preview .lp-spec-row { display: flex; gap: 8px; margin-bottom: 3px; }
-    .letter-preview .lp-spec-key { color: var(--text-muted); min-width: 130px; font-size: 12px; }
-    .letter-preview .lp-spec-val { font-weight: 600; font-size: 12px; }
-    .letter-preview .lp-sig { margin-top: 30px; }
-    .letter-preview .lp-sig-name { font-weight: 800; font-size: 14px; }
-    .letter-preview .lp-sig-title { color: var(--text-muted); font-size: 12px; }
-    .letter-preview .lp-sig-company { font-size: 12px; font-weight: 600; color: var(--primary); }
-    .letter-placeholder { color: #cbd5e1; font-style: italic; }
-
-    @media (max-width: 860px) {
-      .two-col { grid-template-columns: 1fr; }
-      .preview-panel { position: static; }
-      .preview-panel-body { max-height: 500px; }
-    }
-    @media (max-width: 640px) {
-      .form-grid { grid-template-columns: 1fr !important; }
-      .actions-bar { flex-direction: column; }
-      .btn { width: 100%; justify-content: center; }
-    }
+    @media(max-width:900px){.two-col{grid-template-columns:1fr;}.preview-panel{position:static;}}
+    @media(max-width:600px){.form-grid-2,.form-grid-3,.form-grid-4{grid-template-columns:1fr;}.actions-bar{flex-direction:column;}}
   </style>
 </head>
 <body>
 
 <div class="breadcrumb-bar">
   <a href="#" onclick="window.top.location.href='https://script.google.com/macros/s/AKfycbyg-Llif04nhcv_zup8jC6g1GlYKUNPGAdAhXDboA2mfvOo-5Hd4tGKEkRmaU5ixSM/exec'; return false;">
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-    بازگشت به داشبورد
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Back to Dashboard
   </a>
   <span class="sep">›</span>
-  <span class="current">فرم معرفی کشتی</span>
+  <span class="current">Vessel Nomination Form</span>
 </div>
 
 <div class="spinner-overlay" id="spinnerOverlay">
   <div class="spinner"></div>
-  <div class="spinner-text">در حال پردازش...</div>
+  <div class="spinner-text">Processing...</div>
 </div>
-
 <div class="toast-container" id="toastContainer"></div>
 
 <div class="page-wrapper">
-  <div class="page-title">فرم معرفی کشتی (Vessel Nomination)</div>
-  <div class="page-subtitle">شرکت KAU SOK CO. LIMITED — فرمت سند: KS-VN-YYYY-XXXX</div>
+  <div class="page-header">
+    <div class="page-title">Vessel Nomination</div>
+    <div class="doc-number-box" id="docNumberBox">KS-YYYY-XXXX</div>
+  </div>
 
   <div class="two-col">
-    <!-- Right: form -->
+    <!-- FORM -->
     <div>
       <form id="mainForm" novalidate>
 
-        <!-- اطلاعات کلی -->
+        <!-- Section 1: Document Info -->
         <div class="card">
           <div class="card-header">
-            <span class="section-num">بخش ۱</span>
-            <h2>اطلاعات کلی</h2>
+            <span class="sec-label">SEC 1</span>
+            <h2>Document Information</h2>
           </div>
           <div class="card-body">
-            <div class="form-grid">
+            <div class="form-grid-3">
               <div class="field">
-                <label>شماره سند</label>
-                <input type="text" id="docNumber" readonly placeholder="KS-VN-YYYY-XXXX" />
+                <label>Document No</label>
+                <input type="text" id="docNumber" readonly placeholder="Auto-generated" />
               </div>
               <div class="field">
-                <label>تاریخ <span class="req">*</span></label>
+                <label>Date</label>
                 <input type="date" id="docDate" oninput="updatePreview()" />
               </div>
               <div class="field">
-                <label>پروژه <span class="req">*</span></label>
+                <label>Project</label>
                 <div class="select-wrapper">
-                  <select id="project" oninput="updatePreview()">
-                    <option value="">در حال بارگذاری...</option>
+                  <select id="project" onchange="updatePreview()">
+                    <option value="">Loading...</option>
                   </select>
                   <div class="select-loading active" id="projectLoader"></div>
                 </div>
@@ -169,147 +173,327 @@
           </div>
         </div>
 
-        <!-- گیرنده -->
+        <!-- Section 2: Recipient -->
         <div class="card">
           <div class="card-header">
-            <span class="section-num">بخش ۲</span>
-            <h2>گیرنده (Recipient)</h2>
+            <span class="sec-label">SEC 2</span>
+            <h2>Recipient</h2>
           </div>
           <div class="card-body">
-            <div class="form-grid">
+            <div class="form-grid-2">
               <div class="field">
-                <label>شرکت گیرنده <span class="req">*</span></label>
-                <input type="text" id="recipientCompany" placeholder="نام شرکت گیرنده" oninput="updatePreview()" />
+                <label>To (Company Name)</label>
+                <input type="text" id="recipientCompany" placeholder="e.g. Zhivar Tejarat Arvin" oninput="updatePreview()" />
               </div>
               <div class="field">
-                <label>بندر مقصد <span class="req">*</span></label>
-                <input type="text" id="destinationPort" placeholder="نام بندر مقصد" oninput="updatePreview()" />
+                <label>Contract No.</label>
+                <input type="text" id="contractNo" placeholder="e.g. KS-1761" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Contract Date</label>
+                <input type="date" id="contractDate" oninput="updatePreview()" />
               </div>
             </div>
           </div>
         </div>
 
-        <!-- مشخصات کشتی -->
+        <!-- Section 3: Vessel & Cargo -->
         <div class="card">
           <div class="card-header">
-            <span class="section-num">بخش ۳</span>
-            <h2>مشخصات کشتی</h2>
+            <span class="sec-label">SEC 3</span>
+            <h2>Vessel & Cargo</h2>
           </div>
           <div class="card-body">
-            <div class="form-grid">
+            <div class="form-grid-3">
               <div class="field">
-                <label>نام کشتی <span class="req">*</span></label>
-                <input type="text" id="vesselName" placeholder="نام کشتی" oninput="updatePreview()" />
+                <label>Vessel Name</label>
+                <input type="text" id="vesselName" placeholder="e.g. GRAMMY BRAVE" oninput="updatePreview()" />
               </div>
               <div class="field">
-                <label>لِیکن شروع <span class="req">*</span></label>
-                <input type="date" id="laycanStart" oninput="updatePreview()" />
-              </div>
-              <div class="field">
-                <label>لِیکن پایان <span class="req">*</span></label>
-                <input type="date" id="laycanEnd" oninput="updatePreview()" />
-              </div>
-              <div class="field">
-                <label>بندر بارگیری <span class="req">*</span></label>
-                <input type="text" id="loadingPort" placeholder="نام بندر بارگیری" oninput="updatePreview()" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- کالا -->
-        <div class="card">
-          <div class="card-header">
-            <span class="section-num">بخش ۴</span>
-            <h2>کالا (Cargo)</h2>
-          </div>
-          <div class="card-body">
-            <div class="form-grid">
-              <div class="field">
-                <label>نام کالا <span class="req">*</span></label>
-                <select id="commodity" oninput="updatePreview()">
-                  <option value="">انتخاب کنید</option>
+                <label>Cargo Type</label>
+                <select id="commodity" onchange="updatePreview()">
+                  <option value="">Select...</option>
                   <option value="Iron Ore Concentrate">Iron Ore Concentrate</option>
                   <option value="Hematite">Hematite</option>
                   <option value="Pellet">Pellet</option>
                   <option value="Pellet Fines">Pellet Fines</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
               <div class="field">
-                <label>مقدار <span class="req">*</span></label>
-                <div class="input-group">
-                  <input type="number" id="quantity" placeholder="0" min="0" step="0.001" oninput="updatePreview()" />
-                  <span class="input-addon">MT</span>
-                </div>
+                <label>Min Quantity (MT)</label>
+                <input type="text" id="quantity" placeholder="e.g. 52,000" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Load Port</label>
+                <input type="text" id="loadPort" placeholder="e.g. BIK port" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>ETA</label>
+                <input type="date" id="etaDate" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>ETA Note</label>
+                <input type="text" id="etaNote" placeholder="e.g. IAGW" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Laycan Start</label>
+                <input type="date" id="laycanStart" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Laycan End</label>
+                <input type="date" id="laycanEnd" oninput="updatePreview()" />
               </div>
             </div>
           </div>
         </div>
 
-        <!-- مشخصات فنی -->
+        <!-- Section 4: Freight & Commercial -->
         <div class="card">
           <div class="card-header">
-            <span class="section-num">بخش ۵</span>
-            <h2>مشخصات فنی کشتی</h2>
+            <span class="sec-label">SEC 4</span>
+            <h2>Freight & Commercial Terms</h2>
           </div>
           <div class="card-body">
-            <div class="form-grid">
+            <div class="form-grid-4">
               <div class="field">
-                <label>Draft Limit</label>
-                <div class="input-group">
-                  <input type="number" id="draftLimit" placeholder="0.00" step="0.01" oninput="updatePreview()" />
-                  <span class="input-addon">متر</span>
-                </div>
+                <label>Freight Rate (USD/WMT)</label>
+                <input type="text" id="freightRate" placeholder="e.g. 25" oninput="updatePreview()" />
               </div>
               <div class="field">
-                <label>LOA (Length Overall)</label>
-                <div class="input-group">
-                  <input type="number" id="loa" placeholder="0.00" step="0.01" oninput="updatePreview()" />
-                  <span class="input-addon">متر</span>
-                </div>
+                <label>Contract Clause Ref</label>
+                <input type="text" id="freightClause" placeholder="e.g. clause4" oninput="updatePreview()" />
               </div>
               <div class="field">
-                <label>Beam</label>
-                <div class="input-group">
-                  <input type="number" id="beam" placeholder="0.00" step="0.01" oninput="updatePreview()" />
-                  <span class="input-addon">متر</span>
-                </div>
+                <label>Demurrage Rate (USD/day)</label>
+                <input type="text" id="demurrageRate" placeholder="e.g. 15000" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Confirmation Deadline</label>
+                <input type="text" id="confirmDeadline" placeholder="e.g. two hours" oninput="updatePreview()" />
               </div>
             </div>
           </div>
         </div>
 
-        <!-- دکمه‌ها -->
+        <!-- Section 5: VSL Particulars -->
         <div class="card">
+          <div class="card-header">
+            <span class="sec-label">SEC 5</span>
+            <h2>VSL Particulars</h2>
+          </div>
           <div class="card-body">
-            <div class="actions-bar">
-              <button type="button" class="btn btn-primary" onclick="handleSave(false)">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                ذخیره
-              </button>
-              <button type="button" class="btn btn-success" onclick="handleSave(true)">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                ذخیره + ایجاد سند
-              </button>
+            <div class="form-grid-3" style="margin-bottom:12px;">
+              <div class="field">
+                <label>Built Year</label>
+                <input type="text" id="builtYear" placeholder="e.g. 2002" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Shipyard</label>
+                <input type="text" id="shipyard" placeholder="e.g. TSUNEISHI" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Shipyard Location</label>
+                <input type="text" id="shipyardLoc" placeholder="e.g. CEBU/PHILIPPINES" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Flag</label>
+                <input type="text" id="flag" placeholder="e.g. PANAMA" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Class</label>
+                <input type="text" id="classNK" placeholder="e.g. NK" oninput="updatePreview()" />
+              </div>
+            </div>
+
+            <div class="form-grid-3" style="margin-bottom:12px;">
+              <div class="field">
+                <label>Summer DWT (MT)</label>
+                <input type="text" id="summerDwt" placeholder="e.g. 52,455" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Draft (MTRS)</label>
+                <input type="text" id="draft" placeholder="e.g. 12,024" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>TPC</label>
+                <input type="text" id="tpc" placeholder="e.g. 54,14" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>LOA (M)</label>
+                <input type="text" id="loa" placeholder="e.g. 189,99" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Beam (M)</label>
+                <input type="text" id="beam" placeholder="e.g. 32,26" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Depth Molded (M)</label>
+                <input type="text" id="depth" placeholder="e.g. 17,00" oninput="updatePreview()" />
+              </div>
+            </div>
+
+            <div class="form-grid-4" style="margin-bottom:12px;">
+              <div class="field">
+                <label>GRT (MT)</label>
+                <input type="text" id="grt" placeholder="e.g. 30,303" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>NRT (MT)</label>
+                <input type="text" id="nrt" placeholder="e.g. 17,734" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Suez GRT (MT)</label>
+                <input type="text" id="suezGrt" placeholder="e.g. 30,934.91" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Suez NRT (MT)</label>
+                <input type="text" id="suezNrt" placeholder="e.g. 28,309.41" oninput="updatePreview()" />
+              </div>
+            </div>
+
+            <div class="form-grid-2" style="margin-bottom:12px;">
+              <div class="field">
+                <label>Hatch Cover Type</label>
+                <input type="text" id="hatchType" placeholder="e.g. MCGREGOR END FOLDING" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Hatch No.1 Size (M)</label>
+                <input type="text" id="hatchNo1" placeholder="e.g. 20,4 M X18,4 M" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Hatch No.2-5 Size (M)</label>
+                <input type="text" id="hatchNo2to5" placeholder="e.g. 21,25 M X18,4 M" oninput="updatePreview()" />
+              </div>
+            </div>
+
+            <!-- Hold Dimensions Table -->
+            <div style="font-size:11px;font-weight:700;color:var(--primary-dark);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;">Hold Dimensions (FWD/AFT Bulkhead × L)</div>
+            <table class="holds-table">
+              <thead>
+                <tr>
+                  <th>Hold</th>
+                  <th>FWD (M)</th>
+                  <th>AFT (M)</th>
+                  <th>L (M)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>NO.1</td>
+                  <td><input type="text" id="h1fwd" placeholder="8" oninput="updatePreview()" /></td>
+                  <td><input type="text" id="h1aft" placeholder="18" oninput="updatePreview()" /></td>
+                  <td><input type="text" id="h1l" placeholder="28,5" oninput="updatePreview()" /></td>
+                </tr>
+                <tr>
+                  <td>NO.2</td>
+                  <td><input type="text" id="h2fwd" placeholder="21" oninput="updatePreview()" /></td>
+                  <td><input type="text" id="h2aft" placeholder="21" oninput="updatePreview()" /></td>
+                  <td><input type="text" id="h2l" placeholder="31" oninput="updatePreview()" /></td>
+                </tr>
+                <tr>
+                  <td>NO.3</td>
+                  <td><input type="text" id="h3fwd" placeholder="21" oninput="updatePreview()" /></td>
+                  <td><input type="text" id="h3aft" placeholder="21" oninput="updatePreview()" /></td>
+                  <td><input type="text" id="h3l" placeholder="28,5" oninput="updatePreview()" /></td>
+                </tr>
+                <tr>
+                  <td>NO.4</td>
+                  <td><input type="text" id="h4fwd" placeholder="21" oninput="updatePreview()" /></td>
+                  <td><input type="text" id="h4aft" placeholder="21" oninput="updatePreview()" /></td>
+                  <td><input type="text" id="h4l" placeholder="31" oninput="updatePreview()" /></td>
+                </tr>
+                <tr>
+                  <td>NO.5</td>
+                  <td><input type="text" id="h5fwd" placeholder="18" oninput="updatePreview()" /></td>
+                  <td><input type="text" id="h5aft" placeholder="11,5" oninput="updatePreview()" /></td>
+                  <td><input type="text" id="h5l" placeholder="28,0" oninput="updatePreview()" /></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="form-grid-4" style="margin-top:12px;">
+              <div class="field">
+                <label>Capacity Grain (M3)</label>
+                <input type="text" id="grainM3" placeholder="e.g. 67,756.3" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Capacity Grain (CFT)</label>
+                <input type="text" id="grainCft" placeholder="e.g. 2,392,813" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Capacity Bale (M3)</label>
+                <input type="text" id="baleM3" placeholder="e.g. 65,600.5" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Capacity Bale (CFT)</label>
+                <input type="text" id="baleCft" placeholder="e.g. 2,316,682" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>HO/HA</label>
+                <input type="text" id="hoha" placeholder="e.g. 5 HO/HA" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Cranes</label>
+                <input type="text" id="cranes" placeholder="e.g. 4 X 28 MT ELECTRO HYDRAULIC" oninput="updatePreview()" />
+              </div>
             </div>
           </div>
+        </div>
+
+        <!-- Section 6: Load Port Agent -->
+        <div class="card">
+          <div class="card-header">
+            <span class="sec-label">SEC 6</span>
+            <h2>Load Port Agent Details</h2>
+          </div>
+          <div class="card-body">
+            <div class="form-grid-2">
+              <div class="field">
+                <label>Agent Company</label>
+                <input type="text" id="agentCompany" placeholder="e.g. Persian Gulf Hadid Bandar" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>WhatsApp</label>
+                <input type="text" id="agentWhatsapp" placeholder="e.g. +98-910-1869789" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>WeChat</label>
+                <input type="text" id="agentWechat" placeholder="e.g. gbh.shpg" oninput="updatePreview()" />
+              </div>
+              <div class="field">
+                <label>Email</label>
+                <input type="text" id="agentEmail" placeholder="e.g. gbh.shpg@gmail.com" oninput="updatePreview()" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions-bar">
+          <button type="button" class="btn btn-primary" onclick="handleSave(false)">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Save Draft
+          </button>
+          <button type="button" class="btn btn-success" onclick="handleSave(true)">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Save + Create Document
+          </button>
         </div>
 
       </form>
     </div>
 
-    <!-- Left: live preview -->
+    <!-- LIVE PREVIEW -->
     <div>
       <div class="preview-panel">
         <div class="preview-panel-header">
-          <svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          <h3>پیش‌نمایش زنده متن نامه</h3>
+          <svg width="14" height="14" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <h3>Live Preview</h3>
           <span class="live-badge">LIVE</span>
         </div>
         <div class="preview-panel-body">
-          <div class="letter-preview" id="letterPreview">
-            <!-- rendered dynamically -->
-          </div>
+          <div class="letter" id="letterPreview"></div>
         </div>
       </div>
     </div>
@@ -317,196 +501,215 @@
 </div>
 
 <script>
-function showSpinner() { document.getElementById('spinnerOverlay').classList.add('active'); }
-function hideSpinner() { document.getElementById('spinnerOverlay').classList.remove('active'); }
+function showSpinner(){document.getElementById('spinnerOverlay').classList.add('active');}
+function hideSpinner(){document.getElementById('spinnerOverlay').classList.remove('active');}
 
 function showToast(msg, type, duration) {
-  type = type || 'info'; duration = duration || 4000;
-  var icons = { success: '✓', error: '✕', info: 'ℹ' };
-  var container = document.getElementById('toastContainer');
-  var t = document.createElement('div');
-  t.className = 'toast ' + type;
-  t.innerHTML = '<span style="font-size:16px;">' + icons[type] + '</span> ' + msg;
-  container.appendChild(t);
-  setTimeout(function() {
-    t.style.animation = 'fadeOut .3s ease forwards';
-    setTimeout(function() { if (t.parentNode) t.parentNode.removeChild(t); }, 300);
-  }, duration);
+  type=type||'info'; duration=duration||4000;
+  var icons={success:'✓',error:'✕',info:'ℹ'};
+  var c=document.getElementById('toastContainer');
+  var t=document.createElement('div'); t.className='toast '+type;
+  t.innerHTML='<span style="font-size:15px;">'+icons[type]+'</span> '+msg;
+  c.appendChild(t);
+  setTimeout(function(){t.style.animation='fadeOut .3s ease forwards';setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},300);},duration);
 }
 
-function v(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
-function numV(id) { var el = document.getElementById(id); if (!el || el.value === '') return null; return parseFloat(el.value); }
-function ph(val, placeholder) { return val || ('<span class="letter-placeholder">' + placeholder + '</span>'); }
+function v(id){var el=document.getElementById(id);return el?el.value.trim():'';}
 
-function loadProjects() {
-  var sel = document.getElementById('project');
-  var loader = document.getElementById('projectLoader');
-  loader.classList.add('active');
-  function onSuccess(projects) {
-    sel.innerHTML = '<option value="">انتخاب پروژه</option>';
-    if (Array.isArray(projects)) {
-      projects.forEach(function(p) {
-        var opt = document.createElement('option');
-        opt.value = p.id || p;
-        opt.textContent = p.name || p;
-        sel.appendChild(opt);
-      });
-    }
-    loader.classList.remove('active');
-    updatePreview();
-  }
-  function onFailure() {
-    sel.innerHTML = '<option value="">خطا در بارگذاری</option>';
-    loader.classList.remove('active');
-    showToast('خطا در دریافت لیست پروژه‌ها', 'error');
-  }
-  if (typeof google !== 'undefined' && google.script) {
-    google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).getProjects();
-  } else {
-    setTimeout(function() { onSuccess([
-      { id: 'PRJ001', name: 'پروژه آهن خام ۱۴۰۳' },
-      { id: 'PRJ002', name: 'پروژه گندله ۱۴۰۳' },
-      { id: 'PRJ003', name: 'قرارداد هماتیت بندر عباس' }
-    ]); }, 800);
-  }
+function fmtDate(s){
+  if(!s)return null;
+  try{
+    var d=new Date(s);
+    var mo=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    return d.getDate()+' '+mo[d.getMonth()]+' '+d.getFullYear();
+  }catch(e){return s;}
+}
+function fmtDateShort(s){
+  if(!s)return null;
+  try{var d=new Date(s);return (d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+  catch(e){return s;}
+}
+function ph(val,placeholder){return val||('<span class="ph">['+placeholder+']</span>');}
+
+function holdLine(num){
+  var fwd=v('h'+num+'fwd'), aft=v('h'+num+'aft'), l=v('h'+num+'l');
+  if(!fwd&&!aft&&!l)return '';
+  var fwdStr=fwd||'—', aftStr=aft||'—', lStr=l||'—';
+  return 'NO '+num+' : '+fwdStr+' / '+aftStr+' X '+lStr+' M';
 }
 
-function formatDate(dateStr) {
-  if (!dateStr) return null;
-  try {
-    var d = new Date(dateStr);
-    return d.toLocaleDateString('fa-IR');
-  } catch(e) { return dateStr; }
-}
+function updatePreview(){
+  var docNum=v('docNumber')||'KS-YYYY-XXXX';
+  var docDate=v('docDate');
+  var recipient=v('recipientCompany');
+  var contractNo=v('contractNo');
+  var contractDate=v('contractDate');
+  var vesselName=v('vesselName');
+  var commodity=v('commodity');
+  var quantity=v('quantity');
+  var loadPort=v('loadPort');
+  var etaDate=v('etaDate');
+  var etaNote=v('etaNote');
+  var laycanStart=v('laycanStart');
+  var laycanEnd=v('laycanEnd');
+  var freightRate=v('freightRate');
+  var freightClause=v('freightClause');
+  var demurrageRate=v('demurrageRate');
+  var confirmDeadline=v('confirmDeadline');
 
-function updatePreview() {
-  var docDate = v('docDate');
-  var docNum = v('docNumber') || 'KS-VN-YYYY-XXXX';
-  var recipientCompany = v('recipientCompany');
-  var destinationPort = v('destinationPort');
-  var vesselName = v('vesselName');
-  var laycanStart = v('laycanStart');
-  var laycanEnd = v('laycanEnd');
-  var loadingPort = v('loadingPort');
-  var commodity = v('commodity');
-  var quantity = v('quantity');
-  var draftLimit = v('draftLimit');
-  var loa = v('loa');
-  var beam = v('beam');
+  var builtYear=v('builtYear'), shipyard=v('shipyard'), shipyardLoc=v('shipyardLoc');
+  var flag=v('flag'), classNK=v('classNK');
+  var summerDwt=v('summerDwt'), draft=v('draft'), tpc=v('tpc');
+  var loa=v('loa'), beam=v('beam'), depth=v('depth');
+  var grt=v('grt'), nrt=v('nrt'), suezGrt=v('suezGrt'), suezNrt=v('suezNrt');
+  var hatchType=v('hatchType'), hatchNo1=v('hatchNo1'), hatchNo2to5=v('hatchNo2to5');
+  var grainM3=v('grainM3'), grainCft=v('grainCft'), baleM3=v('baleM3'), baleCft=v('baleCft');
+  var hoha=v('hoha'), cranes=v('cranes');
+  var agentCompany=v('agentCompany'), agentWa=v('agentWhatsapp'), agentWc=v('agentWechat'), agentEmail=v('agentEmail');
 
-  var fDate = docDate ? formatDate(docDate) : null;
-  var fStart = laycanStart ? formatDate(laycanStart) : null;
-  var fEnd = laycanEnd ? formatDate(laycanEnd) : null;
+  document.getElementById('docNumberBox').textContent=docNum;
 
-  var html =
-    '<div class="lp-header">' +
-      '<div class="lp-company">KAU SOK CO. LIMITED</div>' +
-      '<div class="lp-subtitle">تهران — ایران</div>' +
-    '</div>' +
-    '<div class="lp-meta">' +
-      '<span>تاریخ: ' + ph(fDate, 'روز/ماه/سال') + '</span>' +
-      '<span>شماره: ' + docNum + '</span>' +
-    '</div>' +
-    '<div class="lp-to">' +
-      '<div class="lp-to-company">' + ph(recipientCompany, 'نام شرکت گیرنده') + '</div>' +
-      '<div class="lp-to-port">' + ph(destinationPort, 'بندر مقصد') + '</div>' +
-    '</div>' +
-    '<div class="lp-subject">موضوع: معرفی کشتی (Vessel Nomination)</div>' +
-    '<div class="lp-body">' +
-      'با احترام،<br/>' +
-      'بدینوسیله کشتی ' + ph(vesselName, '[نام کشتی]') +
-      ' را جهت بارگیری ' + ph(commodity, '[نوع کالا]') +
-      ' به مقدار ' + ph(quantity, '[مقدار]') + ' MT' +
-      ' با لِیکن ' + ph(fStart, '[تاریخ شروع]') +
-      ' الی ' + ph(fEnd, '[تاریخ پایان]') +
-      ' در بندر ' + ph(loadingPort, '[بندر بارگیری]') +
-      ' به مقصد ' + ph(destinationPort, '[بندر مقصد]') +
-      ' معرفی می‌نماییم.' +
-    '</div>';
-
-  if (draftLimit || loa || beam) {
-    html +=
-      '<div class="lp-specs">' +
-        '<div class="lp-specs-title">مشخصات فنی کشتی</div>';
-    if (draftLimit) html += '<div class="lp-spec-row"><span class="lp-spec-key">Draft Limit:</span><span class="lp-spec-val">' + draftLimit + ' متر</span></div>';
-    if (loa) html += '<div class="lp-spec-row"><span class="lp-spec-key">LOA:</span><span class="lp-spec-val">' + loa + ' متر</span></div>';
-    if (beam) html += '<div class="lp-spec-row"><span class="lp-spec-key">Beam:</span><span class="lp-spec-val">' + beam + ' متر</span></div>';
-    html += '</div>';
-  } else {
-    html +=
-      '<div class="lp-specs">' +
-        '<div class="lp-specs-title">مشخصات فنی کشتی</div>' +
-        '<div class="lp-spec-row"><span class="lp-spec-key">Draft Limit:</span><span class="letter-placeholder">— متر</span></div>' +
-        '<div class="lp-spec-row"><span class="lp-spec-key">LOA:</span><span class="letter-placeholder">— متر</span></div>' +
-        '<div class="lp-spec-row"><span class="lp-spec-key">Beam:</span><span class="letter-placeholder">— متر</span></div>' +
-      '</div>';
+  // Build laycan string
+  var laycanStr='';
+  if(laycanStart&&laycanEnd){
+    var ds=new Date(laycanStart); var de=new Date(laycanEnd);
+    var mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    laycanStr=ds.getDate()+' '+mo[ds.getMonth()]+' – '+de.getDate()+' '+mo[de.getMonth()]+' '+de.getFullYear();
   }
 
-  html +=
-    '<div>با احترام،</div>' +
-    '<div class="lp-sig">' +
-      '<div class="lp-sig-name">خضری</div>' +
-      '<div class="lp-sig-title">مدیر بازرگانی</div>' +
-      '<div class="lp-sig-company">KAU SOK CO. LIMITED</div>' +
-    '</div>';
+  // ETA string
+  var etaStr='';
+  if(etaDate){var de2=new Date(etaDate);var mo2=['January','February','March','April','May','June','July','August','September','October','November','December'];etaStr=de2.getDate()+' '+mo2[de2.getMonth()]+' '+de2.getFullYear()+(etaNote?' '+etaNote:'');}
 
-  document.getElementById('letterPreview').innerHTML = html;
+  var html='';
+
+  // Meta
+  html+='<div class="ltr-meta">';
+  html+='<div><strong>NO:</strong> '+docNum+'</div>';
+  html+='<div><strong>DATE:</strong> '+(docDate?docDate.replace(/-/g,'/'):'YYYY/MM/DD')+'</div>';
+  html+='</div>';
+
+  // To
+  html+='<div class="ltr-to"><strong>To: '+ph(recipient,'Recipient Company')+'</strong></div>';
+  html+='<div class="ltr-sub">Sub: Nomination MV. '+ph(vesselName,'VESSEL NAME')+'</div>';
+
+  // Body
+  html+='<div class="ltr-body">';
+  html+='<p>We hereby nominate MV. '+ph(vesselName,'VESSEL NAME')+' or sub for the loading of ';
+  html+='Min '+ph(quantity,'QTY')+' MT of '+ph(commodity,'CARGO TYPE')+', as referenced contract No. ';
+  html+=ph(contractNo,'CONTRACT NO')+(contractDate?' dated '+contractDate.replace(/-/g,'/'):'')+'.</p>';
+  html+='<p>Kindly instruct to take the necessary arrangements for customs declaration of the cargo in due time.</p>';
+  if(etaStr||loadPort||laycanStr){
+    html+='<p>Meanwhile, her ETA at '+ph(loadPort,'PORT')+' will be '+ph(etaStr,'ETA DATE')+' and the vessel laycan is '+ph(laycanStr,'LAYCAN PERIOD')+'.</p>';
+  }
+  html+='<p><strong>Considerable:</strong> Vessel shall load Min '+ph(quantity,'QTY')+' MT of cargo, subject to actual permissible draft at load port, subject to master discretion.<br/>The vessel particulars are as below for your perusal &amp; reference and pre stowage plan will be sent soon.</p>';
+  if(freightRate){
+    html+='<p>We would like to confirm that the agreed freight rate is USD '+freightRate+' per wet metric ton (WMT). This rate will be calculated according to the formula outlined in our contract '+(freightClause||'clause')+'.</p>';
+  }
+  if(demurrageRate){html+='<p>Demurrage rate: USD '+demurrageRate+' per day.</p>';}
+  if(confirmDeadline){html+='<p>Due to time constraints, we would appreciate it if you could send a vessel confirmation within the next '+confirmDeadline+'.</p>';}
+  html+='</div>';
+
+  // VSL Particulars
+  html+='<div class="ltr-section-title">VSL PARTICULARS:</div>';
+  html+='<div class="ltr-specs">';
+  if(vesselName)html+='<div>M/V '+vesselName+'</div>';
+  if(builtYear||shipyard||shipyardLoc){html+='<div>'+(builtYear?builtYear+' BLT, ':'')+shipyard+(shipyardLoc?' - '+shipyardLoc:'')+'</div>';}
+  if(flag||classNK){html+='<div>'+(flag?flag+' FLAG':'')+(classNK?', CLASS '+classNK:'')+'</div>';}
+  if(summerDwt||draft||tpc){html+='<div>SUMMER DWT '+(summerDwt||'—')+' MT / '+(draft||'—')+' MTRS DRAFT / TPC '+(tpc||'—')+'</div>';}
+  if(loa||beam||depth){html+='<div>LOA '+(loa||'—')+' M / BEAM '+(beam||'—')+' M / DEPTH MOLDED '+(depth||'—')+' M INT</div>';}
+  if(grt||nrt||suezGrt||suezNrt){html+='<div>GRT/ NRT: '+(grt||'—')+' MT / '+(nrt||'—')+' MT SUEZ GRT/NRT: '+(suezGrt||'—')+' MT / '+(suezNrt||'—')+' MT</div>';}
+  if(hatchType||hatchNo1||hatchNo2to5){html+='<div>HATCH COVERS :'+(hatchType||'—')+' HATCH SIZES: NO.1= '+(hatchNo1||'—')+'&amp; NO.2,3,4,5= '+(hatchNo2to5||'—')+'</div>';}
+
+  // Hold dims
+  var holdLines=[];
+  for(var i=1;i<=5;i++){var hl=holdLine(i);if(hl)holdLines.push(hl);}
+  if(holdLines.length>0){html+='<div>HOLD DIMS (FWD/AFT BULKHEAD X L) '+holdLines.join(' ')+'</div>';}
+
+  if(grainM3||grainCft||baleM3||baleCft){html+='<div>CAPACITY - GRAIN /BALE: '+(grainM3||'—')+' M3 ('+(grainCft||'—')+' CFT) / '+(baleM3||'—')+' M3 ('+(baleCft||'—')+' CFT)</div>';}
+  if(hoha){html+='<div>'+hoha+'</div>';}
+  if(cranes){html+='<div>'+(cranes.toUpperCase().includes('CRANE')?cranes:cranes+' CRANES')+'</div>';}
+  html+='</div>';
+
+  // Agent
+  if(agentCompany||agentWa||agentWc||agentEmail){
+    html+='<div class="ltr-section-title">LOAD PORT AGENT DETAILS:</div>';
+    html+='<div class="ltr-agent">';
+    if(agentCompany)html+='<div>'+agentCompany+'</div>';
+    if(agentWa)html+='<div>WhatsApp: '+agentWa+'</div>';
+    if(agentWc)html+='<div>WeChat: '+agentWc+'</div>';
+    if(agentEmail)html+='<div>Email: '+agentEmail+'</div>';
+    html+='</div>';
+  }
+
+  html+='<div class="ltr-sig">KAU SOK CO. LIMITED</div>';
+
+  document.getElementById('letterPreview').innerHTML=html;
 }
 
-function collectData() {
+function loadProjects(){
+  var sel=document.getElementById('project');
+  var loader=document.getElementById('projectLoader');
+  function onSuccess(projects){
+    sel.innerHTML='<option value="">Select Project</option>';
+    if(Array.isArray(projects)){projects.forEach(function(p){var o=document.createElement('option');o.value=p.id||p;o.textContent=p.name||p;sel.appendChild(o);});}
+    loader.classList.remove('active'); updatePreview();
+  }
+  function onFailure(){sel.innerHTML='<option value="">Error loading</option>';loader.classList.remove('active');showToast('Failed to load projects','error');}
+  if(typeof google!=='undefined'&&google.script){google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).getProjects();}
+  else{setTimeout(function(){onSuccess([{id:'PRJ001',name:'Iron Ore Project 2025'},{id:'PRJ002',name:'Pellet Project 2025'}]);},700);}
+}
+
+function collectData(){
   return {
-    docNumber: v('docNumber'),
-    date: v('docDate'),
-    project: v('project'),
-    recipientCompany: v('recipientCompany'),
-    destinationPort: v('destinationPort'),
-    vesselName: v('vesselName'),
-    laycanStart: v('laycanStart'),
-    laycanEnd: v('laycanEnd'),
-    loadingPort: v('loadingPort'),
-    commodity: v('commodity'),
-    quantity: numV('quantity'),
-    draftLimit: numV('draftLimit'),
-    loa: numV('loa'),
-    beam: numV('beam')
+    docNumber:v('docNumber'), date:v('docDate'), project:v('project'),
+    recipientCompany:v('recipientCompany'), contractNo:v('contractNo'), contractDate:v('contractDate'),
+    vesselName:v('vesselName'), commodity:v('commodity'), quantity:v('quantity'),
+    loadPort:v('loadPort'), etaDate:v('etaDate'), etaNote:v('etaNote'),
+    laycanStart:v('laycanStart'), laycanEnd:v('laycanEnd'),
+    freightRate:v('freightRate'), freightClause:v('freightClause'),
+    demurrageRate:v('demurrageRate'), confirmDeadline:v('confirmDeadline'),
+    builtYear:v('builtYear'), shipyard:v('shipyard'), shipyardLoc:v('shipyardLoc'),
+    flag:v('flag'), classNK:v('classNK'),
+    summerDwt:v('summerDwt'), draft:v('draft'), tpc:v('tpc'),
+    loa:v('loa'), beam:v('beam'), depth:v('depth'),
+    grt:v('grt'), nrt:v('nrt'), suezGrt:v('suezGrt'), suezNrt:v('suezNrt'),
+    hatchType:v('hatchType'), hatchNo1:v('hatchNo1'), hatchNo2to5:v('hatchNo2to5'),
+    holds:[
+      {no:1,fwd:v('h1fwd'),aft:v('h1aft'),l:v('h1l')},
+      {no:2,fwd:v('h2fwd'),aft:v('h2aft'),l:v('h2l')},
+      {no:3,fwd:v('h3fwd'),aft:v('h3aft'),l:v('h3l')},
+      {no:4,fwd:v('h4fwd'),aft:v('h4aft'),l:v('h4l')},
+      {no:5,fwd:v('h5fwd'),aft:v('h5aft'),l:v('h5l')}
+    ],
+    grainM3:v('grainM3'), grainCft:v('grainCft'), baleM3:v('baleM3'), baleCft:v('baleCft'),
+    hoha:v('hoha'), cranes:v('cranes'),
+    agentCompany:v('agentCompany'), agentWhatsapp:v('agentWhatsapp'),
+    agentWechat:v('agentWechat'), agentEmail:v('agentEmail')
   };
 }
 
-function handleSave(createDoc) {
-  var data = collectData();
-  data.createDoc = createDoc;
+function handleSave(createDoc){
+  var data=collectData(); data.createDoc=createDoc;
   showSpinner();
-  function onSuccess(result) {
+  function onSuccess(result){
     hideSpinner();
-    if (result && result.docNumber) document.getElementById('docNumber').value = result.docNumber;
-    var msg = createDoc
-      ? (result && result.docUrl ? 'سند با شماره ' + result.docNumber + ' ایجاد شد' : 'سند معرفی کشتی ذخیره شد')
-      : 'اطلاعات با موفقیت ذخیره شد';
-    showToast(msg, 'success');
-    if (result && result.docUrl) setTimeout(function() { window.open(result.docUrl, '_blank'); }, 800);
+    if(result&&result.docNumber){document.getElementById('docNumber').value=result.docNumber;document.getElementById('docNumberBox').textContent=result.docNumber;}
+    var msg=createDoc?(result&&result.docUrl?'Document '+result.docNumber+' created':'Vessel nomination saved'):'Draft saved successfully';
+    showToast(msg,'success');
+    if(result&&result.docUrl)setTimeout(function(){window.open(result.docUrl,'_blank');},800);
     updatePreview();
   }
-  function onFailure(err) {
-    hideSpinner();
-    showToast('خطا: ' + (err && err.message ? err.message : 'ذخیره انجام نشد'), 'error');
-  }
-  if (typeof google !== 'undefined' && google.script) {
-    google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).saveVesselNomination(data);
-  } else {
-    setTimeout(function() { onSuccess({ docNumber: 'KS-VN-2024-0001', docUrl: null }); }, 1200);
-  }
+  function onFailure(err){hideSpinner();showToast('Error: '+(err&&err.message?err.message:'Save failed'),'error');}
+  if(typeof google!=='undefined'&&google.script){google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).saveVesselNomination(data);}
+  else{setTimeout(function(){onSuccess({docNumber:'KS-2025-0001',docUrl:null});},1000);}
 }
 
-// Attach change listeners to all inputs
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded',function(){
   loadProjects();
-  var today = new Date().toISOString().split('T')[0];
-  document.getElementById('docDate').value = today;
+  var today=new Date().toISOString().split('T')[0];
+  document.getElementById('docDate').value=today;
   updatePreview();
-
-  // Also listen to change events for select elements
-  var selects = document.querySelectorAll('select');
-  selects.forEach(function(sel) { sel.addEventListener('change', updatePreview); });
 });
 </script>
 </body>
