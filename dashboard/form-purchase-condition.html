@@ -190,12 +190,12 @@
           </div>
           <div class="field">
             <label>تاریخ <span class="req">*</span></label>
-            <input type="date" id="docDate" required />
+            <input type="date" id="docDate" />
           </div>
           <div class="field">
             <label>پروژه <span class="req">*</span></label>
             <div class="select-wrapper">
-              <select id="project" required>
+              <select id="project">
                 <option value="">در حال بارگذاری...</option>
               </select>
               <div class="select-loading active" id="projectLoader"></div>
@@ -203,7 +203,7 @@
           </div>
           <div class="field">
             <label>تأمین‌کننده <span class="req">*</span></label>
-            <input type="text" id="supplier" placeholder="نام شرکت تأمین‌کننده" required />
+            <input type="text" id="supplier" placeholder="نام شرکت تأمین‌کننده" />
           </div>
         </div>
       </div>
@@ -219,7 +219,7 @@
         <div class="form-grid">
           <div class="field">
             <label>نام کالا <span class="req">*</span></label>
-            <select id="commodity" required>
+            <select id="commodity">
               <option value="">انتخاب کنید</option>
               <option value="Iron Ore Concentrate">Iron Ore Concentrate</option>
               <option value="Hematite">Hematite</option>
@@ -233,7 +233,7 @@
           </div>
           <div class="field">
             <label>مقدار (WMTS) <span class="req">*</span></label>
-            <input type="number" id="quantity" placeholder="0" min="0" step="0.001" required />
+            <input type="number" id="quantity" placeholder="0" min="0" step="0.001" />
           </div>
           <div class="field">
             <label>تلرانس مقدار</label>
@@ -256,7 +256,7 @@
         <div class="form-grid">
           <div class="field">
             <label>بندر بارگیری <span class="req">*</span></label>
-            <input type="text" id="loadingPort" placeholder="نام بندر" required />
+            <input type="text" id="loadingPort" placeholder="نام بندر" />
           </div>
           <div class="field">
             <label>زمان تحویل / لِیکن</label>
@@ -692,9 +692,6 @@ function handleDraftSave() {
 
 function handleFinalSave() {
   var data = collectData();
-  if (!data.date || !data.project || !data.supplier || !data.commodity || !data.quantity || !data.loadingPort) {
-    showToast('لطفاً تمام فیلدهای الزامی را تکمیل کنید', 'error'); return;
-  }
   data.status = 'final'; data.createDoc = true; closeModal(); doSave(data);
 }
 

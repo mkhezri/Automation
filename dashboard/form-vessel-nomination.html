@@ -154,12 +154,12 @@
               </div>
               <div class="field">
                 <label>تاریخ <span class="req">*</span></label>
-                <input type="date" id="docDate" required oninput="updatePreview()" />
+                <input type="date" id="docDate" oninput="updatePreview()" />
               </div>
               <div class="field">
                 <label>پروژه <span class="req">*</span></label>
                 <div class="select-wrapper">
-                  <select id="project" required oninput="updatePreview()">
+                  <select id="project" oninput="updatePreview()">
                     <option value="">در حال بارگذاری...</option>
                   </select>
                   <div class="select-loading active" id="projectLoader"></div>
@@ -179,11 +179,11 @@
             <div class="form-grid">
               <div class="field">
                 <label>شرکت گیرنده <span class="req">*</span></label>
-                <input type="text" id="recipientCompany" placeholder="نام شرکت گیرنده" required oninput="updatePreview()" />
+                <input type="text" id="recipientCompany" placeholder="نام شرکت گیرنده" oninput="updatePreview()" />
               </div>
               <div class="field">
                 <label>بندر مقصد <span class="req">*</span></label>
-                <input type="text" id="destinationPort" placeholder="نام بندر مقصد" required oninput="updatePreview()" />
+                <input type="text" id="destinationPort" placeholder="نام بندر مقصد" oninput="updatePreview()" />
               </div>
             </div>
           </div>
@@ -199,19 +199,19 @@
             <div class="form-grid">
               <div class="field">
                 <label>نام کشتی <span class="req">*</span></label>
-                <input type="text" id="vesselName" placeholder="نام کشتی" required oninput="updatePreview()" />
+                <input type="text" id="vesselName" placeholder="نام کشتی" oninput="updatePreview()" />
               </div>
               <div class="field">
                 <label>لِیکن شروع <span class="req">*</span></label>
-                <input type="date" id="laycanStart" required oninput="updatePreview()" />
+                <input type="date" id="laycanStart" oninput="updatePreview()" />
               </div>
               <div class="field">
                 <label>لِیکن پایان <span class="req">*</span></label>
-                <input type="date" id="laycanEnd" required oninput="updatePreview()" />
+                <input type="date" id="laycanEnd" oninput="updatePreview()" />
               </div>
               <div class="field">
                 <label>بندر بارگیری <span class="req">*</span></label>
-                <input type="text" id="loadingPort" placeholder="نام بندر بارگیری" required oninput="updatePreview()" />
+                <input type="text" id="loadingPort" placeholder="نام بندر بارگیری" oninput="updatePreview()" />
               </div>
             </div>
           </div>
@@ -227,7 +227,7 @@
             <div class="form-grid">
               <div class="field">
                 <label>نام کالا <span class="req">*</span></label>
-                <select id="commodity" required oninput="updatePreview()">
+                <select id="commodity" oninput="updatePreview()">
                   <option value="">انتخاب کنید</option>
                   <option value="Iron Ore Concentrate">Iron Ore Concentrate</option>
                   <option value="Hematite">Hematite</option>
@@ -238,7 +238,7 @@
               <div class="field">
                 <label>مقدار <span class="req">*</span></label>
                 <div class="input-group">
-                  <input type="number" id="quantity" placeholder="0" min="0" step="0.001" required oninput="updatePreview()" />
+                  <input type="number" id="quantity" placeholder="0" min="0" step="0.001" oninput="updatePreview()" />
                   <span class="input-addon">MT</span>
                 </div>
               </div>
@@ -474,9 +474,6 @@ function collectData() {
 
 function handleSave(createDoc) {
   var data = collectData();
-  if (!data.date || !data.recipientCompany || !data.destinationPort || !data.vesselName || !data.laycanStart || !data.laycanEnd || !data.loadingPort || !data.commodity || !data.quantity) {
-    showToast('لطفاً تمام فیلدهای الزامی را تکمیل کنید', 'error'); return;
-  }
   data.createDoc = createDoc;
   showSpinner();
   function onSuccess(result) {
