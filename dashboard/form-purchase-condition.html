@@ -3,772 +3,410 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>شرایط خرید - KAU SOK CO. LIMITED</title>
+  <title>فرصت خرید - KAU SOK CO. LIMITED</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --primary: #1e40af;
-      --primary-dark: #1e3a8a;
-      --primary-light: #2563eb;
-      --primary-bg: #f0f4ff;
-      --surface: #ffffff;
-      --border: #e2e8f0;
-      --text: #1e293b;
-      --text-muted: #64748b;
-      --success: #16a34a;
-      --error: #dc2626;
-      --radius: 12px;
-      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
-      --shadow-lg: 0 8px 32px rgba(0,0,0,.12);
-    }
-    body { font-family: 'Vazirmatn', sans-serif; background: var(--primary-bg); color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.7; }
-    .breadcrumb-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
-    .breadcrumb-bar a { color: var(--primary); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: opacity .2s; }
-    .breadcrumb-bar a:hover { opacity: .75; }
-    .breadcrumb-bar .sep { color: var(--border); }
+    :root { --primary: #1e40af; --primary-dark: #1e3a8a; --primary-light: #2563eb; --surface: #ffffff; --border: #c7d7f9; --bg: #f0f4ff; --text: #1e293b; --text-muted: #64748b; --success: #16a34a; --error: #dc2626; }
+    body { font-family: 'Vazirmatn', sans-serif; background: var(--bg); color: var(--text); font-size: 13px; line-height: 1.6; }
+    .breadcrumb-bar { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 10px 20px; display: flex; align-items: center; gap: 8px; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .breadcrumb-bar a { color: var(--primary); text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .breadcrumb-bar .sep { color: #cbd5e1; }
     .breadcrumb-bar .current { color: var(--text); font-weight: 500; }
-    .page-wrapper { max-width: 960px; margin: 0 auto; padding: 28px 20px 60px; }
-    .page-title { font-size: 22px; font-weight: 800; color: var(--primary-dark); margin-bottom: 6px; }
-    .page-subtitle { color: var(--text-muted); font-size: 13px; margin-bottom: 28px; }
-    .card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 20px; overflow: hidden; }
-    .card-header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
-    .card-header .section-num { background: rgba(255,255,255,.2); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
-    .card-header h2 { color: #fff; font-size: 15px; font-weight: 700; }
-    .card-body { padding: 22px 20px; }
-    .form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-    .form-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
-    .span-full { grid-column: 1 / -1; }
-    .field { display: flex; flex-direction: column; gap: 5px; }
-    .field label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; }
-    .field label .req { color: var(--error); margin-right: 2px; }
-    input[type="text"], input[type="number"], input[type="date"], select, textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'Vazirmatn', sans-serif; font-size: 14px; color: var(--text); background: #fff; transition: border-color .2s, box-shadow .2s; direction: rtl; }
+    .page-wrapper { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+    .page-title { font-size: 20px; font-weight: 800; color: var(--primary-dark); }
+    .doc-number-box { background: var(--primary); color: #fff; padding: 6px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; letter-spacing: 1px; }
+    .doc-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.08); margin-bottom: 20px; }
+    .doc-table th { background: var(--primary); color: #fff; padding: 10px 14px; text-align: center; font-size: 12px; font-weight: 700; border: 1px solid rgba(255,255,255,.2); }
+    .doc-table td { padding: 10px 14px; border: 1px solid var(--border); vertical-align: top; }
+    .doc-table .row-num { background: #f1f5ff; color: var(--primary-dark); font-weight: 700; text-align: center; width: 36px; font-size: 14px; vertical-align: middle; }
+    .doc-table .label-cell { background: #f8faff; font-weight: 600; color: var(--primary-dark); white-space: nowrap; vertical-align: middle; width: 140px; }
+    .doc-table .value-cell { background: #fff; }
+    input[type="text"], input[type="number"], input[type="date"], select, textarea { width: 100%; padding: 7px 10px; border: 1.5px solid #dbe4ff; border-radius: 6px; font-family: 'Vazirmatn', sans-serif; font-size: 13px; color: var(--text); background: #fff; transition: border-color .2s; direction: rtl; }
     input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,64,175,.1); }
-    input[readonly] { background: #f8fafc; color: var(--text-muted); cursor: not-allowed; }
-    input::placeholder { color: #b0bec5; }
-    .quality-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .quality-table thead th { background: #f1f5ff; color: var(--primary-dark); font-weight: 700; padding: 10px 12px; text-align: center; border-bottom: 2px solid #c7d7f9; }
-    .quality-table tbody tr:nth-child(odd) { background: #fafbff; }
-    .quality-table tbody tr:nth-child(even) { background: #fff; }
-    .quality-table tbody td { padding: 8px 10px; border-bottom: 1px solid #e8edf8; text-align: center; vertical-align: middle; }
-    .quality-table tbody td:first-child { font-weight: 600; color: var(--primary-dark); text-align: right; padding-right: 16px; }
-    .quality-table tbody td:last-child { color: var(--text-muted); font-size: 12px; font-weight: 600; }
-    .quality-table input[type="number"] { padding: 7px 10px; font-size: 13px; text-align: center; }
-    .adj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .adj-item { background: #f8faff; border: 1px solid #dbe4ff; border-radius: 8px; padding: 14px; }
-    .adj-item .adj-label { font-weight: 700; color: var(--primary); font-size: 13px; margin-bottom: 10px; border-bottom: 1px solid #dbe4ff; padding-bottom: 6px; }
-    .adj-sub { display: flex; gap: 10px; flex-wrap: wrap; }
-    .adj-sub .field { flex: 1; min-width: 120px; }
-    .price-type-group { display: flex; gap: 20px; margin-bottom: 20px; }
-    .radio-card { flex: 1; border: 2px solid var(--border); border-radius: 8px; padding: 14px 16px; cursor: pointer; transition: border-color .2s, background .2s; display: flex; align-items: center; gap: 10px; }
-    .radio-card input[type="radio"] { accent-color: var(--primary); width: 16px; height: 16px; }
-    .radio-card.selected { border-color: var(--primary); background: #eef2ff; }
-    .radio-card label { font-weight: 600; cursor: pointer; font-size: 14px; }
-    .price-fields { display: none; }
-    .price-fields.visible { display: block; }
-    .payment-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
-    .payment-table th { background: #f1f5ff; color: var(--primary-dark); font-weight: 700; padding: 10px 12px; border-bottom: 2px solid #c7d7f9; text-align: right; }
-    .payment-table td { padding: 6px 8px; border-bottom: 1px solid #e8edf8; vertical-align: middle; }
-    .payment-table tr:nth-child(odd) td { background: #fafbff; }
-    .del-btn { background: none; border: none; color: var(--error); cursor: pointer; font-size: 18px; padding: 4px 8px; border-radius: 4px; transition: background .2s; }
+    textarea { resize: vertical; min-height: 60px; }
+    .spec-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .spec-table th { background: #1e3a8a; color: #fff; padding: 8px 10px; text-align: center; border: 1px solid rgba(255,255,255,.2); }
+    .spec-table td { padding: 6px 8px; border: 1px solid var(--border); text-align: center; }
+    .spec-table td:first-child { text-align: right; font-weight: 600; color: var(--primary-dark); background: #f1f5ff; padding-right: 12px; }
+    .lab-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .lab-table th { background: #374151; color: #fff; padding: 7px 10px; text-align: center; border: 1px solid rgba(255,255,255,.15); }
+    .lab-table td { padding: 6px 8px; border: 1px solid var(--border); text-align: center; }
+    .lab-table td:first-child { text-align: right; font-weight: 600; background: #f8fafc; padding-right: 12px; }
+    .pay-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .pay-table th { background: #f1f5ff; color: var(--primary-dark); font-weight: 700; padding: 8px 10px; border: 1px solid var(--border); text-align: right; }
+    .pay-table td { padding: 6px 8px; border: 1px solid var(--border); }
+    .del-btn { background: none; border: none; color: var(--error); cursor: pointer; font-size: 16px; padding: 2px 6px; border-radius: 4px; }
     .del-btn:hover { background: #fee2e2; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 8px; font-family: 'Vazirmatn', sans-serif; font-size: 14px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
-    .btn-primary { background: var(--primary); color: #fff; }
-    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(30,64,175,.3); }
-    .btn-success { background: var(--success); color: #fff; }
-    .btn-success:hover { background: #15803d; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(22,163,74,.3); }
-    .btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
-    .btn-outline:hover { background: #eef2ff; }
-    .btn-ghost { background: #f1f5f9; color: var(--text-muted); }
-    .btn-ghost:hover { background: #e2e8f0; }
-    .btn-sm { padding: 7px 14px; font-size: 13px; }
-    .actions-bar { display: flex; gap: 12px; justify-content: flex-start; flex-wrap: wrap; }
-    .toast-container { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
-    .toast { background: #1e293b; color: #fff; padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.2); animation: slideUp .3s ease; pointer-events: all; min-width: 280px; max-width: 420px; }
-    .toast.success { border-right: 4px solid var(--success); }
-    .toast.error { border-right: 4px solid var(--error); }
-    .toast.info { border-right: 4px solid var(--primary-light); }
-    @keyframes slideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes fadeOut { from { opacity:1; } to { opacity:0; transform:translateY(10px); } }
-    .spinner-overlay { display: none; position: fixed; inset: 0; background: rgba(255,255,255,.7); z-index: 8000; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
+    .section-title { font-weight: 700; color: var(--primary-dark); margin-bottom: 0; font-size: 13px; border-right: 3px solid var(--primary); padding-right: 8px; }
+    .price-radio-group { display: flex; gap: 16px; margin-bottom: 12px; }
+    .radio-opt { display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600; }
+    .radio-opt input[type="radio"] { width: auto; accent-color: var(--primary); }
+    .actions-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-family: 'Vazirmatn', sans-serif; font-size: 13px; font-weight: 600; border: none; cursor: pointer; transition: all .2s; }
+    .btn-primary { background: var(--primary); color: #fff; } .btn-primary:hover { background: var(--primary-dark); }
+    .btn-success { background: var(--success); color: #fff; } .btn-success:hover { background: #15803d; }
+    .btn-ghost { background: #f1f5f9; color: var(--text-muted); } .btn-ghost:hover { background: #e2e8f0; }
+    .btn-sm { padding: 5px 12px; font-size: 12px; }
+    .toast-container { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+    .toast { background: #1e293b; color: #fff; padding: 11px 20px; border-radius: 8px; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 16px rgba(0,0,0,.2); animation: slideUp .3s ease; pointer-events: all; min-width: 260px; }
+    .toast.success { border-right: 4px solid var(--success); } .toast.error { border-right: 4px solid var(--error); } .toast.info { border-right: 4px solid var(--primary-light); }
+    @keyframes slideUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+    .spinner-overlay { display: none; position: fixed; inset: 0; background: rgba(255,255,255,.7); z-index: 8000; align-items: center; justify-content: center; flex-direction: column; gap: 14px; }
     .spinner-overlay.active { display: flex; }
-    .spinner { width: 48px; height: 48px; border: 5px solid #dbe4ff; border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; }
+    .spinner { width: 44px; height: 44px; border: 5px solid #dbe4ff; border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .spinner-text { color: var(--primary); font-weight: 600; font-size: 15px; }
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 7000; align-items: flex-start; justify-content: center; padding: 40px 20px; overflow-y: auto; }
-    .modal-overlay.active { display: flex; }
-    .modal { background: #fff; border-radius: 14px; box-shadow: var(--shadow-lg); width: 100%; max-width: 760px; animation: modalIn .3s ease; }
-    @keyframes modalIn { from { opacity:0; transform:scale(.95); } to { opacity:1; transform:scale(1); } }
-    .modal-header { background: linear-gradient(135deg, var(--primary), var(--primary-light)); padding: 16px 22px; border-radius: 14px 14px 0 0; display: flex; align-items: center; justify-content: space-between; }
-    .modal-header h3 { color: #fff; font-size: 16px; font-weight: 700; }
-    .modal-close { background: rgba(255,255,255,.2); border: none; color: #fff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: background .2s; }
-    .modal-close:hover { background: rgba(255,255,255,.35); }
-    .modal-body { padding: 28px 30px; max-height: 70vh; overflow-y: auto; }
-    .modal-footer { padding: 16px 22px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 10px; }
-    .doc-preview { font-family: 'Vazirmatn', sans-serif; direction: rtl; line-height: 2; color: #1e293b; }
-    .doc-preview .doc-header { text-align: center; border-bottom: 3px double #1e40af; padding-bottom: 16px; margin-bottom: 20px; }
-    .doc-preview .doc-company { font-size: 20px; font-weight: 800; color: var(--primary-dark); }
-    .doc-preview .doc-title { font-size: 16px; font-weight: 700; color: var(--primary); margin-top: 6px; }
-    .doc-preview .doc-meta { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; }
-    .doc-preview .doc-section { margin-bottom: 18px; }
-    .doc-preview .doc-section-title { font-weight: 700; color: var(--primary); border-right: 3px solid var(--primary); padding-right: 10px; margin-bottom: 8px; font-size: 14px; }
-    .doc-preview table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .doc-preview table th { background: #f1f5ff; padding: 8px 12px; font-weight: 700; border: 1px solid #c7d7f9; text-align: center; }
-    .doc-preview table td { padding: 7px 12px; border: 1px solid #e2e8f0; text-align: center; }
-    .doc-preview .doc-row { display: flex; gap: 8px; font-size: 13px; margin-bottom: 4px; }
-    .doc-preview .doc-key { font-weight: 600; color: var(--text-muted); min-width: 180px; white-space: nowrap; }
-    .doc-preview .doc-val { color: var(--text); }
-    .doc-preview .doc-signature { margin-top: 40px; display: flex; justify-content: flex-end; }
-    .doc-preview .sig-box { border: 1px solid var(--border); border-radius: 8px; padding: 16px 28px; text-align: center; min-width: 200px; }
-    .select-wrapper { position: relative; }
-    .select-loading { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; border: 2px solid #dbe4ff; border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; display: none; }
-    .select-loading.active { display: block; }
-    .divider { height: 1px; background: var(--border); margin: 16px 0; }
-    .static-val { padding: 10px 14px; background: #f8fafc; border: 1.5px solid var(--border); border-radius: 8px; color: var(--text-muted); font-size: 14px; }
-    @media (max-width: 640px) {
-      .form-grid { grid-template-columns: 1fr !important; }
-      .adj-grid { grid-template-columns: 1fr; }
-      .price-type-group { flex-direction: column; }
-      .actions-bar { flex-direction: column; }
-      .btn { width: 100%; justify-content: center; }
-    }
+    .spinner-text { color: var(--primary); font-weight: 600; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .inline-group { display: flex; gap: 8px; align-items: center; }
+    .inline-group input, .inline-group select { flex: 1; }
+    .unit-label { white-space: nowrap; color: var(--text-muted); font-size: 12px; font-weight: 600; }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } .doc-table .label-cell { width: auto; } }
   </style>
 </head>
 <body>
-
 <div class="breadcrumb-bar">
   <a href="#" onclick="window.top.location.href='https://script.google.com/macros/s/AKfycbyg-Llif04nhcv_zup8jC6g1GlYKUNPGAdAhXDboA2mfvOo-5Hd4tGKEkRmaU5ixSM/exec'; return false;">
-    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     بازگشت به داشبورد
   </a>
   <span class="sep">›</span>
-  <span class="current">فرم شرایط خرید</span>
+  <span class="current">فرصت خرید</span>
 </div>
-
-<div class="spinner-overlay" id="spinnerOverlay">
-  <div class="spinner"></div>
-  <div class="spinner-text">در حال پردازش...</div>
-</div>
-
+<div class="spinner-overlay" id="spinnerOverlay"><div class="spinner"></div><div class="spinner-text">در حال پردازش...</div></div>
 <div class="toast-container" id="toastContainer"></div>
-
-<div class="modal-overlay" id="previewModal">
-  <div class="modal">
-    <div class="modal-header">
-      <h3>پیش‌نمایش سند شرایط خرید</h3>
-      <button class="modal-close" onclick="closeModal()">×</button>
-    </div>
-    <div class="modal-body">
-      <div class="doc-preview" id="docPreview"></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal()">بستن</button>
-      <button class="btn btn-success" onclick="handleFinalSave()">ذخیره نهایی + ایجاد سند</button>
-    </div>
-  </div>
-</div>
-
 <div class="page-wrapper">
-  <div class="page-title">فرم شرایط خرید (Purchase Condition)</div>
-  <div class="page-subtitle">شرکت KAU SOK CO. LIMITED — فرمت سند: KS-YYYY-XXXX</div>
-
-  <form id="mainForm" novalidate>
-
-    <!-- بند ۱ -->
-    <div class="card">
-      <div class="card-header">
-        <span class="section-num">بند ۱</span>
-        <h2>اطلاعات کلی</h2>
-      </div>
-      <div class="card-body">
-        <div class="form-grid">
-          <div class="field">
-            <label>شماره سند</label>
-            <input type="text" id="docNumber" readonly placeholder="پس از ذخیره تولید می‌شود" />
+  <div class="page-header">
+    <div class="page-title">فرصت خرید — KAU SOK CO. LIMITED</div>
+    <div class="doc-number-box" id="docNumberDisplay">شماره: KS-YYYY-XXXX</div>
+  </div>
+  <table class="doc-table" style="margin-bottom:12px;">
+    <thead><tr><th colspan="4">اطلاعات کلی سند</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="label-cell">پروژه</td>
+        <td class="value-cell">
+          <div class="inline-group">
+            <select id="project"><option value="">در حال بارگذاری...</option></select>
+            <div id="projectLoader" style="width:16px;height:16px;border:2px solid #dbe4ff;border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite;display:none;flex-shrink:0;"></div>
           </div>
-          <div class="field">
-            <label>تاریخ <span class="req">*</span></label>
-            <input type="date" id="docDate" />
+        </td>
+        <td class="label-cell">تاریخ سند</td>
+        <td class="value-cell"><input type="date" id="docDate" /></td>
+      </tr>
+      <tr>
+        <td class="label-cell">فروشنده / تأمین‌کننده</td>
+        <td class="value-cell"><input type="text" id="supplier" placeholder="نام شرکت فروشنده" /></td>
+        <td class="label-cell">مرجع / Reference</td>
+        <td class="value-cell"><input type="text" id="reference" placeholder="کد مرجع داخلی" /></td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="doc-table">
+    <thead>
+      <tr>
+        <th style="width:36px;">ردیف</th>
+        <th style="width:150px;">موضوع</th>
+        <th>مقدار و شرح</th>
+        <th style="width:150px;">موضوع</th>
+        <th>مقدار و شرح</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-num">۱</td>
+        <td class="label-cell">نوع کالا</td>
+        <td class="value-cell">
+          <select id="commodity">
+            <option value="">انتخاب کنید</option>
+            <option value="سنگ آهن هماتیت">سنگ آهن هماتیت (Hematite)</option>
+            <option value="Iron Ore Concentrate">Iron Ore Concentrate</option>
+            <option value="Pellet">Pellet</option>
+            <option value="Pellet Fines">Pellet Fines</option>
+            <option value="Magnetite">Magnetite</option>
+          </select>
+        </td>
+        <td class="label-cell">وزن (تن)</td>
+        <td class="value-cell">
+          <div class="inline-group">
+            <input type="number" id="quantity" placeholder="0" step="1000" />
+            <span class="unit-label">MT</span>
           </div>
-          <div class="field">
-            <label>پروژه <span class="req">*</span></label>
-            <div class="select-wrapper">
-              <select id="project">
-                <option value="">در حال بارگذاری...</option>
-              </select>
-              <div class="select-loading active" id="projectLoader"></div>
-            </div>
-          </div>
-          <div class="field">
-            <label>تأمین‌کننده <span class="req">*</span></label>
-            <input type="text" id="supplier" placeholder="نام شرکت تأمین‌کننده" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- بند ۲ -->
-    <div class="card">
-      <div class="card-header">
-        <span class="section-num">بند ۲</span>
-        <h2>کالا و مشخصات تحویل</h2>
-      </div>
-      <div class="card-body">
-        <div class="form-grid">
-          <div class="field">
-            <label>نام کالا <span class="req">*</span></label>
-            <select id="commodity">
-              <option value="">انتخاب کنید</option>
-              <option value="Iron Ore Concentrate">Iron Ore Concentrate</option>
-              <option value="Hematite">Hematite</option>
-              <option value="Pellet">Pellet</option>
-              <option value="Pellet Fines">Pellet Fines</option>
+        </td>
+      </tr>
+      <tr>
+        <td class="row-num">۲</td>
+        <td class="label-cell">ترم / محل تحویل</td>
+        <td class="value-cell">
+          <div class="inline-group">
+            <select id="incoterm" style="flex:0 0 90px;">
+              <option value="FOB">FOB</option>
+              <option value="CFR">CFR</option>
+              <option value="CIF">CIF</option>
+              <option value="C&F">C&F</option>
+              <option value="FAS">FAS</option>
             </select>
+            <input type="text" id="portLoading" placeholder="نام بندر" />
           </div>
-          <div class="field">
-            <label>بسته‌بندی</label>
-            <div class="static-val">فله (In Bulk)</div>
-          </div>
-          <div class="field">
-            <label>مقدار (WMTS) <span class="req">*</span></label>
-            <input type="number" id="quantity" placeholder="0" min="0" step="0.001" />
-          </div>
-          <div class="field">
-            <label>تلرانس مقدار</label>
-            <select id="tolerance">
-              <option value="±5%">±5%</option>
-              <option value="±10%">±10%</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- بند ۳ -->
-    <div class="card">
-      <div class="card-header">
-        <span class="section-num">بند ۳</span>
-        <h2>بندر و زمان تحویل</h2>
-      </div>
-      <div class="card-body">
-        <div class="form-grid">
-          <div class="field">
-            <label>بندر بارگیری <span class="req">*</span></label>
-            <input type="text" id="loadingPort" placeholder="نام بندر" />
-          </div>
-          <div class="field">
-            <label>زمان تحویل / لِیکن</label>
-            <input type="text" id="laycan" placeholder="اواخر دی ماه ۱۴۰۳" />
-          </div>
-          <div class="field">
-            <label>LSD (Last Shipment Date)</label>
-            <input type="date" id="lsd" />
-          </div>
-          <div class="field">
-            <label>کرایه حمل (Freight)</label>
-            <input type="text" id="freight" placeholder="مثال: 12 USD/MT CFR" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- بند ۴ -->
-    <div class="card">
-      <div class="card-header">
-        <span class="section-num">بند ۴</span>
-        <h2>مشخصات کیفی</h2>
-      </div>
-      <div class="card-body">
-        <div style="overflow-x:auto;">
-          <table class="quality-table">
+        </td>
+        <td class="label-cell">زمان تحویل</td>
+        <td class="value-cell"><input type="text" id="deliveryTime" placeholder="مثال: یک ماه آینده - ۲۱ جولای ۲۰۲۶" /></td>
+      </tr>
+      <tr>
+        <td class="row-num">۳</td>
+        <td class="label-cell">شرایط لیتایم</td>
+        <td class="value-cell"><textarea id="laytimeTerms" placeholder="مثال: محاسبات لیتایم از NOR خواهد بود."></textarea></td>
+        <td class="label-cell">LSD</td>
+        <td class="value-cell">
+          <input type="date" id="lsd" />
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">آخرین تاریخ حمل</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="row-num">۴</td>
+        <td class="label-cell" colspan="4"><div class="section-title">مشخصات (آنالیز) کالا — بر اساس شرایط قراردادی</div></td>
+      </tr>
+      <tr>
+        <td class="row-num"></td>
+        <td colspan="4" class="value-cell">
+          <table class="spec-table">
             <thead>
               <tr>
-                <th style="text-align:right; padding-right:16px;">پارامتر</th>
-                <th>حداقل (Min)</th>
-                <th>حداکثر (Max)</th>
-                <th>واحد</th>
+                <th style="text-align:right;padding-right:12px;">پارامتر</th>
+                <th>Specification</th>
+                <th>Analysis (نتیجه واقعی)</th>
+                <th>Rejection</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Fe</td>
-                <td><input type="number" id="q_fe_min" placeholder="—" step="0.01" /></td>
-                <td><input type="number" id="q_fe_max" placeholder="—" step="0.01" /></td>
-                <td>%</td>
-              </tr>
-              <tr>
-                <td>SiO₂</td>
-                <td><input type="number" id="q_sio2_min" placeholder="—" step="0.01" /></td>
-                <td><input type="number" id="q_sio2_max" placeholder="—" step="0.01" /></td>
-                <td>%</td>
-              </tr>
-              <tr>
-                <td>Al₂O₃</td>
-                <td><input type="number" id="q_al2o3_min" placeholder="—" step="0.01" /></td>
-                <td><input type="number" id="q_al2o3_max" placeholder="—" step="0.01" /></td>
-                <td>%</td>
-              </tr>
-              <tr>
-                <td>S</td>
-                <td><input type="number" id="q_s_min" placeholder="—" step="0.001" /></td>
-                <td><input type="number" id="q_s_max" placeholder="—" step="0.001" /></td>
-                <td>%</td>
-              </tr>
-              <tr>
-                <td>P</td>
-                <td><input type="number" id="q_p_min" placeholder="—" step="0.001" /></td>
-                <td><input type="number" id="q_p_max" placeholder="—" step="0.001" /></td>
-                <td>%</td>
-              </tr>
-              <tr>
-                <td>رطوبت (Moisture)</td>
-                <td><input type="number" id="q_moist_min" placeholder="—" step="0.01" /></td>
-                <td><input type="number" id="q_moist_max" placeholder="—" step="0.01" /></td>
-                <td>%</td>
-              </tr>
-              <tr>
-                <td>اندازه (Size)</td>
-                <td><input type="number" id="q_size_min" placeholder="—" step="0.1" /></td>
-                <td><input type="number" id="q_size_max" placeholder="—" step="0.1" /></td>
-                <td>mm</td>
-              </tr>
+              <tr><td>Fe (Total)</td><td><input type="text" id="s_fe_spec" placeholder="58% Min" /></td><td><input type="number" id="s_fe_analysis" placeholder="—" step="0.01" /></td><td><input type="text" id="s_fe_reject" placeholder="Below 55%" /></td></tr>
+              <tr><td>FeO</td><td><input type="text" id="s_feo_spec" placeholder="6% Min" /></td><td><input type="number" id="s_feo_analysis" placeholder="—" step="0.01" /></td><td><input type="text" id="s_feo_reject" placeholder="—" /></td></tr>
+              <tr><td>P</td><td><input type="text" id="s_p_spec" placeholder="0.5% Max" /></td><td><input type="number" id="s_p_analysis" placeholder="—" step="0.001" /></td><td><input type="text" id="s_p_reject" placeholder="Above 0.6%" /></td></tr>
+              <tr><td>S</td><td><input type="text" id="s_s_spec" placeholder="0.3% Max" /></td><td><input type="number" id="s_s_analysis" placeholder="—" step="0.001" /></td><td><input type="text" id="s_s_reject" placeholder="Above 0.4%" /></td></tr>
+              <tr><td>SiO₂</td><td><input type="text" id="s_sio2_spec" placeholder="8% Max" /></td><td><input type="number" id="s_sio2_analysis" placeholder="—" step="0.01" /></td><td><input type="text" id="s_sio2_reject" placeholder="Above 10%" /></td></tr>
+              <tr><td>Al₂O₃</td><td><input type="text" id="s_al_spec" placeholder="1% Max" /></td><td><input type="number" id="s_al_analysis" placeholder="—" step="0.01" /></td><td><input type="text" id="s_al_reject" placeholder="Above 2%" /></td></tr>
+              <tr><td>Moisture</td><td><input type="text" id="s_moist_spec" placeholder="1% Max" /></td><td><input type="number" id="s_moist_analysis" placeholder="—" step="0.01" /></td><td><input type="text" id="s_moist_reject" placeholder="—" /></td></tr>
+              <tr><td>Size 0–9.5 mm</td><td><input type="text" id="s_size1_spec" placeholder="Min 75%" /></td><td><input type="number" id="s_size1_analysis" placeholder="—" step="0.01" /></td><td><input type="text" id="s_size1_reject" placeholder="—" /></td></tr>
+              <tr><td>Size &gt; 9.5 mm</td><td><input type="text" id="s_size2_spec" placeholder="Max 25%" /></td><td><input type="number" id="s_size2_analysis" placeholder="—" step="0.01" /></td><td><input type="text" id="s_size2_reject" placeholder="—" /></td></tr>
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- بند ۵ -->
-    <div class="card">
-      <div class="card-header">
-        <span class="section-num">بند ۵</span>
-        <h2>تعدیل قیمت (Price Adjustment)</h2>
-      </div>
-      <div class="card-body">
-        <div class="adj-grid">
-          <div class="adj-item">
-            <div class="adj-label">تعدیل Fe</div>
-            <div style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">به ازای هر 0.1% بالا/پایین از عیار پایه</div>
-            <div class="field">
-              <label>نرخ جریمه ($/DMT)</label>
-              <input type="number" id="adj_fe_rate" placeholder="0.00" step="0.01" />
+        </td>
+      </tr>
+      <tr>
+        <td class="row-num">۵</td>
+        <td class="label-cell" colspan="4"><div class="section-title">مشخصات (آنالیز) کالا — بر اساس گزارش آزمایشگاه (SGS کشتی)</div></td>
+      </tr>
+      <tr>
+        <td class="row-num"></td>
+        <td colspan="4" class="value-cell">
+          <div class="two-col" style="margin-bottom:12px;">
+            <div>
+              <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:4px;">نام آزمایشگاه</div>
+              <input type="text" id="labName" placeholder="مثال: زر آزما، SGS، CIQ" />
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:4px;">کد نمونه / شماره پلمب</div>
+              <input type="text" id="labSampleCode" placeholder="مثال: 4289" />
             </div>
           </div>
-          <div class="adj-item">
-            <div class="adj-label">تعدیل P</div>
-            <div class="adj-sub">
-              <div class="field">
-                <label>آستانه جریمه (%)</label>
-                <input type="number" id="adj_p_threshold" placeholder="0.000" step="0.001" />
-              </div>
-              <div class="field">
-                <label>نرخ ($/DMT)</label>
-                <input type="number" id="adj_p_rate" placeholder="0.00" step="0.01" />
-              </div>
-            </div>
-          </div>
-          <div class="adj-item">
-            <div class="adj-label">تعدیل S</div>
-            <div class="adj-sub">
-              <div class="field">
-                <label>آستانه جریمه (%)</label>
-                <input type="number" id="adj_s_threshold" placeholder="0.000" step="0.001" />
-              </div>
-              <div class="field">
-                <label>نرخ ($/DMT)</label>
-                <input type="number" id="adj_s_rate" placeholder="0.00" step="0.01" />
-              </div>
-            </div>
-          </div>
-          <div class="adj-item">
-            <div class="adj-label">تعدیل Al₂O₃</div>
-            <div class="adj-sub">
-              <div class="field">
-                <label>آستانه جریمه (%)</label>
-                <input type="number" id="adj_al_threshold" placeholder="0.00" step="0.01" />
-              </div>
-              <div class="field">
-                <label>نرخ ($/DMT)</label>
-                <input type="number" id="adj_al_rate" placeholder="0.00" step="0.01" />
-              </div>
-            </div>
-          </div>
-          <div class="adj-item">
-            <div class="adj-label">تعدیل SiO₂</div>
-            <div class="adj-sub">
-              <div class="field">
-                <label>آستانه جریمه (%)</label>
-                <input type="number" id="adj_si_threshold" placeholder="0.00" step="0.01" />
-              </div>
-              <div class="field">
-                <label>نرخ ($/DMT)</label>
-                <input type="number" id="adj_si_rate" placeholder="0.00" step="0.01" />
-              </div>
-            </div>
-          </div>
-          <div class="adj-item">
-            <div class="adj-label">تعدیل اندازه (Size)</div>
-            <div class="adj-sub">
-              <div class="field">
-                <label>جریمه Over-size (%)</label>
-                <input type="number" id="adj_size_over" placeholder="0.00" step="0.01" />
-              </div>
-              <div class="field">
-                <label>جریمه Under-size (%)</label>
-                <input type="number" id="adj_size_under" placeholder="0.00" step="0.01" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- بند ۶ -->
-    <div class="card">
-      <div class="card-header">
-        <span class="section-num">بند ۶</span>
-        <h2>قیمت (Pricing)</h2>
-      </div>
-      <div class="card-body">
-        <div class="price-type-group">
-          <label class="radio-card selected" id="card-platts">
-            <input type="radio" name="priceType" value="platts" checked onchange="onPriceTypeChange()" />
-            فرمول Platts
-          </label>
-          <label class="radio-card" id="card-fixed">
-            <input type="radio" name="priceType" value="fixed" onchange="onPriceTypeChange()" />
-            قیمت ثابت (Fixed)
-          </label>
-        </div>
-
-        <div class="price-fields visible" id="plattsFields">
-          <div class="form-grid">
-            <div class="field">
-              <label>شاخص Platts</label>
-              <select id="plattsIndex">
-                <option value="IODEX 62% CFR China">IODEX 62% CFR China</option>
-                <option value="IODEX 65% CFR China">IODEX 65% CFR China</option>
-                <option value="IODEX 58% CFR China">IODEX 58% CFR China</option>
-              </select>
-            </div>
-            <div class="field">
-              <label>Premium / Discount (USD/DMT)</label>
-              <input type="number" id="premium" placeholder="0.00" step="0.01" />
-            </div>
-            <div class="field">
-              <label>دوره قیمت‌گذاری (QP)</label>
-              <select id="qpType" onchange="onQPChange()">
-                <option value="QP1">QP1 — ماه BL</option>
-                <option value="QP2">QP2 — میانگین ۳ ماه</option>
-                <option value="QP3">QP3 — سفارشی</option>
-              </select>
-            </div>
-            <div class="field" id="qpDetailField" style="display:none;">
-              <label>جزئیات QP (سفارشی)</label>
-              <input type="text" id="qpDetail" placeholder="توضیح دوره قیمت‌گذاری" />
-            </div>
-          </div>
-        </div>
-
-        <div class="price-fields" id="fixedFields">
-          <div class="form-grid">
-            <div class="field">
-              <label>قیمت ثابت (USD/DMT)</label>
-              <input type="number" id="fixedPrice" placeholder="0.00" step="0.01" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- بند ۷ -->
-    <div class="card">
-      <div class="card-header">
-        <span class="section-num">بند ۷</span>
-        <h2>پرداخت (Payment Terms)</h2>
-      </div>
-      <div class="card-body">
-        <div style="overflow-x:auto; margin-bottom:12px;">
-          <table class="payment-table" id="paymentTable">
+          <table class="lab-table">
             <thead>
               <tr>
-                <th style="width:50px; text-align:center;">#</th>
-                <th>درصد پرداخت (%)</th>
-                <th>زمان / شرط</th>
-                <th style="width:60px;"></th>
+                <th style="text-align:right;padding-right:12px;">نوع آزمون</th>
+                <th>روش آزمون</th>
+                <th>نتیجه (%)</th>
               </tr>
             </thead>
-            <tbody id="paymentBody">
-              <tr>
-                <td style="text-align:center; color:var(--text-muted);">۱</td>
-                <td><input type="number" class="pay-pct" placeholder="100" min="0" max="100" step="1" /></td>
-                <td><input type="text" class="pay-cond" placeholder="مثال: ۳۰ روز پس از بارگیری" /></td>
-                <td><button type="button" class="del-btn" onclick="removePaymentRow(this)" title="حذف">×</button></td>
-              </tr>
+            <tbody>
+              <tr><td>FeT</td><td>ISO 2597</td><td><input type="number" id="lab_fet" placeholder="—" step="0.01" /></td></tr>
+              <tr><td>FeO</td><td>ISO 9035</td><td><input type="number" id="lab_feo" placeholder="—" step="0.01" /></td></tr>
+              <tr><td>SiO₂</td><td>ISO 9516</td><td><input type="number" id="lab_sio2" placeholder="—" step="0.01" /></td></tr>
+              <tr><td>Al₂O₃</td><td>ISO 9516</td><td><input type="number" id="lab_al" placeholder="—" step="0.01" /></td></tr>
+              <tr><td>CaO</td><td>ISO 9516</td><td><input type="number" id="lab_cao" placeholder="—" step="0.01" /></td></tr>
+              <tr><td>MgO</td><td>ISO 9516</td><td><input type="number" id="lab_mgo" placeholder="—" step="0.01" /></td></tr>
+              <tr><td>P</td><td>ISO 9516</td><td><input type="number" id="lab_p" placeholder="—" step="0.001" /></td></tr>
+              <tr><td>S</td><td>ISO 9686</td><td><input type="number" id="lab_s" placeholder="—" step="0.001" /></td></tr>
             </tbody>
           </table>
-        </div>
-        <div style="margin-bottom:16px;">
-          <button type="button" class="btn btn-outline btn-sm" onclick="addPaymentRow()">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-            افزودن مرحله
-          </button>
-        </div>
-        <div class="divider"></div>
-        <div class="form-grid" style="margin-top:16px;">
-          <div class="field">
-            <label>بانک / صراف</label>
-            <input type="text" id="bankExchanger" value="صرافی خندان" />
+          <div style="margin-top:10px;">
+            <div style="font-size:11px;font-weight:700;color:var(--primary-dark);margin-bottom:6px;">اندازه ذرات (Particle Size)</div>
+            <div class="two-col">
+              <div class="inline-group"><span class="unit-label" style="min-width:80px;">-9.5 mm (%)</span><input type="number" id="lab_size_minus" placeholder="—" step="0.01" /></div>
+              <div class="inline-group"><span class="unit-label" style="min-width:80px;">+9.5 mm (%)</span><input type="number" id="lab_size_plus" placeholder="—" step="0.01" /></div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- دکمه‌های عملیات -->
-    <div class="card">
-      <div class="card-body">
-        <div class="actions-bar">
-          <button type="button" class="btn btn-ghost" onclick="handleDraftSave()">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-            ذخیره پیش‌نویس
-          </button>
-          <button type="button" class="btn btn-success" onclick="handleFinalSave()">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            ذخیره نهایی + ایجاد سند
-          </button>
-          <button type="button" class="btn btn-primary" onclick="showPreview()">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            پیش‌نمایش
-          </button>
-        </div>
-      </div>
-    </div>
-
-  </form>
+        </td>
+      </tr>
+      <tr>
+        <td class="row-num">۶</td>
+        <td class="label-cell">قیمت</td>
+        <td class="value-cell">
+          <div class="price-radio-group">
+            <label class="radio-opt"><input type="radio" name="priceType" value="formula" checked onchange="onPriceType()" /> فرمولی</label>
+            <label class="radio-opt"><input type="radio" name="priceType" value="fixed" onchange="onPriceType()" /> ثابت (Fixed)</label>
+          </div>
+          <div id="formulaFields">
+            <div class="two-col">
+              <div>
+                <div style="font-size:11px;color:var(--text-muted);margin-bottom:3px;">عیار پایه Fe (%)</div>
+                <div class="inline-group"><input type="number" id="feBase" placeholder="58" step="0.5" /><span class="unit-label">%</span></div>
+              </div>
+              <div>
+                <div style="font-size:11px;color:var(--text-muted);margin-bottom:3px;">شاخص قیمت</div>
+                <select id="priceIndex">
+                  <option value="IODEX 62% CFR China">IODEX 62% CFR China</option>
+                  <option value="IODEX 65% CFR China">IODEX 65% CFR China</option>
+                  <option value="IODEX 58% CFR China" selected>IODEX 58% CFR China</option>
+                  <option value="MB 62%">MB 62%</option>
+                  <option value="TSI 62%">TSI 62%</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div id="fixedFields" style="display:none;">
+            <div class="inline-group"><input type="number" id="fixedPrice" placeholder="0.00" step="0.01" /><span class="unit-label">USD/DMT</span></div>
+          </div>
+        </td>
+        <td class="label-cell">محاسبه آنالیز در فاکتور</td>
+        <td class="value-cell">
+          <select id="analysisCalc">
+            <option value="CIQ/CCIC/SGS at destination">CIQ / CCIC / SGS at destination</option>
+            <option value="SGS POL">SGS at POL</option>
+            <option value="CIQ/CCIC at POD and SGS POL">CIQ/CCIC at POD and SGS POL</option>
+            <option value="Average POL and POD">میانگین POL و POD</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="row-num">۷</td>
+        <td class="label-cell">محاسبه وزن در فاکتور</td>
+        <td colspan="3" class="value-cell">
+          <textarea id="weightCalc" style="min-height:80px;">اگر اختلاف وزن خشک بین نتیجه POL و نتیجه CIQ یا CCIC پورت تخلیه کمتر از ٪0.5 باشد، نتیجه CIQ یا CCIC مبنای پرداخت نهایی است.
+اگر اختلاف وزن خشک بین نتیجه POL و نتیجه POD بالای ٪0.5 (شامل ٪0.5) باشد، میانگین وزن خشک بین نتیجه POL و نتیجه POD به عنوان وزن خشک نهایی در فاکتور محاسبه خواهد شد.
+اگر اختلاف وزن خشک بین نتیجه POL بالای ٪1.0 (شامل ٪1.0) باشد، خریدار باید با فروشنده مصالحه کند.</textarea>
+        </td>
+      </tr>
+      <tr>
+        <td class="row-num">۸</td>
+        <td class="label-cell" colspan="4"><div class="section-title">نحوه پرداخت</div></td>
+      </tr>
+      <tr>
+        <td class="row-num"></td>
+        <td colspan="4" class="value-cell">
+          <table class="pay-table" id="paymentTable">
+            <thead>
+              <tr>
+                <th style="width:140px;">درصد پرداخت</th>
+                <th>شرط / زمان پرداخت</th>
+                <th style="width:46px;"></th>
+              </tr>
+            </thead>
+            <tbody id="paymentBody"></tbody>
+          </table>
+          <button type="button" class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="addPayRow('','')">+ افزودن مرحله</button>
+        </td>
+      </tr>
+      <tr>
+        <td class="row-num">۹</td>
+        <td class="label-cell">یادداشت</td>
+        <td colspan="3" class="value-cell"><textarea id="notes" placeholder="هرگونه توضیح اضافه..."></textarea></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="actions-bar">
+    <button type="button" class="btn btn-ghost" onclick="doSave('draft')">💾 ذخیره پیش‌نویس</button>
+    <button type="button" class="btn btn-success" onclick="doSave('final')">✅ ذخیره نهایی + ایجاد سند</button>
+  </div>
 </div>
-
 <script>
-function showSpinner() { document.getElementById('spinnerOverlay').classList.add('active'); }
-function hideSpinner() { document.getElementById('spinnerOverlay').classList.remove('active'); }
-
-function showToast(msg, type, duration) {
-  type = type || 'info'; duration = duration || 4000;
-  var icons = { success: '✓', error: '✕', info: 'ℹ' };
-  var container = document.getElementById('toastContainer');
-  var t = document.createElement('div');
-  t.className = 'toast ' + type;
-  t.innerHTML = '<span style="font-size:16px;">' + icons[type] + '</span> ' + msg;
-  container.appendChild(t);
-  setTimeout(function() {
-    t.style.animation = 'fadeOut .3s ease forwards';
-    setTimeout(function() { if (t.parentNode) t.parentNode.removeChild(t); }, 300);
-  }, duration);
+function showSpinner(){ document.getElementById('spinnerOverlay').classList.add('active'); }
+function hideSpinner(){ document.getElementById('spinnerOverlay').classList.remove('active'); }
+function showToast(msg, type){
+  var c=document.getElementById('toastContainer'), t=document.createElement('div');
+  t.className='toast '+(type||'info');
+  var icons={success:'✓',error:'✕',info:'ℹ'};
+  t.innerHTML='<span>'+(icons[type]||'ℹ')+'</span> '+msg;
+  c.appendChild(t);
+  setTimeout(function(){ t.style.opacity='0'; t.style.transition='opacity .3s'; setTimeout(function(){ t.remove(); },300); },4000);
 }
-
-function v(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
-function numV(id) { var el = document.getElementById(id); if (!el || el.value === '') return null; return parseFloat(el.value); }
-
-function loadProjects() {
-  var sel = document.getElementById('project');
-  var loader = document.getElementById('projectLoader');
-  loader.classList.add('active');
-
-  function onSuccess(projects) {
-    sel.innerHTML = '<option value="">انتخاب پروژه</option>';
-    if (Array.isArray(projects)) {
-      projects.forEach(function(p) {
-        var opt = document.createElement('option');
-        opt.value = p.id || p;
-        opt.textContent = p.name || p;
-        sel.appendChild(opt);
-      });
-    }
-    loader.classList.remove('active');
-  }
-
-  function onFailure(err) {
-    sel.innerHTML = '<option value="">خطا در بارگذاری</option>';
-    loader.classList.remove('active');
-    showToast('خطا در دریافت لیست پروژه‌ها', 'error');
-  }
-
-  if (typeof google !== 'undefined' && google.script) {
-    google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).getProjects();
-  } else {
-    setTimeout(function() { onSuccess([
-      { id: 'PRJ001', name: 'پروژه آهن خام ۱۴۰۳' },
-      { id: 'PRJ002', name: 'پروژه گندله ۱۴۰۳' },
-      { id: 'PRJ003', name: 'قرارداد هماتیت بندر عباس' }
-    ]); }, 800);
-  }
+function v(id){ var el=document.getElementById(id); return el?el.value.trim():''; }
+function n(id){ var el=document.getElementById(id); if(!el||el.value==='') return null; return parseFloat(el.value); }
+function onPriceType(){
+  var val=document.querySelector('input[name="priceType"]:checked').value;
+  document.getElementById('formulaFields').style.display=val==='formula'?'':'none';
+  document.getElementById('fixedFields').style.display=val==='fixed'?'':'none';
 }
-
-function onPriceTypeChange() {
-  var val = document.querySelector('input[name="priceType"]:checked').value;
-  document.getElementById('plattsFields').classList.toggle('visible', val === 'platts');
-  document.getElementById('fixedFields').classList.toggle('visible', val === 'fixed');
-  document.getElementById('card-platts').classList.toggle('selected', val === 'platts');
-  document.getElementById('card-fixed').classList.toggle('selected', val === 'fixed');
-}
-
-function onQPChange() {
-  var qp = v('qpType');
-  document.getElementById('qpDetailField').style.display = qp === 'QP3' ? 'flex' : 'none';
-}
-
-var paymentRowCount = 1;
-var persNums = ['۱','۲','۳','۴','۵','۶','۷','۸','۹','۱۰'];
-
-function addPaymentRow() {
-  paymentRowCount++;
-  var body = document.getElementById('paymentBody');
-  var tr = document.createElement('tr');
-  var n = persNums[paymentRowCount - 1] || String(paymentRowCount);
-  tr.innerHTML =
-    '<td style="text-align:center; color:var(--text-muted);">' + n + '</td>' +
-    '<td><input type="number" class="pay-pct" placeholder="0" min="0" max="100" step="1" /></td>' +
-    '<td><input type="text" class="pay-cond" placeholder="زمان / شرط پرداخت" /></td>' +
-    '<td><button type="button" class="del-btn" onclick="removePaymentRow(this)" title="حذف">×</button></td>';
+var defaultPayments=[
+  {pct:'پیش پرداخت ۲۰٪', cond:'۵ روز کاری بعد از امضای قرارداد در قبال انتقال مالکیت'},
+  {pct:'تا ۸۰٪', cond:'در طول بارگیری و قبل از خروج کشتی'},
+  {pct:'تا ۹۰٪', cond:'دو روز قبل و بعد از بارنامه در قبال اسناد کشتی'},
+  {pct:'تا ۹۷٪', cond:'بعد از NOR طبق فرمول بر اساس SGS'},
+  {pct:'تسویه ۱۰۰٪', cond:'بعد از NOR طبق فرمول بر اساس CIQ'}
+];
+function addPayRow(pct, cond){
+  var body=document.getElementById('paymentBody'), tr=document.createElement('tr');
+  tr.innerHTML='<td><input type="text" class="pay-pct" value="'+(pct||'')+'" placeholder="مثال: ۲۰٪" /></td>'+
+    '<td><input type="text" class="pay-cond" value="'+(cond||'')+'" placeholder="شرط / زمان پرداخت" /></td>'+
+    '<td><button type="button" class="del-btn" onclick="this.closest(\'tr\').remove()">×</button></td>';
   body.appendChild(tr);
 }
-
-function removePaymentRow(btn) {
-  var rows = document.querySelectorAll('#paymentBody tr');
-  if (rows.length <= 1) { showToast('حداقل یک ردیف پرداخت الزامی است', 'error'); return; }
-  var tr = btn.closest('tr'); tr.parentNode.removeChild(tr);
-  renumberPaymentRows();
-}
-
-function renumberPaymentRows() {
-  var rows = document.querySelectorAll('#paymentBody tr');
-  rows.forEach(function(tr, i) { tr.cells[0].textContent = persNums[i] || String(i + 1); });
-}
-
-function collectData() {
-  var priceType = document.querySelector('input[name="priceType"]:checked').value;
-  var paymentTerms = [];
-  document.querySelectorAll('#paymentBody tr').forEach(function(tr) {
-    var pct = tr.querySelector('.pay-pct') ? tr.querySelector('.pay-pct').value : '';
-    var cond = tr.querySelector('.pay-cond') ? tr.querySelector('.pay-cond').value : '';
-    if (pct || cond) paymentTerms.push({ percentage: pct, condition: cond });
+function collectData(){
+  var priceType=document.querySelector('input[name="priceType"]:checked').value;
+  var payments=[];
+  document.querySelectorAll('#paymentBody tr').forEach(function(tr){
+    var pct=tr.querySelector('.pay-pct')?tr.querySelector('.pay-pct').value:'';
+    var cond=tr.querySelector('.pay-cond')?tr.querySelector('.pay-cond').value:'';
+    if(pct||cond) payments.push({percentage:pct, condition:cond});
   });
   return {
-    docNumber: v('docNumber'), date: v('docDate'), project: v('project'), supplier: v('supplier'),
-    commodity: v('commodity'), packaging: 'فله (In Bulk)',
-    quantity: numV('quantity'), tolerance: v('tolerance'),
-    loadingPort: v('loadingPort'), laycan: v('laycan'), lsd: v('lsd'), freight: v('freight'),
-    quality: {
-      fe: { min: numV('q_fe_min'), max: numV('q_fe_max') },
-      sio2: { min: numV('q_sio2_min'), max: numV('q_sio2_max') },
-      al2o3: { min: numV('q_al2o3_min'), max: numV('q_al2o3_max') },
-      s: { min: numV('q_s_min'), max: numV('q_s_max') },
-      p: { min: numV('q_p_min'), max: numV('q_p_max') },
-      moisture: { min: numV('q_moist_min'), max: numV('q_moist_max') },
-      size: { min: numV('q_size_min'), max: numV('q_size_max') }
+    project:v('project'), date:v('docDate'), reference:v('reference'), supplier:v('supplier'),
+    commodity:v('commodity'), quantity:n('quantity'),
+    incoterm:v('incoterm'), port_loading:v('portLoading'), delivery_time:v('deliveryTime'),
+    laytime_terms:v('laytimeTerms'), lsd:v('lsd'),
+    spec:{
+      fe:{spec:v('s_fe_spec'),analysis:n('s_fe_analysis'),reject:v('s_fe_reject')},
+      feo:{spec:v('s_feo_spec'),analysis:n('s_feo_analysis'),reject:v('s_feo_reject')},
+      p:{spec:v('s_p_spec'),analysis:n('s_p_analysis'),reject:v('s_p_reject')},
+      s:{spec:v('s_s_spec'),analysis:n('s_s_analysis'),reject:v('s_s_reject')},
+      sio2:{spec:v('s_sio2_spec'),analysis:n('s_sio2_analysis'),reject:v('s_sio2_reject')},
+      al:{spec:v('s_al_spec'),analysis:n('s_al_analysis'),reject:v('s_al_reject')},
+      moist:{spec:v('s_moist_spec'),analysis:n('s_moist_analysis'),reject:v('s_moist_reject')},
+      size1:{spec:v('s_size1_spec'),analysis:n('s_size1_analysis'),reject:v('s_size1_reject')},
+      size2:{spec:v('s_size2_spec'),analysis:n('s_size2_analysis'),reject:v('s_size2_reject')}
     },
-    adjustments: {
-      fe: { rate: numV('adj_fe_rate') },
-      p: { threshold: numV('adj_p_threshold'), rate: numV('adj_p_rate') },
-      s: { threshold: numV('adj_s_threshold'), rate: numV('adj_s_rate') },
-      al2o3: { threshold: numV('adj_al_threshold'), rate: numV('adj_al_rate') },
-      sio2: { threshold: numV('adj_si_threshold'), rate: numV('adj_si_rate') },
-      size: { overPenalty: numV('adj_size_over'), underPenalty: numV('adj_size_under') }
-    },
-    priceType: priceType,
-    plattsIndex: priceType === 'platts' ? v('plattsIndex') : null,
-    premium: priceType === 'platts' ? numV('premium') : null,
-    qpType: priceType === 'platts' ? v('qpType') : null,
-    qpDetail: (priceType === 'platts' && v('qpType') === 'QP3') ? v('qpDetail') : null,
-    fixedPrice: priceType === 'fixed' ? numV('fixedPrice') : null,
-    paymentTerms: paymentTerms, bankExchanger: v('bankExchanger')
+    lab:{name:v('labName'),sample_code:v('labSampleCode'),fet:n('lab_fet'),feo:n('lab_feo'),sio2:n('lab_sio2'),al:n('lab_al'),cao:n('lab_cao'),mgo:n('lab_mgo'),p:n('lab_p'),s:n('lab_s'),size_minus:n('lab_size_minus'),size_plus:n('lab_size_plus')},
+    price_type:priceType, fe_base:priceType==='formula'?n('feBase'):null, price_index:priceType==='formula'?v('priceIndex'):null, fixed_price:priceType==='fixed'?n('fixedPrice'):null,
+    analysis_calc:v('analysisCalc'), weight_calc:v('weightCalc'), payments:payments, notes:v('notes')
   };
 }
-
-function handleDraftSave() {
-  var data = collectData(); data.status = 'draft'; data.createDoc = false; doSave(data);
-}
-
-function handleFinalSave() {
-  var data = collectData();
-  data.status = 'final'; data.createDoc = true; closeModal(); doSave(data);
-}
-
-function doSave(data) {
+function doSave(status){
+  var data=collectData(); data.status=status;
   showSpinner();
-  function onSuccess(result) {
+  function onSuccess(result){
     hideSpinner();
-    if (result && result.docNumber) document.getElementById('docNumber').value = result.docNumber;
-    var msg = data.status === 'final'
-      ? (result && result.docUrl ? 'سند با شماره ' + result.docNumber + ' ایجاد شد' : 'ذخیره نهایی انجام شد')
-      : 'پیش‌نویس با موفقیت ذخیره شد';
-    showToast(msg, 'success');
-    if (result && result.docUrl) setTimeout(function() { window.open(result.docUrl, '_blank'); }, 800);
+    if(result&&result.doc_number) document.getElementById('docNumberDisplay').textContent='شماره: '+result.doc_number;
+    showToast(status==='final'?'سند با موفقیت ذخیره شد':'پیش‌نویس ذخیره شد','success');
   }
-  function onFailure(err) {
-    hideSpinner();
-    showToast('خطا: ' + (err && err.message ? err.message : 'ذخیره انجام نشد'), 'error');
-  }
-  if (typeof google !== 'undefined' && google.script) {
-    google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).savePurchaseCondition(data);
-  } else {
-    setTimeout(function() { onSuccess({ docNumber: 'KS-2024-0001', docUrl: null }); }, 1200);
-  }
+  function onError(err){ hideSpinner(); showToast('خطا: '+(err&&err.message?err.message:'ذخیره انجام نشد'),'error'); }
+  if(typeof google!=='undefined'&&google.script){
+    google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onError).savePurchaseCondition(data);
+  } else { setTimeout(function(){ onSuccess({doc_number:'KS-2026-0001'}); },800); }
 }
-
-function showPreview() {
-  var d = collectData();
-  var preview = document.getElementById('docPreview');
-  var priceRow = d.priceType === 'fixed'
-    ? '<div class="doc-row"><span class="doc-key">قیمت ثابت:</span><span class="doc-val">' + (d.fixedPrice !== null ? d.fixedPrice : '—') + ' USD/DMT</span></div>'
-    : '<div class="doc-row"><span class="doc-key">شاخص Platts:</span><span class="doc-val">' + (d.plattsIndex || '—') + '</span></div>' +
-      '<div class="doc-row"><span class="doc-key">Premium/Discount:</span><span class="doc-val">' + (d.premium !== null ? d.premium : '0') + ' USD/DMT</span></div>' +
-      '<div class="doc-row"><span class="doc-key">دوره قیمت‌گذاری:</span><span class="doc-val">' + (d.qpType || '—') + (d.qpDetail ? ' — ' + d.qpDetail : '') + '</span></div>';
-  var qParams = [
-    ['Fe', d.quality.fe, '%'], ['SiO₂', d.quality.sio2, '%'], ['Al₂O₃', d.quality.al2o3, '%'],
-    ['S', d.quality.s, '%'], ['P', d.quality.p, '%'], ['رطوبت', d.quality.moisture, '%'], ['اندازه', d.quality.size, 'mm']
-  ];
-  var qRows = qParams.map(function(r) {
-    return '<tr><td style="text-align:right;">' + r[0] + '</td><td>' + (r[1].min !== null ? r[1].min : '—') + '</td><td>' + (r[1].max !== null ? r[1].max : '—') + '</td><td>' + r[2] + '</td></tr>';
-  }).join('');
-  var payRows = d.paymentTerms.map(function(t) {
-    return '<div class="doc-row"><span class="doc-key">مرحله:</span><span class="doc-val">' + (t.percentage || '') + '% — ' + (t.condition || '') + '</span></div>';
-  }).join('');
-  preview.innerHTML =
-    '<div class="doc-header"><div class="doc-company">KAU SOK CO. LIMITED</div><div class="doc-title">شرایط خرید (Purchase Condition)</div></div>' +
-    '<div class="doc-meta"><span>تاریخ: ' + (d.date || '—') + '</span><span>شماره: ' + (d.docNumber || 'KS-YYYY-XXXX') + '</span></div>' +
-    '<div class="doc-section"><div class="doc-section-title">اطلاعات کلی</div>' +
-    '<div class="doc-row"><span class="doc-key">تأمین‌کننده:</span><span class="doc-val">' + (d.supplier || '—') + '</span></div>' +
-    '<div class="doc-row"><span class="doc-key">پروژه:</span><span class="doc-val">' + (d.project || '—') + '</span></div></div>' +
-    '<div class="doc-section"><div class="doc-section-title">کالا و تحویل</div>' +
-    '<div class="doc-row"><span class="doc-key">نام کالا:</span><span class="doc-val">' + (d.commodity || '—') + '</span></div>' +
-    '<div class="doc-row"><span class="doc-key">بسته‌بندی:</span><span class="doc-val">' + d.packaging + '</span></div>' +
-    '<div class="doc-row"><span class="doc-key">مقدار:</span><span class="doc-val">' + (d.quantity !== null ? d.quantity : '—') + ' WMTS (' + d.tolerance + ')</span></div>' +
-    '<div class="doc-row"><span class="doc-key">بندر بارگیری:</span><span class="doc-val">' + (d.loadingPort || '—') + '</span></div>' +
-    '<div class="doc-row"><span class="doc-key">لِیکن:</span><span class="doc-val">' + (d.laycan || '—') + '</span></div>' +
-    '<div class="doc-row"><span class="doc-key">LSD:</span><span class="doc-val">' + (d.lsd || '—') + '</span></div>' +
-    '<div class="doc-row"><span class="doc-key">کرایه حمل:</span><span class="doc-val">' + (d.freight || '—') + '</span></div></div>' +
-    '<div class="doc-section"><div class="doc-section-title">مشخصات کیفی</div>' +
-    '<table><thead><tr><th>پارامتر</th><th>حداقل</th><th>حداکثر</th><th>واحد</th></tr></thead><tbody>' + qRows + '</tbody></table></div>' +
-    '<div class="doc-section"><div class="doc-section-title">قیمت</div>' + priceRow + '</div>' +
-    '<div class="doc-section"><div class="doc-section-title">شرایط پرداخت</div>' +
-    (payRows || '<div class="doc-row"><span class="doc-val">—</span></div>') +
-    '<div class="doc-row"><span class="doc-key">بانک / صراف:</span><span class="doc-val">' + (d.bankExchanger || '—') + '</span></div></div>' +
-    '<div class="doc-signature"><div class="sig-box"><div style="font-weight:700; color:var(--primary); margin-bottom:6px;">KAU SOK CO. LIMITED</div>' +
-    '<div style="color:var(--text-muted); font-size:13px;">مدیر بازرگانی</div>' +
-    '<div style="margin-top:40px; border-top:1px solid var(--border); padding-top:8px; color:var(--text-muted); font-size:12px;">امضاء و مهر</div></div></div>';
-  document.getElementById('previewModal').classList.add('active');
+function loadProjects(){
+  var sel=document.getElementById('project'), loader=document.getElementById('projectLoader');
+  loader.style.display='block';
+  function ok(projects){ sel.innerHTML='<option value="">انتخاب پروژه</option>'; if(Array.isArray(projects)){ projects.forEach(function(p){ var o=document.createElement('option'); o.value=p.id||p; o.textContent=p.name||p; sel.appendChild(o); }); } loader.style.display='none'; }
+  function fail(){ sel.innerHTML='<option value="">خطا در بارگذاری</option>'; loader.style.display='none'; }
+  if(typeof google!=='undefined'&&google.script){ google.script.run.withSuccessHandler(ok).withFailureHandler(fail).getProjects(); }
+  else { setTimeout(function(){ ok([{id:'P1',name:'پروژه آهن خام ۱۴۰۳'}]); },500); }
 }
-
-function closeModal() { document.getElementById('previewModal').classList.remove('active'); }
-
-document.getElementById('previewModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function(){
   loadProjects();
-  var today = new Date().toISOString().split('T')[0];
-  document.getElementById('docDate').value = today;
+  document.getElementById('docDate').value=new Date().toISOString().split('T')[0];
+  defaultPayments.forEach(function(p){ addPayRow(p.pct, p.cond); });
 });
 </script>
 </body>
