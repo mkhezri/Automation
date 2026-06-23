@@ -461,17 +461,28 @@ function getDashboardStats() {
   const pendingPcs     = myPcs.filter(p => p.status === "pending").length;
 
   const auditRows = sheetToObjects(getSheet(SHEET_AUDIT_LOG));
-  const recent    = auditRows.slice(-10).reverse();
+  // Serialize dates to strings to avoid GAS serialization issues
+  const recent = auditRows.slice(-10).reverse().map(r => ({
+    timestamp  : r.timestamp ? String(r.timestamp) : "",
+    user_email : String(r.user_email || ""),
+    action     : String(r.action     || ""),
+    entity     : String(r.entity     || ""),
+    entity_id  : String(r.entity_id  || ""),
+    detail     : String(r.detail     || "")
+  }));
 
-  return {
+  const result = {
     total_projects : activeProjects,
     total_pcs      : myPcs.length,
     total_vns      : myVns.length,
     pending_pcs    : pendingPcs,
-    user_role      : user.role,
-    user_name      : user.name,
+    user_role      : String(user.role || "viewer"),
+    user_name      : String(user.name || ""),
     recent_activity: recent
   };
+
+  Logger.log("getDashboardStats result: " + JSON.stringify(result));
+  return result;
 }
 
 // ============================================================
