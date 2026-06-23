@@ -448,41 +448,52 @@ function getDashboardStats() {
   requireRole("viewer");
   const user = getCurrentUser();
 
-  const projects = sheetToObjects(getSheet(SHEET_PROJECTS));
-  const pcs      = sheetToObjects(getSheet(SHEET_PURCHASE_CONDITIONS));
-  const vns      = sheetToObjects(getSheet(SHEET_VESSEL_NOMINATIONS));
+  // Step 1: return minimal data to verify pipeline
+  // Read sheets one by one with error isolation
+  var totalProjects = 0, totalPcs = 0, totalVns = 0, pendingPcs = 0;
+  var recent = [];
 
-  const isAdmin = checkRole("manager");
+  try {
+    const projects = sheetToObjects(getSheet(SHEET_PROJECTS));
+    totalProjects = projects.filter(p => p.status === "active").length;
+  } catch(e) { Logger.log("projects err: " + e.message); }
 
-  const myPcs = isAdmin ? pcs : pcs.filter(r => r.created_by === user.email);
-  const myVns = isAdmin ? vns : vns.filter(r => r.created_by === user.email);
+  try {
+    const pcs = sheetToObjects(getSheet(SHEET_PURCHASE_CONDITIONS));
+    const isAdmin = checkRole("manager");
+    const myPcs = isAdmin ? pcs : pcs.filter(r => r.created_by === user.email);
+    totalPcs = myPcs.length;
+    pendingPcs = myPcs.filter(p => p.status === "pending").length;
+  } catch(e) { Logger.log("pcs err: " + e.message); }
 
-  const activeProjects = projects.filter(p => p.status === "active").length;
-  const pendingPcs     = myPcs.filter(p => p.status === "pending").length;
+  try {
+    const vns = sheetToObjects(getSheet(SHEET_VESSEL_NOMINATIONS));
+    const isAdmin = checkRole("manager");
+    const myVns = isAdmin ? vns : vns.filter(r => r.created_by === user.email);
+    totalVns = myVns.length;
+  } catch(e) { Logger.log("vns err: " + e.message); }
 
-  const auditRows = sheetToObjects(getSheet(SHEET_AUDIT_LOG));
-  // Serialize dates to strings to avoid GAS serialization issues
-  const recent = auditRows.slice(-10).reverse().map(r => ({
-    timestamp  : r.timestamp ? String(r.timestamp) : "",
-    user_email : String(r.user_email || ""),
-    action     : String(r.action     || ""),
-    entity     : String(r.entity     || ""),
-    entity_id  : String(r.entity_id  || ""),
-    detail     : String(r.detail     || "")
-  }));
+  try {
+    const auditRows = sheetToObjects(getSheet(SHEET_AUDIT_LOG));
+    recent = auditRows.slice(-10).reverse().map(r => ({
+      timestamp  : r.timestamp ? String(r.timestamp) : "",
+      user_email : String(r.user_email || ""),
+      action     : String(r.action     || ""),
+      entity     : String(r.entity     || ""),
+      entity_id  : String(r.entity_id  || ""),
+      detail     : String(r.detail     || "")
+    }));
+  } catch(e) { Logger.log("audit err: " + e.message); }
 
-  const result = {
-    total_projects : activeProjects,
-    total_pcs      : myPcs.length,
-    total_vns      : myVns.length,
+  return {
+    total_projects : totalProjects,
+    total_pcs      : totalPcs,
+    total_vns      : totalVns,
     pending_pcs    : pendingPcs,
     user_role      : String(user.role || "viewer"),
     user_name      : String(user.name || ""),
     recent_activity: recent
   };
-
-  Logger.log("getDashboardStats result: " + JSON.stringify(result));
-  return result;
 }
 
 // ============================================================
