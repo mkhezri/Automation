@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KAU SOK — تنظیمات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --primary        : #1e40af;
+  --primary-light  : #2563eb;
+  --primary-dark   : #1e3a8a;
+  --secondary      : #059669;
+  --danger         : #dc2626;
+  --warning        : #d97706;
+
+  --content-bg     : #f1f5f9;
+  --card-bg        : #ffffff;
+  --card-border    : #e2e8f0;
+  --card-shadow    : 0 1px 3px rgba(0,0,0,.08);
+
+  --text-primary   : #0f172a;
+  --text-secondary : #475569;
+  --text-muted     : #94a3b8;
+
+  --radius-sm      : 6px;
+  --radius-md      : 10px;
+  --radius-lg      : 16px;
+
+  --transition     : all .2s ease;
+}
+
+/* ---- DARK MODE ---- */
+body.dark-mode {
+  --content-bg  : #0f172a;
+  --card-bg     : #1e293b;
+  --card-border : #334155;
+  --text-primary   : #e2e8f0;
+  --text-secondary : #94a3b8;
+  --text-muted     : #64748b;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  min-height: 100%;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--content-bg);
+  direction: rtl;
+  transition: background .3s ease, color .3s ease;
+}
+
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ---- PAGE WRAPPER ---- */
+.page-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ---- BREADCRUMB ---- */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.breadcrumb-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  background: var(--card-bg);
+  border: 1.5px solid var(--card-border);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.breadcrumb-back:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.breadcrumb-sep { color: var(--text-muted); }
+.breadcrumb-current { font-size: 13px; color: var(--text-muted); }
+
+/* ---- PAGE HEADER ---- */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.page-header h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.page-header p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* ---- BUTTONS ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+}
+
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--card-border);
+  color: var(--text-secondary);
+}
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+
+/* ---- SECTION CARD ---- */
+.section-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: background .3s ease, border-color .3s ease;
+}
+
+.section-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.section-icon {
+  width: 38px;
+  height: 38px;
+  background: #dbeafe;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.section-card-header h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.section-card-header .sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.section-body {
+  padding: 22px;
+}
+
+/* ---- SETTING ROW ---- */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--card-border);
+  gap: 16px;
+}
+
+.setting-row:last-child { border-bottom: none; }
+
+.setting-label {
+  flex: 1;
+}
+
+.setting-label strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.setting-label span {
+  display: block;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+.setting-control {
+  flex-shrink: 0;
+}
+
+/* ---- TOGGLE SWITCH ---- */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.toggle-track {
+  width: 44px;
+  height: 24px;
+  background: #cbd5e1;
+  border-radius: 99px;
+  position: relative;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.toggle-track.on { background: var(--primary); }
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  transition: var(--transition);
+}
+
+.toggle-track.on .toggle-thumb { right: 23px; }
+
+/* ---- COLOR PICKER ---- */
+.color-picker-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.color-swatch {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: var(--transition);
+  position: relative;
+}
+
+.color-swatch.selected {
+  border-color: var(--text-primary);
+  transform: scale(1.15);
+}
+
+.color-swatch::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.7);
+}
+
+/* ---- FORM CONTROLS ---- */
+.form-input, .form-select {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 8px 12px;
+  border: 1.5px solid var(--card-border);
+  border-radius: var(--radius-md);
+  background: var(--card-bg);
+  color: var(--text-primary);
+  transition: var(--transition);
+  min-width: 180px;
+}
+
+.form-input:focus, .form-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(30,64,175,.08);
+}
+
+/* ---- TOAST ---- */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border-radius: var(--radius-md);
+  background: var(--text-primary);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  animation: slideUp .25s ease;
+  max-width: 360px;
+}
+
+.toast.success { background: var(--secondary); }
+.toast.error   { background: var(--danger); }
+.toast.warning { background: var(--warning); }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- SAVE BAR ---- */
+.save-bar {
+  position: sticky;
+  bottom: 0;
+  background: var(--card-bg);
+  border-top: 1px solid var(--card-border);
+  padding: 14px 22px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  z-index: 100;
+  box-shadow: 0 -4px 12px rgba(0,0,0,.06);
+  margin: 0 -24px -24px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Toast -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- Page -->
+<div class="page-wrapper">
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <button class="breadcrumb-back" onclick="goHome()">
+      ← بازگشت به داشبورد
+    </button>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current">تنظیمات</span>
+  </div>
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <h1>⚙️ تنظیمات سیستم</h1>
+      <p>شخصی‌سازی ظاهر و رفتار سامانه</p>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       SECTION A: Appearance
+       ====================================================== -->
+  <div class="section-card">
+    <div class="section-card-header">
+      <div class="section-icon">🎨</div>
+      <div>
+        <h2>ظاهر</h2>
+        <div class="sub">تنظیمات نمایش و رنگ‌بندی</div>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <!-- Dark mode -->
+      <div class="setting-row">
+        <div class="setting-label">
+          <strong>حالت تاریک</strong>
+          <span>تغییر پس‌زمینه به حالت تاریک</span>
+        </div>
+        <div class="setting-control">
+          <div class="toggle" id="dark-toggle" onclick="toggleDarkMode()">
+            <div class="toggle-track" id="dark-track">
+              <div class="toggle-thumb"></div>
+            </div>
+            <span id="dark-label" style="font-size:12px;color:var(--text-muted);">خاموش</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Primary color -->
+      <div class="setting-row">
+        <div class="setting-label">
+          <strong>رنگ اصلی</strong>
+          <span>رنگ دکمه‌ها و عناصر اصلی</span>
+        </div>
+        <div class="setting-control">
+          <div class="color-picker-group" id="color-picker">
+            <div class="color-swatch" data-color="#1e40af" style="background:#1e40af;" title="آبی" onclick="selectColor('#1e40af', this)"></div>
+            <div class="color-swatch" data-color="#15803d" style="background:#15803d;" title="سبز" onclick="selectColor('#15803d', this)"></div>
+            <div class="color-swatch" data-color="#7c3aed" style="background:#7c3aed;" title="بنفش" onclick="selectColor('#7c3aed', this)"></div>
+            <div class="color-swatch" data-color="#dc2626" style="background:#dc2626;" title="قرمز" onclick="selectColor('#dc2626', this)"></div>
+            <div class="color-swatch" data-color="#c2410c" style="background:#c2410c;" title="نارنجی" onclick="selectColor('#c2410c', this)"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================
+       SECTION B: Language & Region
+       ====================================================== -->
+  <div class="section-card">
+    <div class="section-card-header">
+      <div class="section-icon">🌐</div>
+      <div>
+        <h2>زبان و منطقه</h2>
+        <div class="sub">تنظیمات زبان، منطقه زمانی و قالب تاریخ</div>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <!-- Language -->
+      <div class="setting-row">
+        <div class="setting-label">
+          <strong>زبان</strong>
+          <span>زبان رابط کاربری</span>
+        </div>
+        <div class="setting-control">
+          <select class="form-select" id="s-language">
+            <option value="fa">فارسی</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Timezone -->
+      <div class="setting-row">
+        <div class="setting-label">
+          <strong>منطقه زمانی</strong>
+          <span>برای نمایش تاریخ و ساعت</span>
+        </div>
+        <div class="setting-control">
+          <select class="form-select" id="s-timezone">
+            <option value="Asia/Tehran">تهران (UTC+3:30)</option>
+            <option value="Asia/Dubai">دبی (UTC+4)</option>
+            <option value="Asia/Singapore">سنگاپور (UTC+8)</option>
+            <option value="Asia/Tokyo">توکیو (UTC+9)</option>
+            <option value="Europe/London">لندن (UTC+0)</option>
+            <option value="Europe/Berlin">برلین (UTC+1)</option>
+            <option value="Europe/Istanbul">استانبول (UTC+3)</option>
+            <option value="America/New_York">نیویورک (UTC-5)</option>
+            <option value="America/Los_Angeles">لوس‌آنجلس (UTC-8)</option>
+            <option value="UTC">UTC</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Date format -->
+      <div class="setting-row">
+        <div class="setting-label">
+          <strong>قالب تاریخ</strong>
+          <span>نحوه نمایش تاریخ در سیستم</span>
+        </div>
+        <div class="setting-control">
+          <select class="form-select" id="s-date-format">
+            <option value="YYYY/MM/DD">YYYY/MM/DD</option>
+            <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+            <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================
+       SECTION C: System
+       ====================================================== -->
+  <div class="section-card">
+    <div class="section-card-header">
+      <div class="section-icon">🏢</div>
+      <div>
+        <h2>سیستم</h2>
+        <div class="sub">تنظیمات کلی سیستم</div>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <!-- Company name -->
+      <div class="setting-row">
+        <div class="setting-label">
+          <strong>نام شرکت</strong>
+          <span>نمایش در سربرگ و گزارش‌ها</span>
+        </div>
+        <div class="setting-control">
+          <input class="form-input" type="text" id="s-company" value="KAU SOK CO. LIMITED" />
+        </div>
+      </div>
+
+      <!-- Items per page -->
+      <div class="setting-row">
+        <div class="setting-label">
+          <strong>تعداد آیتم در هر صفحه</strong>
+          <span>تعداد ردیف‌های جداول</span>
+        </div>
+        <div class="setting-control">
+          <select class="form-select" id="s-page-size">
+            <option value="10">۱۰</option>
+            <option value="25">۲۵</option>
+            <option value="50">۵۰</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Save bar -->
+  <div class="save-bar">
+    <button class="btn btn-outline" onclick="resetSettings()">🔄 بازنشانی به پیش‌فرض</button>
+    <button class="btn btn-primary" onclick="saveSettings()">💾 ذخیره تنظیمات</button>
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+// CONSTANTS
+// ============================================================
+const HOME_URL = 'https://script.google.com/macros/s/AKfycbyg-Llif04nhcv_zup8jC6g1GlYKUNPGAdAhXDboA2mfvOo-5Hd4tGKEkRmaU5ixSM/exec';
+const STORAGE_KEY = 'kau_settings';
+
+const DEFAULTS = {
+  darkMode   : false,
+  primaryColor: '#1e40af',
+  language   : 'fa',
+  timezone   : 'Asia/Tehran',
+  dateFormat : 'YYYY/MM/DD',
+  company    : 'KAU SOK CO. LIMITED',
+  pageSize   : 25
+};
+
+// ============================================================
+// AppSettings — global API
+// ============================================================
+window.AppSettings = {
+  getAll() {
+    try {
+      return Object.assign({}, DEFAULTS, JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'));
+    } catch(e) {
+      return Object.assign({}, DEFAULTS);
+    }
+  },
+  get(key) {
+    return this.getAll()[key];
+  },
+  set(key, val) {
+    const all = this.getAll();
+    all[key] = val;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
+    return this;
+  },
+  reset() {
+    localStorage.removeItem(STORAGE_KEY);
+    return this;
+  }
+};
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  loadSettingsToUI();
+  applyCurrentSettings();
+});
+
+// ============================================================
+// LOAD SETTINGS INTO UI
+// ============================================================
+function loadSettingsToUI() {
+  const s = AppSettings.getAll();
+
+  // Dark mode
+  setDarkToggleUI(s.darkMode);
+
+  // Primary color
+  document.querySelectorAll('.color-swatch').forEach(sw => {
+    sw.classList.toggle('selected', sw.dataset.color === s.primaryColor);
+  });
+
+  // Selects & inputs
+  document.getElementById('s-language').value    = s.language    || DEFAULTS.language;
+  document.getElementById('s-timezone').value    = s.timezone    || DEFAULTS.timezone;
+  document.getElementById('s-date-format').value = s.dateFormat  || DEFAULTS.dateFormat;
+  document.getElementById('s-company').value     = s.company     || DEFAULTS.company;
+  document.getElementById('s-page-size').value   = String(s.pageSize || DEFAULTS.pageSize);
+}
+
+// ============================================================
+// APPLY CSS (primary color etc)
+// ============================================================
+function applyCurrentSettings() {
+  const s = AppSettings.getAll();
+  applyDarkMode(s.darkMode);
+  applyPrimaryColor(s.primaryColor);
+}
+
+function applyDarkMode(enabled) {
+  document.body.classList.toggle('dark-mode', !!enabled);
+}
+
+function applyPrimaryColor(color) {
+  if (!color) return;
+  document.documentElement.style.setProperty('--primary', color);
+  // Derive light/dark variants (simple brightness shifts)
+  document.documentElement.style.setProperty('--primary-light', color);
+  document.documentElement.style.setProperty('--primary-dark', color);
+}
+
+// ============================================================
+// DARK MODE TOGGLE
+// ============================================================
+function toggleDarkMode() {
+  const s = AppSettings.getAll();
+  const newVal = !s.darkMode;
+  // Apply immediately
+  applyDarkMode(newVal);
+  AppSettings.set('darkMode', newVal);
+  setDarkToggleUI(newVal);
+}
+
+function setDarkToggleUI(enabled) {
+  const track = document.getElementById('dark-track');
+  const label = document.getElementById('dark-label');
+  if (enabled) {
+    track.classList.add('on');
+    label.textContent = 'روشن';
+  } else {
+    track.classList.remove('on');
+    label.textContent = 'خاموش';
+  }
+}
+
+// ============================================================
+// COLOR PICKER
+// ============================================================
+function selectColor(color, el) {
+  document.querySelectorAll('.color-swatch').forEach(sw => sw.classList.remove('selected'));
+  el.classList.add('selected');
+  applyPrimaryColor(color);
+}
+
+// ============================================================
+// SAVE SETTINGS
+// ============================================================
+function saveSettings() {
+  // Read selected color
+  const selectedSwatch = document.querySelector('.color-swatch.selected');
+  const primaryColor = selectedSwatch ? selectedSwatch.dataset.color : DEFAULTS.primaryColor;
+
+  const s = {
+    darkMode    : document.getElementById('dark-track').classList.contains('on'),
+    primaryColor: primaryColor,
+    language    : document.getElementById('s-language').value,
+    timezone    : document.getElementById('s-timezone').value,
+    dateFormat  : document.getElementById('s-date-format').value,
+    company     : document.getElementById('s-company').value.trim() || DEFAULTS.company,
+    pageSize    : parseInt(document.getElementById('s-page-size').value) || DEFAULTS.pageSize
+  };
+
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+    applyDarkMode(s.darkMode);
+    applyPrimaryColor(s.primaryColor);
+    showToast('تنظیمات با موفقیت ذخیره شد', 'success');
+  } catch(e) {
+    showToast('خطا در ذخیره تنظیمات', 'error');
+  }
+}
+
+// ============================================================
+// RESET SETTINGS
+// ============================================================
+function resetSettings() {
+  if (!confirm('آیا از بازنشانی تنظیمات به حالت پیش‌فرض اطمینان دارید؟')) return;
+  AppSettings.reset();
+  loadSettingsToUI();
+  applyCurrentSettings();
+  showToast('تنظیمات به حالت پیش‌فرض بازنشانی شد', 'success');
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function goHome() {
+  window.top.location.href = HOME_URL;
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(message, type) {
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = 'toast ' + (type || '');
+  const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : type === 'warning' ? '⚠️' : 'ℹ️';
+  toast.innerHTML = `<span>${icon}</span> ${escHtml(message)}`;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transition = 'opacity .3s';
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
+}
+
+function escHtml(str) {
+  return String(str || '')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
