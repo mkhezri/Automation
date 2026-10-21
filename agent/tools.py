@@ -181,24 +181,10 @@ TOOL_DEFINITIONS = [
             "required": ["bonus_clause", "penalty_clause", "reject_clause", "payment_stages", "delivery_term"]
         }
     },
-    {
-        "name": "send_email",
-        "description": "Send an HTML email to a recipient.",
-        "input_schema": {
-            "type": "object",
-            "properties": {
-                "to":        {"type": "string"},
-                "subject":   {"type": "string"},
-                "html_body": {"type": "string"}
-            },
-            "required": ["to", "subject", "html_body"]
-        }
-    }
 ]
 
 TOOL_FUNCTIONS = {
     "get_market_data":        get_market_data,
     "calculate_effective_price": calculate_effective_price,
     "evaluate_contract_risk": evaluate_contract_risk,
-    "send_email":             send_email,
 }
