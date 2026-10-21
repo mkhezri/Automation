@@ -22,3 +22,12 @@ def test_no_email_tool_available_to_model():
 def test_health_without_credentials():
     client = TestClient(main.app)
     assert client.get("/health").status_code == 200
+
+def test_correct_key_reaches_analysis(monkeypatch):
+    monkeypatch.setenv("AGENT_API_KEY", "pilot-test-secret")
+    from models import AgentResponse
+    monkeypatch.setattr(main, "analyze_opportunity", lambda payload: AgentResponse(result="test", risk_level="low"))
+    client = TestClient(main.app)
+    response = client.post("/analyze", json={}, headers={"X-API-Key": "pilot-test-secret"})
+    assert response.status_code == 200
+    assert response.json()["result"] == "test"
