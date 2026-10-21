@@ -3,9 +3,9 @@ KAU Procurement AI Agent — FastAPI server
 Run: uvicorn main:app --reload --port 8000
 """
 
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, HTTPException, Header, Depends
 import os
+import hmac
 
 from models import OpportunityPayload, AgentResponse
 from agent import analyze_opportunity
@@ -16,12 +16,12 @@ app = FastAPI(
     description="AI-powered procurement automation for mining commodity trading",
 )
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],   # restrict to your Apps Script domain in production
-    allow_methods=["POST", "GET"],
-    allow_headers=["*"],
-)
+def require_api_key(x_api_key: str | None = Header(default=None)) -> None:
+    expected = os.getenv("AGENT_API_KEY")
+    if not expected:
+        raise HTTPException(status_code=503, detail="Service authentication not configured")
+    if not x_api_key or not hmac.compare_digest(x_api_key, expected):
+        raise HTTPException(status_code=401, detail="Unauthorized")
 
 
 @app.get("/health")
@@ -29,7 +29,7 @@ def health():
     return {"status": "ok", "service": "KAU Agent"}
 
 
-@app.post("/analyze", response_model=AgentResponse)
+@app.post("/analyze", response_model=AgentResponse, dependencies=[Depends(require_api_key)])
 def analyze(payload: OpportunityPayload):
     """
     Receives a purchase opportunity from Apps Script,
@@ -40,4 +40,4 @@ def analyze(payload: OpportunityPayload):
     try:
         return analyze_opportunity(payload)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail="Analysis failed")
