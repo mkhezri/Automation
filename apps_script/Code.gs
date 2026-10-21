@@ -109,6 +109,9 @@ function callAgentAnalyze(payload) {
 // ---------- Email Automation ----------
 
 function sendRfqEmail(payload) {
+  // Pilot safety: fail closed. No direct mail dispatch until an authenticated
+  // server-side approval workflow and auditable approval record are implemented.
+  throw new Error('ارسال ایمیل در پایلوت ECC غیرفعال است؛ فقط پیش‌نویس تهیه شود.');
   var email = payload.supplier_email;
   if (!email) throw new Error('ایمیل تأمین‌کننده در پروفایل ثبت نشده است.');
 
