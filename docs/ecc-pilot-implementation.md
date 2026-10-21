@@ -24,3 +24,10 @@ Only branch: `pilot/ecc-commercial-agents`. Do not merge or deploy until review.
 - `get_market_data` uses old demo Platts data; do not use it for live financial decisions.
 - `Index.html` references `PropertiesService` in browser JS; fix and test.
 - No runtime/deployment/secret scanning was performed. Static checks do not establish production security.
+
+## Patch 2 (2026-10-22)
+- Pilot-only `sendRfqEmail` now fails closed before sending. This intentionally disables RFQ dispatch in the pilot branch; production `main` is unchanged.
+- Removed browser-side reference to server-only `PropertiesService` from `Index.html`.
+- Clarified that `get_market_data` uses historical DEMO values, not live Platts data. The model's general system prompt still requests latest market data and should be adjusted before any use.
+- Added a successful-authentication API regression test using a mocked analysis function.
+- Tests were committed but not run in a verified Python runtime; deployment settings and owner notifications were not inspected.
