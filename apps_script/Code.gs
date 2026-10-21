@@ -89,10 +89,13 @@ function getSuppliers() {
 function callAgentAnalyze(payload) {
   var agentUrl = PropertiesService.getScriptProperties().getProperty('AGENT_URL');
   if (!agentUrl) return { error: 'AGENT_URL تنظیم نشده — لطفاً در Script Properties مقدار آن را وارد کنید.' };
+  var apiKey = PropertiesService.getScriptProperties().getProperty('AGENT_API_KEY');
+  if (!apiKey) return { error: 'AGENT_API_KEY تنظیم نشده — تحلیل AI غیرفعال است.' };
   try {
     var resp = UrlFetchApp.fetch(agentUrl + '/analyze', {
       method: 'post',
       contentType: 'application/json',
+      headers: { 'X-API-Key': apiKey },
       payload: JSON.stringify(payload),
       muteHttpExceptions: true
     });
