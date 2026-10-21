@@ -9,7 +9,7 @@ import anthropic
 from models import OpportunityPayload, AgentResponse
 from tools import TOOL_DEFINITIONS, TOOL_FUNCTIONS
 
-_client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+_client = None
 
 SYSTEM_PROMPT = """You are KAU Procurement AI Agent — an expert in iron ore commodity trading, contract analysis, and supply chain risk management.
 
@@ -29,6 +29,10 @@ Always respond in Farsi (Persian). Be concise and actionable.
 
 def analyze_opportunity(payload: OpportunityPayload) -> AgentResponse:
     """Runs the Claude agentic loop and returns a structured result."""
+
+    global _client
+    if _client is None:
+        _client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
     # Extract first Fe lab value for price calculation
     actual_fe = _extract_fe(payload)
