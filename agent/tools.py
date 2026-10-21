@@ -14,7 +14,7 @@ from typing import Any
 
 def get_market_data(product_type: str, index_name: str) -> dict[str, Any]:
     """
-    Returns latest Platts index reference price.
+    Returns DEMO reference data only, not current or licensed Platts prices.
     In production: call Platts API or internal data feed.
     Currently returns realistic demo values.
     """
@@ -140,7 +140,7 @@ def send_email(to: str, subject: str, html_body: str) -> dict[str, str]:
 TOOL_DEFINITIONS = [
     {
         "name": "get_market_data",
-        "description": "Get the latest Platts reference price for an iron ore index.",
+        "description": "Get historical DEMO reference data for development only. Never present as live market data.",
         "input_schema": {
             "type": "object",
             "properties": {
